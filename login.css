@@ -83,7 +83,7 @@ button:focus{
     margin-top: 5%;
 }
 
-p.or{
+.devide-line p{
     display: inline-block;
     font-weight: bold;
     position: relative;

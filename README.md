@@ -9,6 +9,7 @@ This project is the first part of HTML/CSS training at the portal
 
 ### questions for Thi ###
 * is there an easy/clean way to have placeholer text in a password field?
+* clean way to do a bifurcated line?
 
 
 ### Contribution guidelines ###
