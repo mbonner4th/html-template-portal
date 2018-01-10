@@ -1,4 +1,89 @@
-input {
+#content {
+    margin-left: 25%;
+    margin-right:25%;
+}
+
+.form-container{
     background-color: white;
-    color: black;
+    border: solid 1px #e2e0d8;
+    border-radius: 5px;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-bottom: 10%;
+    margin-top: 5%;
+    text-align: center;
+}
+
+.form-container label{
+    float: left;
+    font-weight: bold;
+}
+
+input[type=email], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+input:focus{
+    box-shadow: 0 0 0 2px #555;
+    border-radius: 2px;
+    outline: none;
+}
+
+.checkbox-container{
+    display: block;
+    margin-bottom: 5%;
+}
+.checkbox-container input[type=checkbox]{
+    float: left;
+}
+.checkbox-container span{
+    float: left;
+}
+.checkbox-container a{
+    float: right;
+}
+
+button{
+    display: block;
+    border: 0;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    font: bold 13px helvetica, sans-serif;
+    line-height: 1em;
+    padding: 12px 30px;
+    background-color: black;    
+}
+button:hover{
+    background-color: #555555;
+}
+button:focus{
+    outline: none;
+}
+
+
+
+
+
+
+/*is there a cleaner way to do this?
+ going for something like https://www.fitbit.com/login */
+
+
+ 
+ .devide-line hr{
+    display: inline-block;
+    width: 40%;
+    margin-top: 5%;
+}
+
+p.or{
+    display: inline-block;
+    font-weight: bold;
 }

@@ -3,33 +3,52 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Login Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="login.css" />
-    <script src="main.js"></script>
 </head>
 <body>
-    <form id="registration-form">
-        <h2 class="form-header">New Member Registration</h2>
-        <a name="new-user"> 
-            <a href="#returning-user"><p>Already a member?</p></a>
-        </a>       
-        <label>Email:</label>
-        <input type="email" placeholder="sample@email.com">
-        <label>Password:</label>
-        <input type="password" placeholer="">
-    </form>
+    <div id="content">
+        
+        <div class="form-container">
+            <h2 class="form-header">New Member Registration</h2>
+            <form id="registration-form">
+  
+                <label>Email</label>
+                <input type="email" placeholder="sample@email.com">
+                <br>
+                <label>Password</label>
+                <input type="password" placeholer="">
+                <label>Comfirm Password</label>
+                <input type="password" placeholer="">
+                <button type="submit">Register</button>
+            </form>
 
-    <form id="login-form">
-        <h2c class="form-header">Memeber Login</h2>
-        <a name="returning-user"> 
-            <a href="#new-user"><p>New Member?</p></a>
-        </a>
-        <label>Email:</label>
-        <input type="email" placeholder="sample@email.com">
-        <label>Password:</label>
-        <input type="password" placeholer="">
-    </form>
+            <div class="devide-line">
+                    <hr>
+                    <p class="or"> or </p>
+                    <hr>
+            </div>
+            
+            <h2 class="form-header">Memeber Login</h2>
+            <form id="login-form">
+
+                <label>Email</label>
+                <input type="email" placeholder="sample@email.com">
+                <label>Password</label>
+                <!-- Is there a pure html/css way to put a placeholder in a password input? -->
+                <input type="password" placeholer="">
+                <div class="checkbox-container">
+                    <input type="checkbox" checked="checked"> <span>Remember Me</span> 
+                    <a href="">Forgot Password?</a>
+                </div>
+                
+                <button type="submit">Log In</button>
+                
+            </form>
+        </div>
+
+    </div>
 </body>
 </html>
