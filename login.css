@@ -86,4 +86,6 @@ button:focus{
 p.or{
     display: inline-block;
     font-weight: bold;
+    position: relative;
+    top: -4px;
 }

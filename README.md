@@ -1,21 +1,14 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This project is the first part of HTML/CSS training at the portal
 
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* a template for a log in page and a content page
+* 1.0
 
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-## use a web browser!
+### questions for Thi ###
+* is there an easy/clean way to have placeholer text in a password field?
 
 
 ### Contribution guidelines ###
@@ -24,5 +17,5 @@ This README would normally document whatever steps are necessary to get your app
 
 ### Who do I talk to? ###
 
-* Repo owner or admin
+* If it works, talk to Miles. If it's broken... well, I don'r
 * Other community or team contact
