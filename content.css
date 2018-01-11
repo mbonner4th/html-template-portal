@@ -8,7 +8,7 @@
     font-weight: bold;
 }
 
-#nav-bar ul{
+#top-nav-bar ul{
     list-style-type: none;
     margin: 0;
     width: 100%;
@@ -18,20 +18,27 @@
 }
 
 
-#nav-bar  li {
+#top-nav-bar .nav-bar  li {
     float: left;
+    border-right: 1px solid #bbb;
+}
+#top-nav-bar .nav-bar  .right-element {
+    float: right;
+    border-left: 1px solid #bbb;
+    border-right: none;
 }
 
-#nav-bar li a {
+
+.nav-bar li a{
     color: white;    
     text-align: center;
     display: block;
     padding: 5px 8px;
     text-decoration: none;
-    border-right: 1px solid #bbb;
+    
 }
 
-#nav-bar li a:hover{
+.nav-bar li a:hover{
     background-color: white;
     color: black
 }
