@@ -84,13 +84,13 @@ footer hr{
     width: 30%;
 }
 
-#footer-text{
+footer p{
     color: #7f8094;
     text-align: center;
+    font-size: small;
 }
 
 footer img{
     min-height: 3%;
     width: 3%;
-
 }

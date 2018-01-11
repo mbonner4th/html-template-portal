@@ -12,22 +12,23 @@
     <div id="content">
         
         <div class="form-container">
-            <h2 class="form-header">New Member Registration</h2>
-
             <!-- TODO: 
                 1. change lables to wrap input elements
                 2. add required to the input fields
              -->
 
             <form id="registration-form">
+                <h2 class="form-header">New Member Registration</h2>
   
-                <label>Email</label>
-                <input type="email" placeholder="sample@email.com">
-                <br>
-                <label>Password</label>
-                <input type="password" placeholer="">
-                <label>Comfirm Password</label>
-                <input type="password" placeholer="">
+                <label>Email
+                    <input type="email" placeholder="sample@email.com" required>
+                </label>
+                <label>Password
+                    <input type="password" placeholer="" required>
+                </label>
+                <label>Comfirm Password
+                    <input type="password" placeholer="" required>
+                </label>
                 <button type="submit">Register</button>
             </form>
 
@@ -37,14 +38,15 @@
                     <hr>
             </div>
             
-            <h2 class="form-header">Memeber Login</h2>
             <form id="login-form">
-
-                <label>Email</label>
-                <input type="email" placeholder="sample@email.com">
-                <label>Password</label>
+                <h2 class="form-header">Memeber Login</h2>
+                <label>Email
+                    <input type="email" placeholder="sample@email.com">
+                </label>
+                <label>Password
                 <!-- Is there a pure html/css way to put a placeholder in a password input? -->
-                <input type="password" placeholer="">
+                    <input type="password" placeholer="">
+                </label>
                 <div class="checkbox-container">
                     <input type="checkbox" checked="checked"> <span>Remember Me</span> 
                     <a href="">Forgot Password?</a>

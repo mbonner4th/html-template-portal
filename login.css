@@ -12,12 +12,15 @@
     padding-right: 5%;
     margin-bottom: 10%;
     margin-top: 5%;
-    text-align: center;
 }
 
-.form-container label{
-    float: left;
+form label{
+    text-align: left;
     font-weight: bold;
+}
+
+form h2{
+    text-align: center;
 }
 
 input[type=email], input[type=password] {
@@ -29,6 +32,7 @@ input[type=email], input[type=password] {
     border-radius: 5px;
     box-sizing: border-box;
 }
+
 input:focus{
     box-shadow: 0 0 0 2px #555;
     border-radius: 2px;
@@ -39,14 +43,22 @@ input:focus{
     display: block;
     margin-bottom: 5%;
 }
+
 .checkbox-container input[type=checkbox]{
     float: left;
 }
+
 .checkbox-container span{
     float: left;
 }
+
 .checkbox-container a{
     float: right;
+}
+
+
+.devide-line{
+    text-align: center
 }
 
 button{
