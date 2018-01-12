@@ -23,7 +23,12 @@ form label{
     font-weight: bold;
 }
 
-
+#edit-user-form{
+    margin-bottom: 3%;
+}
+#edit-pss-form{
+    margin-top: 2%;
+}
 
 
 input[type=email], input[type=password], input[type=text] {
@@ -81,9 +86,15 @@ button{
     padding: 12px 30px;
     background-color: black;    
 }
-button:hover{
+.update-button:hover{
     background-color: #25640c;
 }
+
+.password-button:hover{
+    background-color: red;
+}
+
+
 button:focus{
     outline: none;
 }
