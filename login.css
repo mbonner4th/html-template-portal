@@ -1,7 +1,7 @@
-#content {
+/* #content {
     margin-left: 25%;
     margin-right:25%;
-}
+} */
 
 .form-container{
     background-color: white;
@@ -56,7 +56,6 @@ input:focus{
     float: right;
 }
 
-
 .devide-line{
     text-align: center
 }
@@ -79,15 +78,8 @@ button:focus{
     outline: none;
 }
 
-
-
-
-
-
 /*is there a cleaner way to do this?
  going for something like https://www.fitbit.com/login */
-
-
  
  .devide-line hr{
     display: inline-block;

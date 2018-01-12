@@ -1,0 +1,16 @@
+.admin-header {
+    color: palegoldenrod;
+    text-align: center;
+    float: left;
+}
+
+.admin-container {
+    background-color: white;
+    border: solid 1px #e2e0d8;
+    border-radius: 5px;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-bottom: 10%;
+    margin-top: 5%;
+}

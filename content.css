@@ -28,7 +28,6 @@
     border-right: none;
 }
 
-
 .nav-bar li a{
     color: white;    
     text-align: center;
@@ -43,11 +42,10 @@
     color: black
 }
 
-
-#content {
+/* #content {
     margin-left: 25%;
     margin-right:25%;
-}
+} */
 
 .blog{
     background-color: white;
@@ -57,7 +55,6 @@
     padding-right: 5%;
     margin-bottom: 10%;
     margin-top: 5%;
-
 }
 
 .blog-title p{
