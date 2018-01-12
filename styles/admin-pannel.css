@@ -1,7 +1,23 @@
-.admin-header {
-    color: palegoldenrod;
-    text-align: center;
+/* Admin header section */
+.admin-header h2{
+    /* text-align: left; */
     float: left;
+}
+
+.admin-header{
+    margin-top: 15px;
+}
+.admin-header hr{
+    position: relative;
+    top: 20px;
+    width: 100%;
+}
+
+.admin-header button{
+    float: right;
+    margin-top: 10px;
+    padding: 18px 33px;
+    font-size: 20px;
 }
 
 .admin-container {
@@ -13,4 +29,99 @@
     padding-right: 5%;
     margin-bottom: 10%;
     margin-top: 5%;
+}
+
+/* Table section */
+
+table.admin-table {
+    width: 100%;
+    margin-top: 5%;
+}
+
+table{
+    border-collapse: collapse;
+    border: 1px solid black;
+    border-radius: 50px;
+}
+
+thead{
+    background-color: #4c4c44;
+    color: white;
+}
+
+th, td {
+    border-bottom: 1px solid #4c4c44;;   
+
+}
+
+th, td {
+    text-align: center;
+    padding: 8px;
+}
+
+.admin-table a {
+    color: black;
+    text-decoration: none; 
+}
+
+tr>td:nth-child(1){
+    width: 30%;
+    text-align: left;    
+}
+
+
+tr>td:nth-child(2){
+    width: 30%;
+    text-align: center;
+}
+
+
+tr>td:nth-child(3){
+    width: 40%;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+
+.delete-button:hover {
+    background-color: red;
+}
+
+.view::before{
+    content:"Hide";
+}
+
+.hidden::before{
+    content: "View";
+}
+
+.hidden{
+    background-color: #555555
+}
+
+.hidden:hover{
+    background-color:black;
+}
+
+
+/*generic button layout */
+
+button{
+    border: 0;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    font: bold 13px helvetica, sans-serif;
+    line-height: 1em;
+    padding: 12px 30px;
+    background-color: black;    
+}
+button:hover{
+    background-color: #555555;
+}
+button:focus{
+    outline: none;
 }

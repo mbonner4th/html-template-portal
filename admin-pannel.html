@@ -11,12 +11,88 @@
 </head>
 <body>
     <div id="content" class="admin-container">
-        <h1 class="admin-header" >
-                --current user's -- admin pannel
-        </h1>    
-        <button>
-            Add Page
-        </button>
+        <div class="admin-header">
+                <h2>
+                    User's Admin Page
+                </h2>    
+                <button>
+                   New Page
+                </button>
+                
+                <hr/>
+        </div>
+        <div class="admin-content">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>
+                            Page Name
+                        </th>
+                        <th>
+                            Updated
+                        </th>
+                        <th>
+                            Options
+                        </th>
+                    </tr>
+                </thead>
+                <!-- dumby data -->
+                <tbody>
+                    <tr>
+                            <td class="page-title">
+                                <a href="">Blog 1</a>
+                            </td>
+                            <td class ="date"><time datetime="2018-01-11"> Jan 11, 2018 </time></td>
+                            <td>
+                                <button>Edit</button>
+                                <button class="delete-button">Delete</button>
+                                <button class="view-button view"></button>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                                <td class="page-title">
+                                    <a href="">Blog 2</a>
+                                </td>
+                                <td class ="date"> <time datetime="2018-01-11"> Jan 11, 2018 </time></td>
+                                <td>
+                                    <button>Edit</button>
+                                    <button class="delete-button">Delete</button>
+                                    <button class="view-button view"></button>
+                                    
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="page-title">
+                                <a href="">A long blog post name is very very long that should go more than 40% of the container width</a>
+                            </td>
+                            <td class ="date"> <time datetime="2018-01-11"> Jan 11, 2018 </time></td>
+                            <td>
+                                <button>Edit</button>
+                                <button class="delete-button">Delete</button>
+                                <button class="view-button hidden"></button>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="page-title">
+                                <a href="">Content page</a>
+                            </td>
+                            <td class ="date"> <time datetime="2018-01-11"> Jan 11, 2018 </time></td>
+                            <td>
+                                <button>Edit</button>
+                                <button class="delete-button">Delete</button>
+                                <button class="view-button view"></button>
+                                
+                            </td>
+                        </tr>
+
+                </tbody>
+                
+            </table>          
+        </div>
+        
+        
     </div>
     
 </body>
