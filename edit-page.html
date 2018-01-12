@@ -13,17 +13,27 @@
        <div class="form-container edit-page-form">
            <form>
                <label> 
-                    <span class="form-lable">Page Title:</span>
+                    <span class="form-label">Page Title:</span>
                     <input type="text" name="page-title" placeholder="try a fun name!" required>
                </label>
                
-               <textarea class="page-body-ta" name="page-body" placeholder="Add an optional extended description…"></textarea>
+               <textarea class="page-body-ta" name="page-body" placeholder="Put your content here..." required></textarea>
 
-               <label class="switch">
-                    <input type="checkbox" checked>
-                    <span class="slider round"></span>
-                </label>
+               <diV class="switch-container">
+                    <label class="form-label"> <span class="switch-label">Make Page Visable?    </span>
+                        <label class="switch"> 
+                            <input type="checkbox" name="view" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </label>
+               </diV>
 
+               <div class="button-container">
+                    <button type="submit">Register</button>
+               </div>
+               
+
+               
            </form>
 
        </div>
