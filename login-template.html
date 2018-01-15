@@ -12,22 +12,19 @@
     <div id="content">
         
         <div class="form-container">
-            <!-- TODO: 
-                1. change lables to wrap input elements
-                2. add required to the input fields
-             -->
 
+            <!-- replace "email" and "password" text wtih icons -->
             <form id="registration-form">
                 <h2 class="form-header">New Member Registration</h2>
   
                 <label>Email
-                    <input type="email" placeholder="sample@email.com" required>
+                    <input type="email" name="reg-email" placeholder="sample@email.com" required>
                 </label>
                 <label>Password
-                    <input type="password" placeholer="" required>
+                    <input type="password" name="reg-pass" placeholer="" required>
                 </label>
                 <label>Comfirm Password
-                    <input type="password" placeholer="" required>
+                    <input type="password" name="reg-pass-confirm" placeholer="" required>
                 </label>
                 <button type="submit">Register</button>
             </form>
@@ -41,14 +38,14 @@
             <form id="login-form">
                 <h2 class="form-header">Memeber Login</h2>
                 <label>Email
-                    <input type="email" placeholder="sample@email.com">
+                    <input type="email" name="mem-email" placeholder="sample@email.com">
                 </label>
                 <label>Password
                 <!-- Is there a pure html/css way to put a placeholder in a password input? -->
-                    <input type="password" placeholer="">
+                    <input type="password" name="mem-pass" placeholer="">
                 </label>
                 <div class="checkbox-container">
-                    <input type="checkbox" checked="checked"> <span>Remember Me</span> 
+                    <input type="checkbox" name="remember" checked="checked"> <span>Remember Me</span> 
                     <a href="">Forgot Password?</a>
                 </div>
                 
