@@ -1,0 +1,151 @@
+
+.form-container{
+    background-color: white;
+    border: solid 1px #e2e0d8;
+    border-radius: 5px;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-bottom: 10%;
+    margin-top: 5%;
+}
+
+.edit-page-form{
+    padding-top: 25px;
+}
+
+.form-label{
+    text-align: left;
+    font-weight: bold;
+    width: 100%;
+}
+
+form>label>span {
+    padding-right: 10px;
+}
+
+.edit-page-form form>label>input[type=text] {
+    padding: 12px 20px;
+    margin: 8px 0;
+    width: 80%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-size: larger;
+}
+
+input:focus{
+    box-shadow: 0 0 0 2px #555;
+    border-radius: 2px;
+    outline: none;
+}
+
+textarea {
+    max-width: 97%;
+    width: 97%;
+    max-height: 100%;
+    border-radius: 2px;
+}
+textarea:focus{
+    box-shadow: 0 0 0 2px #555;
+    border-radius: 2px;
+    outline: none;
+}
+
+.page-body-ta{
+    margin-top: 5%;
+    min-height: 300px;
+    padding: 10px;
+}
+
+button{
+    display: block;
+    border: 0;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    font: bold 13px helvetica, sans-serif;
+    line-height: 1em;
+    padding: 12px 30px;
+    background-color: black;    
+}
+button:hover{
+    background-color: #555555;
+}
+button:focus{
+    outline: none;
+}
+
+.button-container {
+    margin-top: 2%;
+}
+
+/* Lots of CSS over a switch https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    /* float: right; */
+    width: 60px;
+    height: 34px;
+}
+
+.switch-container{
+    width: 100%;
+    padding-top: 3%;
+}
+
+.switch-label{
+    position: relative;
+    top: -10px;
+}
+
+.switch input {display:none;}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);   
+}
+
+/* Rounded sliders */
+.slider.round {
+border-radius: 34px;
+}
+
+.slider.round:before {
+border-radius: 50%;
+}
