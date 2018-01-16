@@ -90,13 +90,14 @@ tr:nth-child(even) {
     background-color: red;
 }
 
-.view::before{
-    content:"Hide";
+.icon-container::before{
+    content: url("002-eye.svg");
+    content: attr(class string)
 }
 
-.hidden::before{
+/* .hidden::before{
     content: "View";
-}
+} */
 
 .hidden{
     background-color: #555555
@@ -124,4 +125,9 @@ button:hover{
 }
 button:focus{
     outline: none;
+}
+
+.icon-button{
+    padding: 5px 10px;
+    border-radius: 15px;
 }
