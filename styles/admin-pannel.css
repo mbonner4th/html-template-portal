@@ -51,7 +51,6 @@ thead{
 
 th, td {
     border-bottom: 1px solid #4c4c44;;   
-
 }
 
 th, td {
@@ -84,14 +83,12 @@ tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-
-
 .delete-button:hover {
     background-color: red;
 }
 
 .icon-container::before{
-    content: url("002-eye.svg");
+    content: url("../icons/002-eye.svg");
     content: attr(class string)
 }
 
