@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Admin Pannel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/admin-pannel.css" />
+
+</head>
+<body>
+    <% include header %>
+    <div id="content" class="admin-container">
+        <div class="admin-header">
+                <h2>
+                    User's Admin Page
+                </h2>    
+                <button>
+                   New Page
+                </button>
+                
+                <hr/>
+        </div>
+        <div class="admin-content">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>
+                            Page Name
+                        </th>
+                        <th>
+                            Updated
+                        </th>
+                        <th>
+                            Options
+                        </th>
+                    </tr>
+                </thead>
+                <!-- dumby data -->
+                <tbody>
+                    <tr>
+                            <td class="page-title">
+                                <a href="">Blog 1</a>
+                            </td>
+                            <td class ="date"><time datetime="2018-01-11"> Jan 11, 2018 </time></td>
+                            <td>
+                                <button name="edit-button icon-button" class="icon-button">
+                                    <img class="icon" src="\images\icons\003-edit.svg" alt="Edit Page">
+                                </button>
+                                <button class="delete-button icon-button">
+                                    <img class="icon" src="\images\icons\001-cancel-button.svg" alt="Delete Page">
+                                </button>
+                                <button class="view-button view icon-button">
+                                    <div class="icon-container icon"></div>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="page-title">
+                                <a href="">Blog 1</a>
+                            </td>
+                            <td class ="date"><time datetime="2018-01-11"> Jan 11, 2018 </time></td>
+                            <td>
+                                <button name="edit-button icon-button" class="icon-button">
+                                    <img class="icon" src=".\icons\003-edit.svg" alt="Edit Page">
+                                </button>
+                                <button class="delete-button icon-button">
+                                    <img class="icon" src=".\icons\001-cancel-button.svg" alt="Delete Page">
+                                </button>
+                                <button class="view-button view icon-button">
+                                    <div class="icon-container icon"></div>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="page-title">
+                                <a href="">Blog 1</a>
+                            </td>
+                            <td class ="date"><time datetime="2018-01-11"> Jan 11, 2018 </time></td>
+                            <td>
+                                <button name="edit-button icon-button" class="icon-button">
+                                    <img class="icon" src=".\icons\003-edit.svg" alt="Edit Page">
+                                </button>
+                                <button class="delete-button icon-button">
+                                    <img class="icon" src=".\icons\001-cancel-button.svg" alt="Delete Page">
+                                </button>
+                                <button class="view-button view icon-button">
+                                    <div class="icon-container icon"></div>
+                                </button>
+                            </td>
+                        </tr>
+
+                </tbody>
+                
+            </table>          
+        </div>
+        
+        
+    </div>
+    <% include footer %>
+    
+</body>
+</html>

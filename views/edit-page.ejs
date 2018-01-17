@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Edit Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/edit-page.css" />
+</head>
+<body>
+    <% include header %>
+    <div id="content">
+        <div class="form-container edit-page-form">
+            <form>
+                <label> 
+                    <span class="form-label">Page Title:</span>
+                    <input type="text" name="page-title" placeholder="try a fun name!" required>
+                </label>
+                
+                <textarea class="page-body-ta" name="page-body" placeholder="Put your content here..." required></textarea>
+
+                <diV class="switch-container">
+                    <span class="form-label"> <span class="switch-label">Make Page Visable? 
+                        <label class="switch"> 
+                            <input type="checkbox" name="view" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </span>
+                </diV>
+
+                <div class="button-container">
+                    <button type="submit">Register</button>
+                </div>
+                
+
+                
+            </form>
+
+        </div>
+    </div>
+</body>
+<%include footer %>
+</html>

@@ -88,7 +88,7 @@ tr:nth-child(even) {
 }
 
 .icon-container::before{
-    content: url("../icons/002-eye.svg");
+    content: url("/images/icons/002-eye.svg");
     content: attr(class string)
 }
 
