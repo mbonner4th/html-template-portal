@@ -1,14 +1,13 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var userSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
   email: String,
   password: String
-})
-
-var userModel = mongoose.model('user', userSchema);
+});
+const userModel = mongoose.model('user', userSchema);
 
 
 
@@ -18,16 +17,39 @@ router.get('/', function(req, res){
 });
 
 router.post("/register", function(req, res){
-    var newUser = new userModel({
-        email: req.body.email,
-        password: req.body.password
+    userModel.findOne({email : req.body.email},(err, docs)=>{
+        if(err) console.log(err);
+        if(docs == null){
+            let newUser = new userModel({
+                email : req.body.email,
+                password : req.body.password
+            });
+            console.log('new user');
+            newUser.save(function(err, user){
+                if(err) return console.error(err);
+                console.log(user);
+                res.redirect('/admin-pannel');
+            });
+        } else{
+            console.log(docs);
+            res.redirect('/auth');
+        }
     });
-    
-    newUser.save(function(err, user){
-        if(err) return console.error(err);
-        console.log(user);
-    });
-    res.redirect('/admin-pannel');
+});
+
+//TODO - Don't worry, Captain, we'll buff out these security holes later
+router.post("/login", (req, res)=>{
+    userModel.findOne(
+        {email: req.body.email, password: req.body.password},
+         (err, user)=>{
+             if(err) console.log(err);
+             if(user != null){
+                 console.log('loged in');
+                 res.redirect('/admin-pannel');
+             } else {
+                 res.redirect('/auth');
+             }
+         });
 });
 
 module.exports = router;

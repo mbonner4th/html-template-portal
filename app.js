@@ -6,9 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose')
 
-
-
-
 var index = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth.js');
@@ -20,7 +17,7 @@ var adminPannel = require('./routes/admin-pannel.js')
 var app = express();
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/site');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -40,7 +37,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+app.use('/', auth);
 app.use('/users', users);
 app.use('/auth', auth);
 app.use('/edit-user', editUser);

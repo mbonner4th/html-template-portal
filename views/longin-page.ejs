@@ -34,14 +34,14 @@
                     <hr>
             </div>
             
-            <form id="login-form">
+            <form id="login-form" method="POST" action="/auth/login">
                 <h2 class="form-header">Memeber Login</h2>
                 <label>Email
-                    <input type="email" name="mem-email" placeholder="sample@email.com">
+                    <input type="email" name="email" placeholder="sample@email.com">
                 </label>
                 <label>Password
                 <!-- Is there a pure html/css way to put a placeholder in a password input? -->
-                    <input type="password" name="mem-pass" placeholer="">
+                    <input type="password" name="password" placeholer="">
                 </label>
                 <div class="checkbox-container">
                     <input type="checkbox" name="remember" checked="checked"> <span>Remember Me</span> 
