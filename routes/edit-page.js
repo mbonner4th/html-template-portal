@@ -1,15 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-const mongoose = require('mongoose');
-
-const pageSchema = mongoose.Schema({
-  title: String,
-  body: String,
-  visable: Boolean
-});
-
-const pageModel = mongoose.model('page', pageSchema);
+const pageModel = require("../models/page");
 
 router.get('/', (req, res)=>{
     res.render('edit-page');
@@ -21,13 +13,13 @@ router.post('/', (req, res)=>{
     let newPage = new pageModel({
         title: req.body.title,
         body : req.body.body,
+        url: req.body.url,
         visable: req.body.visable
     });
 
-    newPage.save((err, doc)=>{
+    newPage.save((err, page)=>{
         if (err) console.log(err);
-        console.log(doc);
-        res.redirect('/content');
+        res.redirect("/" + page.url);
     });
 
 });

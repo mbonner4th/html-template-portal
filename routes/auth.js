@@ -1,16 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const mongoose = require('mongoose');
-
-const userSchema = mongoose.Schema({
-  email: String,
-  password: String
-});
-const userModel = mongoose.model('user', userSchema);
-
-
-
+const userModel = require("../models/user")
 /* GET users listing. */
 router.get('/', function(req, res){
     res.render('longin-page');
@@ -47,7 +38,9 @@ router.post("/login", (req, res)=>{
                  console.log('loged in');
                  res.redirect('/admin-pannel');
              } else {
-                 res.redirect('/auth');
+                res.render('longin-page', {
+                    authError : "wrong password or email"
+                });
              }
          });
 });

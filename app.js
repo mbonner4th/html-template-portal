@@ -37,13 +37,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', auth);
+
 app.use('/users', users);
 app.use('/auth', auth);
 app.use('/edit-user', editUser);
 app.use('/edit-page', editPage);
 app.use('/content', content);
 app.use('/admin-pannel', adminPannel);
+app.use("/", index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
