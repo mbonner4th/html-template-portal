@@ -14,7 +14,7 @@
     <div id="content" class="admin-container">
         <div class="admin-header">
                 <h2>
-                    User's Admin Page
+                    <%= user %>'sAdmin Page
                 </h2>
                 <form id="new-page-form" method="GET" action="/edit-page">
                         <button type="submit">
@@ -42,56 +42,26 @@
                 <!-- dumby data -->
                 <tbody>
                     <tr>
-                            <td class="page-title">
-                                <a href="">Blog 1</a>
-                            </td>
-                            <td class ="date"><time datetime="2018-01-11"> Jan 11, 2018 </time></td>
-                            <td>
-                                <button name="edit-button icon-button" class="icon-button">
-                                    <img class="icon" src="\images\icons\003-edit.svg" alt="Edit Page">
-                                </button>
-                                <button class="delete-button icon-button">
-                                    <img class="icon" src="\images\icons\001-cancel-button.svg" alt="Delete Page">
-                                </button>
-                                <button class="view-button view icon-button">
-                                    <div class="icon-container icon"></div>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="page-title">
-                                <a href="">Blog 1</a>
-                            </td>
-                            <td class ="date"><time datetime="2018-01-11"> Jan 11, 2018 </time></td>
-                            <td>
-                                <button name="edit-button icon-button" class="icon-button">
-                                    <img class="icon" src="\images\icons\003-edit.svg" alt="Edit Page">
-                                </button>
-                                <button class="delete-button icon-button">
-                                    <img class="icon" src="\images\icons\001-cancel-button.svg" alt="Delete Page">
-                                </button>
-                                <button class="view-button view icon-button">
-                                    <div class="icon-container icon"></div>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="page-title">
-                                <a href="">Blog 1</a>
-                            </td>
-                            <td class ="date"><time datetime="2018-01-11"> Jan 11, 2018 </time></td>
-                            <td>
-                                <button name="edit-button icon-button" class="icon-button">
-                                    <img class="icon" src="\images\icons\003-edit.svg" alt="Edit Page">
-                                </button>
-                                <button class="delete-button icon-button">
-                                    <img class="icon" src="\images\icons\001-cancel-button.svg" alt="Delete Page">
-                                </button>
-                                <button class="view-button view icon-button">
-                                    <div class="icon-container icon"></div>
-                                </button>
-                            </td>
-                        </tr>
+                        <% for(var i=0; i < pageList.length; i++) { %>
+                            <tr>
+
+                                <td class="page-title">
+                                    <a href="/<%= pageList[i].url %>"><%= pageList[i].title %></a>
+                                </td>
+                                <td class ="date"><time datetime="2018-01-11"> Jan 11, 2018 </time></td>
+                                <td>
+                                    <button name="edit-button icon-button" class="icon-button">
+                                        <img class="icon" src="\images\icons\003-edit.svg" alt="Edit Page">
+                                    </button>
+                                    <button class="delete-button icon-button">
+                                        <img class="icon" src="\images\icons\001-cancel-button.svg" alt="Delete Page">
+                                    </button>
+                                    <button class="view-button view icon-button">
+                                        <div class="icon-container icon"></div>
+                                    </button>
+                                </td>
+                            </tr>
+                         <% } %>
 
                 </tbody>
                 

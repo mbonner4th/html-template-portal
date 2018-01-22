@@ -19,6 +19,7 @@ router.post("/register", function(req, res){
             newUser.save(function(err, user){
                 if(err) return console.error(err);
                 console.log(user);
+                req.session.user == user;
                 res.redirect('/admin-pannel');
             });
         } else{
@@ -35,7 +36,8 @@ router.post("/login", (req, res)=>{
          (err, user)=>{
              if(err) console.log(err);
              if(user != null){
-                 console.log('loged in');
+                 req.session.user = user;
+                 console.log(req.session);
                  res.redirect('/admin-pannel');
              } else {
                 res.render('longin-page', {
@@ -44,5 +46,11 @@ router.post("/login", (req, res)=>{
              }
          });
 });
+
+router.get('/logout', function(req, res) {
+    req.session.reset();
+    console.log("no more session");
+    res.redirect('/auth');
+  });
 
 module.exports = router;

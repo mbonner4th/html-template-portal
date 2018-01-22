@@ -4,7 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
+
+var session =  require("client-sessions");
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -13,6 +15,8 @@ var editUser = require('./routes/edit-user.js');
 var editPage = require('./routes/edit-page.js');
 var content = require('./routes/content.js');
 var adminPannel = require('./routes/admin-pannel.js')
+
+var userModel = require('./models/user');
 
 var app = express();
 
@@ -29,7 +33,37 @@ db.once('open', function() {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
+
+// client-sessions middle ware
+
+app.use(session({
+  cookieName: 'session',
+  secret: 'random_string_goes_here',
+  duration: 30 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000,
+  httpOnly: true,
+  secure: true,
+  ephemeral: true,
+}));
+
+app.use(function(req, res, next) {
+  if (req.session && req.session.user) {
+    userModel.findOne({ email: req.session.user.email }, function(err, user) {
+      if (user) {
+        req.user = user;
+        delete req.user.password; // delete the password from the session
+        req.session.user = user;  //refresh the session value
+        res.locals.user = user;
+      }
+      // finishing processing the middleware and run the route
+      next();
+    });
+  } else {
+    next();
+  }
+});
+
+// uncomment after placing; your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
