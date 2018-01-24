@@ -58,7 +58,7 @@ router.post('/update-page', (req, res)=> {
         });
 });
 
-router.post('/new', requireLogin, (req, res)=>{    
+router.post('/new', (req, res)=>{    
     let newPage = new pageModel({
         title: req.body.title,
         body : req.body.body,

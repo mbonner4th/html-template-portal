@@ -12,7 +12,7 @@ const schema = mongoose.Schema({
         type: String, 
         required: true
         },
-    url: String,
+    url: {Type: String, require: true, unique: true },
     author: {type: String, default: 'guitarist' },
     date: { type: Date, default: Date.now },
     visible: {type: Boolean, default: true},

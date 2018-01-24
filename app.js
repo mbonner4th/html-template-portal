@@ -18,6 +18,8 @@ var adminPannel = require('./routes/admin-pannel.js')
 
 var userModel = require('./models/user');
 
+// var requireLogin = require('./utils/auth').requireLogin;
+
 var app = express();
 
 var mongoose = require('mongoose');
@@ -84,8 +86,8 @@ function requireLogin (req, res, next) {
 
 app.use('/users', users);
 app.use('/auth', auth);
-app.use('/edit-user', editUser);
-app.use('/edit-page', editPage);
+app.use('/edit-user', requireLogin, editUser);
+app.use('/edit-page', requireLogin, editPage);
 
 app.use('/admin-pannel', requireLogin, adminPannel);
 app.use('/', content);
