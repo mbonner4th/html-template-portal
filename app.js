@@ -50,7 +50,7 @@ app.use(function(req, res, next) {
   if (req.session && req.session.user) {
     userModel.findOne({ email: req.session.user.email }, function(err, user) {
       if (user) {
-        req.user = user;
+        req.user = user.toObject();
         delete req.user.password; // delete the password from the session
         req.session.user = user;  //refresh the session value
         res.locals.user = user;
@@ -72,13 +72,24 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+
+//Checks if user is logged in
+function requireLogin (req, res, next) {
+  if (!req.user) {
+    res.redirect('/auth');
+  } else {
+    next();
+  }
+};
+
 app.use('/users', users);
 app.use('/auth', auth);
 app.use('/edit-user', editUser);
 app.use('/edit-page', editPage);
-app.use('/content', content);
-app.use('/admin-pannel', adminPannel);
-app.use("/", index);
+
+app.use('/admin-pannel', requireLogin, adminPannel);
+app.use('/', content);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

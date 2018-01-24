@@ -11,21 +11,20 @@
     <% include header %>
     <div id="content">
         <div class="form-container edit-page-form">
-            <form id="new-page" method="POST" action="/edit-page/update-page">
-                <input type="hidden" name="id" value="<%= template._id%>" />
+            <form id="new-page" method="POST" action="/edit-page">
                 <label> 
                     <span class="form-label">Page Title:</span>
-                    <input type="text" name="title" value="<%= template.title %>" required />
+                    <input type="text" name="title" placeholder="<%= template.title %>" required />
                 </label>
 
                 </br>
                 <label> 
                         <span class="form-label">Page URL:</span>
-                        <input type="text" name="url" value="<%= template.url %>" required />
+                        <input type="text" name="url" placeholder="<%= template.url %>" required />
                 </label>
 
                 
-                <textarea class="page-body-ta" name="body" required><%= template.body %></textarea>
+                <textarea class="page-body-ta" name="body" placeholder="<%= template.body %>" required></textarea>
                 
                 <label class="switch-container"> 
                     <span class="form-label switch-label">Make Page Visible?</span>
@@ -34,7 +33,7 @@
                 </label>
         
                 <div class="button-container">
-                    <button type="submit">Update Page</button>
+                    <button type="submit">Create Page</button>
                 </div>               
             </form>
 

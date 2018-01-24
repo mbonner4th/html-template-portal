@@ -19,7 +19,9 @@ router.post("/register", function(req, res){
             newUser.save(function(err, user){
                 if(err) return console.error(err);
                 console.log(user);
-                req.session.user == user;
+                req.user = user.toObject();
+                delete req.user.password;
+                req.session.user = user;
                 res.redirect('/admin-pannel');
             });
         } else{
@@ -36,8 +38,9 @@ router.post("/login", (req, res)=>{
          (err, user)=>{
              if(err) console.log(err);
              if(user != null){
+                 req.user = user.toObject();
+                 delete req.user.password;
                  req.session.user = user;
-                 console.log(req.session);
                  res.redirect('/admin-pannel');
              } else {
                 res.render('longin-page', {

@@ -31,3 +31,6 @@
     min-height: 150px; /*odd image size will distort*/
 }
 
+.is-visable-container h3{
+    color: red;
+}

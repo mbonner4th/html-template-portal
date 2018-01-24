@@ -93,12 +93,11 @@ button:focus{
 
 .switch-container{
     width: 100%;
-    padding-top: 3%;
+    margin-top: 3%;
 }
 
 .switch-label{
     position: relative;
-    top: -10px;
 }
 
 .switch input {display:none;}

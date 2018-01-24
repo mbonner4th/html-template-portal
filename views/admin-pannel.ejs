@@ -50,15 +50,36 @@
                                 </td>
                                 <td class ="date"><time datetime="2018-01-11"> Jan 11, 2018 </time></td>
                                 <td>
-                                    <button name="edit-button icon-button" class="icon-button">
-                                        <img class="icon" src="\images\icons\003-edit.svg" alt="Edit Page">
-                                    </button>
-                                    <button class="delete-button icon-button">
-                                        <img class="icon" src="\images\icons\001-cancel-button.svg" alt="Delete Page">
-                                    </button>
-                                    <button class="view-button view icon-button">
-                                        <div class="icon-container icon"></div>
-                                    </button>
+
+                                    <form class="button-form" method="get" action="/edit-page/update-page">
+                                        <input type="hidden" value="<%= pageList[i]._id %>" name="id"/>
+                                        <button class="icon-button" type="submit">
+                                            <img class="icon" src="\images\icons\003-edit.svg" alt="Edit Page">
+                                        </button>
+                                    </form>
+
+                                    <form class="button-form"  method="post" action="/edit-page/del">
+                                        <input type="hidden" value="<%= pageList[i]._id %>" name="id"/>
+                                        <button class="delete-button icon-button" type="submit">
+                                            <img class="icon" src="\images\icons\001-cancel-button.svg" alt="Delete Page">
+                                        </button>
+                                    </form>
+                                    
+                                    <form class="button-form"  method="post" action="/edit-page/view">
+                                        <% if (!pageList[i].visible) { %>
+                                        <button class="view-button view icon-button hidden" type="submit">
+                                            <input type="hidden" value="<%= pageList[i]._id %>" name="id"/>
+                                            <input type="hidden" value="<%= !pageList[i].visible %>" name="visible"/>
+                                            <div class="icon-container icon"></div>
+                                        </button>
+                                        <% } else { %>
+                                        <button class="view-button view icon-button" type="submit">
+                                            <input type="hidden" value="<%= pageList[i]._id %>" name="id"/>
+                                            <input type="hidden" value="<%= !pageList[i].visible %>" name="visible"/>
+                                            <div class="icon-container icon"></div>
+                                        </button>
+                                        <% } %>
+                                    </form>
                                 </td>
                             </tr>
                          <% } %>
