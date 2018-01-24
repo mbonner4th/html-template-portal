@@ -18,9 +18,7 @@ router.get('/:page', function(req, res){
         console.log(err);
         res.redirect('/auth');
       } else if (page){
-          // ask thi about lowdash
-          
-          
+          // ask thi about lowdash        
         if (page.visible){
             res.render('content', { 
                 title: page.title,
@@ -31,7 +29,7 @@ router.get('/:page', function(req, res){
             });   
         } else {
             // Need cleaner way of doing this
-            if(req.user && (JSON.stringify(page.User._id) == JSON.stringify(req.user._id )) ){
+            if(req.user && (page.User._id.toString() == req.user._id.toString()) ){
                 res.render('content', { 
                     title: page.title,
                     body: page.body, 

@@ -10,13 +10,34 @@ const template = {
     visible: true,
 }
 
-router.get('/', (req, res)=>{
+router.get('/new-page', (req, res)=>{
     res.render('new-page', {template} );
 });
 
+router.post('/new-page', (req, res)=>{
+    let checkVisible = true;
+    if(!req.body.visible){
+        checkVisible = false;
+    }    
+    console.log("hit");
+    console.log(checkVisible);
+    let newPage = new pageModel({
+        title: req.body.title,
+        body : req.body.body,
+        url: req.body.url,
+        visible: checkVisible,
+        author: req.user.email,
+        User: req.user,
+    });
+    newPage.save((err, page)=>{
+        if (err) console.log(err);
+        res.redirect("/" + page.url);
+    });
+});
+
+
 router.get('/update-page', (req, res)=> {
     pageModel.findOne({_id: req.query.id}, (err, template)=> {
-
         if (err) {
             console.log(err)
             res.redirect("admin-pannel");
@@ -58,20 +79,6 @@ router.post('/update-page', (req, res)=> {
         });
 });
 
-router.post('/new', (req, res)=>{    
-    let newPage = new pageModel({
-        title: req.body.title,
-        body : req.body.body,
-        url: req.body.url,
-        visible: checkVisible,
-        author: req.user.email,
-        User: req.user,
-    });
-    newPage.save((err, page)=>{
-        if (err) console.log(err);
-        res.redirect("/" + page.url);
-    });
-});
 
 /* PUT and DELETE routes should go here, but mist maake due with HTML ONLY */
 router.post("/del", (req, res)=>{
@@ -96,7 +103,7 @@ router.post("/view", (req, res) =>{
 });
 
 router.post("/update", (req, res)=>{
-    req.body
+    // req.body
 });
 
 module.exports = router;
