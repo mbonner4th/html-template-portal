@@ -40,7 +40,7 @@ router.get('/update-page', (req, res)=> {
     pageModel.findOne({_id: req.query.id}, (err, template)=> {
         if (err) {
             console.log(err)
-            res.redirect("admin-pannel");
+            res.redirect("admin-panel");
         } else if (template) {
             res.render("edit-page", {template});
         } else {
@@ -68,7 +68,7 @@ router.post('/update-page', (req, res)=> {
 
         if (err) {
             console.log(err)
-            res.redirect("admin-pannel");
+            res.redirect("admin-panel");
         } else if (response) {
             console.log(response);
             res.redirect(`/${req.body.url}`);
@@ -81,16 +81,18 @@ router.post('/update-page', (req, res)=> {
 
 
 /* PUT and DELETE routes should go here, but mist maake due with HTML ONLY */
-router.post("/del", (req, res)=>{
-    console.log(req.body);
-    pageModel.findByIdAndRemove({_id: req.body.id}, (err)=>{
+
+router.delete("/:id", (req, res)=>{
+    pageModel.findByIdAndRemove({_id: req.params.id.trim()}, (err)=>{
         if (err){
             console.log(err);
         }
         console.log("deleted");
-    })
-    res.redirect("/admin-pannel");
-});
+        res.end();
+    });
+})
+
+
 
 router.post("/view", (req, res) =>{
 
@@ -99,7 +101,7 @@ router.post("/view", (req, res) =>{
             console.log(err)
         } 
     });
-    res.redirect("/admin-pannel");
+    res.redirect("/admin-panel");
 });
 
 router.post("/update", (req, res)=>{

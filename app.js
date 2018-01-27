@@ -14,7 +14,7 @@ var auth = require('./routes/auth.js');
 var editUser = require('./routes/edit-user.js');
 var editPage = require('./routes/edit-page.js');
 var content = require('./routes/content.js');
-var adminPannel = require('./routes/admin-pannel.js')
+var adminpanel = require('./routes/admin-panel.js')
 
 var userModel = require('./models/user');
 
@@ -89,7 +89,7 @@ app.use('/auth', auth);
 app.use('/edit-user', requireLogin, editUser);
 app.use('/edit-page', requireLogin, editPage);
 
-app.use('/admin-pannel', requireLogin, adminPannel);
+app.use('/admin-panel', requireLogin, adminpanel);
 app.use('/', content);
 
 

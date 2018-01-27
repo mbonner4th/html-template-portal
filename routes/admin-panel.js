@@ -14,10 +14,10 @@ router.get('/', function(req, res, next) {
     }
     if(pages){
 
-      res.render('admin-pannel', {user: req.user.email, pageList: pages });
+      res.render('admin-panel', {user: req.user.email, pageList: pages });
     } else{
       console.log("no pages found");
-      res.render('admin-pannel', {user: req.user.email, pageList: [] });
+      res.render('admin-panel', {user: req.user.email, pageList: [] });
     }
   });
 

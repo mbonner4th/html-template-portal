@@ -22,7 +22,7 @@ router.post("/register", function(req, res){
                 req.user = user.toObject();
                 delete req.user.password;
                 req.session.user = user;
-                res.redirect('/admin-pannel');
+                res.redirect('/admin-panel');
             });
         } else{
             console.log(docs);
@@ -41,7 +41,7 @@ router.post("/login", (req, res)=>{
                  req.user = user.toObject();
                  delete req.user.password;
                  req.session.user = user;
-                 res.redirect('/admin-pannel');
+                 res.redirect('/admin-panel');
              } else {
                 res.render('longin-page', {
                     authError : "wrong password or email"

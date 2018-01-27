@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin Pannel</title>
+    <title>Admin panel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/admin-pannel.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/admin-panel.css" />
 
 </head>
 <body>
@@ -41,7 +41,6 @@
                 </thead>
                 <!-- dumby data -->
                 <tbody>
-                    <tr>
                         <% for(var i=0; i < pageList.length; i++) { %>
                             <tr>
 
@@ -58,12 +57,10 @@
                                         </button>
                                     </form>
 
-                                    <form class="button-form"  method="post" action="/edit-page/del">
-                                        <input type="hidden" value="<%= pageList[i]._id %>" name="id"/>
-                                        <button class="delete-button icon-button" type="submit">
-                                            <img class="icon" src="\images\icons\001-cancel-button.svg" alt="Delete Page">
-                                        </button>
-                                    </form>
+                                    <button class="delete-button icon-button" page-id-data="<%= pageList[i]._id %>">
+                                        <img class="icon" src="\images\icons\001-cancel-button.svg" alt="Delete Page">
+                                    </button>
+
                                     
                                     <form class="button-form"  method="post" action="/edit-page/view">
                                         <% if (!pageList[i].visible) { %>
@@ -91,6 +88,24 @@
         
         
     </div>
+    <script>
+        $(function(){
+            $(".delete-button").on('click', function(event){
+                var button = $(this);
+                var pageId = button.attr('page-id-data');
+                $.ajax({
+                    method:"DELETE",
+                    url: `/edit-page/${pageId}`
+                })
+                .done(function(res){
+                    console.log('done');
+                    button.closest("tr").remove();
+
+                });
+            })
+        })        
+    </script>
+ <!-- class="button-form"  method="post" action="/edit-page/del"> -->
     <% include footer %>
     
 </body>
