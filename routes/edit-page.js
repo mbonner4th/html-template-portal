@@ -19,8 +19,6 @@ router.post('/new-page', (req, res)=>{
     if(!req.body.visible){
         checkVisible = false;
     }    
-    console.log("hit");
-    console.log(checkVisible);
     let newPage = new pageModel({
         title: req.body.title,
         body : req.body.body,
@@ -93,15 +91,17 @@ router.delete("/:id", (req, res)=>{
 })
 
 
-
-router.post("/view", (req, res) =>{
-
-    pageModel.updateOne({_id: req.body.id},{visible: req.body.visible}, (err, doc)=>{
-        if (err){
-            console.log(err)
-        } 
+router.put("/set-visible", (req, res)=>{
+    console.log(req.body);
+    pageModel.updateOne(
+        {_id: req.body.id,}, 
+        {visible: req.body.visible}, 
+        (err)=>{
+            if (err){
+                console.log(err);
+            }
     });
-    res.redirect("/admin-panel");
+    res.end();
 });
 
 router.post("/update", (req, res)=>{

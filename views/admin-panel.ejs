@@ -61,22 +61,11 @@
                                         <img class="icon" src="\images\icons\001-cancel-button.svg" alt="Delete Page">
                                     </button>
 
-                                    
-                                    <form class="button-form"  method="post" action="/edit-page/view">
-                                        <% if (!pageList[i].visible) { %>
-                                        <button class="view-button view icon-button hidden" type="submit">
-                                            <input type="hidden" value="<%= pageList[i]._id %>" name="id"/>
-                                            <input type="hidden" value="<%= !pageList[i].visible %>" name="visible"/>
-                                            <div class="icon-container icon"></div>
-                                        </button>
-                                        <% } else { %>
-                                        <button class="view-button view icon-button" type="submit">
-                                            <input type="hidden" value="<%= pageList[i]._id %>" name="id"/>
-                                            <input type="hidden" value="<%= !pageList[i].visible %>" name="visible"/>
-                                            <div class="icon-container icon"></div>
-                                        </button>
-                                        <% } %>
-                                    </form>
+                                
+                                    <button class="view-button view icon-button" page-id-data="<%= pageList[i]._id %>" page-visible-data="<%= !pageList[i].visible %>" type="submit">
+                                        <div class="icon-container icon"></div>
+                                    </button>
+                                
                                 </td>
                             </tr>
                          <% } %>
@@ -88,24 +77,7 @@
         
         
     </div>
-    <script>
-        $(function(){
-            $(".delete-button").on('click', function(event){
-                var button = $(this);
-                var pageId = button.attr('page-id-data');
-                $.ajax({
-                    method:"DELETE",
-                    url: `/edit-page/${pageId}`
-                })
-                .done(function(res){
-                    console.log('done');
-                    button.closest("tr").remove();
-
-                });
-            })
-        })        
-    </script>
- <!-- class="button-form"  method="post" action="/edit-page/del"> -->
+ <script src="/js/admin-panel.js"></script>
     <% include footer %>
     
 </body>
