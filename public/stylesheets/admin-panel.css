@@ -133,3 +133,104 @@ button:focus{
     padding: 5px 10px;
     border-radius: 15px;
 }
+
+
+/* The Modal (background) */
+#new-page-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 5%; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+
+/* modal content*/
+
+
+.edit-page-form{
+    padding-top: 25px;
+}
+
+.form-label{
+    text-align: left;
+    font-weight: bold;
+    width: 100%;
+}
+
+form>label>span {
+    padding-right: 10px;
+}
+
+.edit-page-form form>label>input[type=text] {
+    padding: 12px 20px;
+    margin: 8px 0;
+    width: 80%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-size: larger;
+}
+
+input:focus{
+    box-shadow: 0 0 0 2px #555;
+    border-radius: 2px;
+    outline: none;
+}
+
+textarea {
+    max-width: 97%;
+    width: 97%;
+    max-height: 10%;
+    border-radius: 2px;
+}
+textarea:focus{
+    box-shadow: 0 0 0 2px #555;
+    border-radius: 2px;
+    outline: none;
+}
+
+.page-body-ta{
+    margin-top: 2%;
+    min-height: 100px;
+    padding: 10px;
+}
+
+#new-page-modal button{
+    display: block;
+    border: 0;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    font: bold 13px helvetica, sans-serif;
+    line-height: 1em;
+    padding: 12px 30px;
+    background-color: black;    
+}
+#new-page-modal button:hover{
+    background-color: #555555;
+}
+#new-page-modal button:focus{
+    outline: none;
+}
+
+#new-page-modal .button-container {
+    margin-top: 2%;
+}

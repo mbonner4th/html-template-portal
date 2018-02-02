@@ -1,6 +1,88 @@
 $(function(){
 
-    $(".delete-button").on('click', function(event){
+    var spanModalBtn = $("#new-page-button");
+    var cancelModalBtn = $("#close-modal-button");
+    var newPageModalBtn  = $("#new-page-modal-button");
+    var tableBody = $("#admin-table-body");
+    var table = $("#admin-table");
+    var newPageForm = $("#new-page-form");
+    var modal = $("#new-page-modal");
+
+    function closeModal(){
+        modal.css({"display": "none"});
+        newPageForm[0].reset();
+    };
+
+    function openModal(){
+        modal.css({"display": "block"});
+    }
+
+    spanModalBtn.on('click', function(event){
+        console.log("clicked");
+        openModal();        
+    });
+
+    cancelModalBtn.on('click', function(event){
+        console.log("page canceled");
+        closeModal();
+    });
+
+
+
+    function formDataToJson(serlalizedArray){
+        var returnData = {}
+        $.map(serlalizedArray, function (value, index){
+            returnData[value["name"]] = value["value"];
+        });
+        return returnData;
+    }
+
+    
+    newPageForm.on('submit', function(event){
+        event.preventDefault();
+        console.log("submitted");
+        var pageData = formDataToJson(newPageForm.serializeArray());
+        $.ajax({
+            method: "POST",
+            url: "/edit-page/new-page",
+            data: pageData,
+        })
+        .done(function(pageID){
+            closeModal();
+            console.log(pageID);
+            insertTableRow(pageData, pageID);
+        });
+    });
+
+    /*how do I get the button to be clickible after page load?? Add click listener to table */
+    function insertTableRow(pageData, pageID){
+        var content = 
+        `<tr>
+            <td class="page-title">
+                <a href="/${pageData.url}">${pageData.title}</a>
+            </td>
+            <td class ="date"><time datetime="2018-01-11"> Jan 11, 2018 </time></td>
+            <td>
+                <form class="button-form" method="get" action="/edit-page/update-page">
+                <input type="hidden" value="${pageID}" name="id"/>
+                <button class="icon-button" type="submit">
+                    <img class="icon" src='/images/icons/003-edit.svg' alt="Edit Page">
+                </button>
+            </form>
+            <button class="delete-button icon-button" page-id-data="${pageID}">
+                <img class="icon" src="/images/icons/001-cancel-button.svg" alt="Delete Page">
+            </button>      
+            <button class="view-button view icon-button" page-id-data="${pageID}" page-visible-data="!${pageData.visible}" type="submit">
+                <div class="icon-container icon"></div>
+            </button>
+                
+            </td>
+        </tr>`;
+        tableBody.append(content);
+    }
+
+    /* event deligator for all buttons in table*/
+    table.on('click', ".delete-button", function(event){
         var button = $(this);
         var pageId = button.attr('page-id-data');
         $.ajax({
@@ -8,20 +90,18 @@ $(function(){
             url: `/edit-page/${pageId}`
         })
         .done(function(res){
-            console.log('done');
             button.closest("tr").remove();
 
         });
     });
 
-    // $(".view-button").addClass($(this).attr("page-visible-data")? "":"hidden");
     $( ".view-button" ).each(function() {
         var pageVisible =$(this).attr("page-visible-data") =="true";
         $( this ).addClass( pageVisible ? "hidden": "visible" );
         console.log(pageVisible ==true);
-      });
+    });
        
-    $(".view-button").on("click", function(event){
+    table.on("click", ".view-button", function(event){
         var button = $(this);
         var pageId = button.attr("page-id-data");
         var pageVisible = button.attr("page-visible-data") =="true"; // implicityly changes type from string to bool
