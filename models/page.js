@@ -20,7 +20,8 @@ const schema = mongoose.Schema({
     author: {type: String, default: 'guitarist' },
     date: { type: Date, default: Date.now },
     visible: {type: Boolean, default: true},
-    User: {type: Object}
+    User: {type: Object},
+    quillBody: {type: Object},
 });
 
 const pageModel = mongoose.model('page', schema);

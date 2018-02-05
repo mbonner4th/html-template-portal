@@ -1,6 +1,6 @@
 $(function(){
 
-    var spanModalBtn = $("#new-page-button");
+    var spanModalBtn = $("#new-page-btn");
     var cancelModalBtn = $("#close-modal-button");
     var newPageModalBtn  = $("#new-page-modal-button");
     var tableBody = $("#admin-table-body");
@@ -8,9 +8,23 @@ $(function(){
     var newPageForm = $("#new-page-form");
     var modal = $("#new-page-modal");
 
+    
+    var quillOptions = {
+
+        placeholder: "Page content goes here",
+        readOnly: false,
+        theme: 'snow',
+        modules:{
+
+        },
+      };
+
+    var quill = new Quill('#editor', quillOptions);
+
     function closeModal(){
         modal.css({"display": "none"});
         newPageForm[0].reset();
+
     };
 
     function openModal(){
@@ -25,6 +39,7 @@ $(function(){
     cancelModalBtn.on('click', function(event){
         console.log("page canceled");
         closeModal();
+        
     });
 
 
@@ -42,6 +57,12 @@ $(function(){
         event.preventDefault();
         console.log("submitted");
         var pageData = formDataToJson(newPageForm.serializeArray());
+        console.log(pageData);
+        var quillBody = quill.getContents();
+        console.log(quillBody.ops);
+        pageData["quillBody"] = quillBody.ops;
+        pageData["body"] = "ff";
+        console.log(pageData);
         $.ajax({
             method: "POST",
             url: "/edit-page/new-page",
@@ -65,14 +86,14 @@ $(function(){
             <td>
                 <form class="button-form" method="get" action="/edit-page/update-page">
                 <input type="hidden" value="${pageID}" name="id"/>
-                <button class="icon-button" type="submit">
+                <button class="icon-button black-button" type="submit">
                     <img class="icon" src='/images/icons/003-edit.svg' alt="Edit Page">
                 </button>
             </form>
-            <button class="delete-button icon-button" page-id-data="${pageID}">
+            <button class="delete-button icon-button black-button" page-id-data="${pageID}">
                 <img class="icon" src="/images/icons/001-cancel-button.svg" alt="Delete Page">
             </button>      
-            <button class="view-button view icon-button" page-id-data="${pageID}" page-visible-data="!${pageData.visible}" type="submit">
+            <button class="view-button view icon-button black-button" page-id-data="${pageID}" page-visible-data="!${pageData.visible}" type="submit">
                 <div class="icon-container icon"></div>
             </button>
                 
@@ -95,12 +116,6 @@ $(function(){
         });
     });
 
-    $( ".view-button" ).each(function() {
-        var pageVisible =$(this).attr("page-visible-data") =="true";
-        $( this ).addClass( pageVisible ? "hidden": "visible" );
-        console.log(pageVisible ==true);
-    });
-       
     table.on("click", ".view-button", function(event){
         var button = $(this);
         var pageId = button.attr("page-id-data");
@@ -124,29 +139,5 @@ $(function(){
         })
     });
 
-        // Get the modal
-    var modal = document.getElementById('myModal');
 
-    // Get the button that opens the modal
-    var btn = $("#new-page-btn");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on the button, open the modal 
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
 }) 

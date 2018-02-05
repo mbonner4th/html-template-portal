@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/admin-panel.css" />
+    
 
 </head>
 <body>
@@ -16,11 +17,9 @@
                 <h2>
                     <%= user %>'sAdmin Page
                 </h2>
-                        <button id="new-page-btn">
-                            New Page
-                        </button>
-
-                
+                    <button id="new-page-btn" class="black-button">
+                        New Page
+                    </button>      
                 <hr/>
         </div>
         <div class="admin-content">
@@ -51,17 +50,17 @@
 
                                     <form class="button-form" method="get" action="/edit-page/update-page">
                                         <input type="hidden" value="<%= pageList[i]._id %>" name="id"/>
-                                        <button class="icon-button" type="submit">
+                                        <button class="icon-button black-button" type="submit">
                                             <img class="icon" src="\images\icons\003-edit.svg" alt="Edit Page">
                                         </button>
                                     </form>
 
-                                    <button class="delete-button icon-button" page-id-data="<%= pageList[i]._id %>">
+                                    <button class="delete-button icon-button black-button" page-id-data="<%= pageList[i]._id %>">
                                         <img class="icon" src="\images\icons\001-cancel-button.svg" alt="Delete Page">
                                     </button>
 
-                                
-                                    <button class="view-button view icon-button" page-id-data="<%= pageList[i]._id %>" page-visible-data="<%= !pageList[i].visible %>" type="submit">
+                                    <% let hiddenText = pageList[i].visible ? "" : "hidden" %>
+                                    <button class="view-button view icon-button <%= hiddenText %> black-button" page-id-data="<%= pageList[i]._id %>" page-visible-data="<%= !pageList[i].visible %>" type="submit">
                                         <div class="icon-container icon"></div>
                                     </button>
                                 
@@ -69,66 +68,47 @@
                             </tr>
                          <% } %>
                 </tbody>
-<<<<<<< HEAD
-            </table>    
-
-        </div>
-
-
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Some text in the Modal..</p>
-  </div>
-
-</div>
-
-=======
             </table>          
         </div>
         <div id="new-page-modal" class="modal">
-                <div class="modal-content">
-                        <div class="form-container edit-page-form">
-                                <form id="new-page-form">
-                                    <label> 
-                                        <span class="form-label">Page Title:</span>
-                                        <input type="text" name="title" placeholder="title-here" required />
-                                    </label>                   
-                                    </br>
-                                    <label> 
-                                            <span class="form-label">Page URL:</span>
-                                            <input type="text" name="url" placeholder="url here" required />
-                                    </label>
+            <div class="modal-content">
+                <div class="form-container edit-page-form">
+                    <form id="new-page-form">
+                        <label> 
+                            <span class="form-label">Page Title:</span>
+                            <input type="text" name="title" placeholder="title-here" required />
+                        </label>                   
+                        </br>
+                        <label> 
+                            <span class="form-label">Page URL:</span>
+                            <input type="text" name="url" placeholder="url here" required />
+                        </label>
+
+                        
+                        <div id="editor" class="page-body-ta" name="body">
+
+                        </div>
+
+                        <label class="switch-container"> 
+                            <span class="form-label switch-label">Make Page Visible?</span>
+                            <% let myChecked = true ? "checked" : "" %>
+                            <input type="checkbox" name="visible"  <%= myChecked %>/>
+                        </label>
+
+                        <div class="button-container">
+                            <button id ="new-page-modal-button" class="black-button" type="submit">Create Page</button>
+                        </div>               
+                    </form>  
                     
-                                    
-                                    <textarea class="page-body-ta" name="body" placeholder="page text goes here" required></textarea>
-                                    
-                                    <label class="switch-container"> 
-                                        <span class="form-label switch-label">Make Page Visible?</span>
-                                        <% let myChecked = true ? "checked" : "" %>
-                                        <input type="checkbox" name="visible"  <%= myChecked %>/>
-                                    </label>
-                            
-                                    <div class="button-container">
-                                        <button id ="new-page-modal-button" type="submit">Create Page</button>
-                                    </div>               
-                                </form>                    
-                            </div>
-                    <button id ="close-modal-button"> cancel</button>
+                    <button id="close-modal-button" class="black-button">
+                        Cancel
+                    </button>                   
                 </div>
-            
-            </div>
+            </div>       
         </div>
-
-
-        
->>>>>>> 309afd98595145606a8d8880ca6669d20ad98487
-    </div>
  <script src="/js/admin-panel.js"></script>
+ <script src="https://cdn.quilljs.com/1.3.5/quill.js"></script>
+<link href="https://cdn.quilljs.com/1.3.5/quill.snow.css" rel="stylesheet">
     <% include footer %>
     
 </body>
