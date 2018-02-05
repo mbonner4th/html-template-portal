@@ -29,7 +29,8 @@ router.post('/new-page', (req, res)=>{
     });
     newPage.save((err, page)=>{
         if (err) console.log(err);
-        res.redirect("/" + page.url);
+        console.log(page._id);
+        res.send(page._id);
     });
 });
 
@@ -104,8 +105,5 @@ router.put("/set-visible", (req, res)=>{
     res.end();
 });
 
-router.post("/update", (req, res)=>{
-    // req.body
-});
 
 module.exports = router;

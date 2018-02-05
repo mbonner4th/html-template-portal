@@ -139,47 +139,87 @@ button:focus{
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* Modal Header */
-.modal-header {
-    padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
-}
-
-/* Modal Body */
-.modal-body {padding: 2px 16px;}
-
-/* Modal Footer */
-.modal-footer {
-    padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
-}
-
 /* Modal Content */
 .modal-content {
-    position: relative;
     background-color: #fefefe;
     margin: auto;
-    padding: 0;
+    padding: 20px;
     border: 1px solid #888;
     width: 80%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    animation-name: animatetop;
-    animation-duration: 0.4s
 }
 
-/* Add Animation */
-@keyframes animatetop {
-    from {top: -300px; opacity: 0}
-    to {top: 0; opacity: 1}
+
+/* modal content*/
+
+
+.edit-page-form{
+    padding-top: 25px;
+}
+
+.form-label{
+    text-align: left;
+    font-weight: bold;
+    width: 100%;
+}
+
+form>label>span {
+    padding-right: 10px;
+}
+
+.edit-page-form form>label>input[type=text] {
+    padding: 12px 20px;
+    margin: 8px 0;
+    width: 80%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-size: larger;
+}
+
+input:focus{
+    box-shadow: 0 0 0 2px #555;
+    border-radius: 2px;
+    outline: none;
+}
+
+textarea {
+    max-width: 97%;
+    width: 97%;
+    max-height: 10%;
+    border-radius: 2px;
+}
+textarea:focus{
+    box-shadow: 0 0 0 2px #555;
+    border-radius: 2px;
+    outline: none;
+}
+
+.page-body-ta{
+    margin-top: 2%;
+    min-height: 100px;
+    padding: 10px;
+}
+
+#new-page-modal button{
+    display: block;
+    border: 0;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    font: bold 13px helvetica, sans-serif;
+    line-height: 1em;
+    padding: 12px 30px;
+    background-color: black;    
+}
+#new-page-modal button:hover{
+    background-color: #555555;
+}
+#new-page-modal button:focus{
+    outline: none;
+}
+
+#new-page-modal .button-container {
+    margin-top: 2%;
 }
