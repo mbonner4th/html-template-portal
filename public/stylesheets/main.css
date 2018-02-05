@@ -55,6 +55,19 @@ body {
     color: black
 }
 
+/*Form stylings*/
+
+.form-container{
+    background-color: white;
+    border: solid 1px #e2e0d8;
+    border-radius: 5px;
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-bottom: 10%;
+    margin-top: 5%;
+}
+
 
 
 /*this can be moved into main.css along with any header styling */

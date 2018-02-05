@@ -11,16 +11,15 @@
 </head>
 <body>
     <% include header %>
-    <div id="content" class="admin-container">
+    <div id="content" class="form-container">
         <div class="admin-header">
                 <h2>
                     <%= user %>'sAdmin Page
                 </h2>
-                <form id="new-page-form" method="GET" action="/edit-page/new-page">
-                        <button type="submit">
+                        <button id="new-page-btn">
                             New Page
                         </button>
-                </form>    
+
                 
                 <hr/>
         </div>
@@ -47,7 +46,7 @@
                                 <td class="page-title">
                                     <a href="/<%= pageList[i].url %>"><%= pageList[i].title %></a>
                                 </td>
-                                <td class ="date"><time datetime="2018-01-11"> Jan 11, 2018 </time></td>
+                                <td class ="date"><time datetime="<%= pageList[i].date %>"> <%= pageList[i].date%> </time></td>
                                 <td>
 
                                     <form class="button-form" method="get" action="/edit-page/update-page">
@@ -69,13 +68,24 @@
                                 </td>
                             </tr>
                          <% } %>
-
                 </tbody>
-                
-            </table>          
+            </table>    
+
         </div>
-        
-        
+
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Some text in the Modal..</p>
+  </div>
+
+</div>
+
     </div>
  <script src="/js/admin-panel.js"></script>
     <% include footer %>
