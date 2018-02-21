@@ -1,5 +1,5 @@
 # README #
-
+This app runs on port 3000
 This project is the first part of HTML/CSS training at the portal
 
 ### What is this repository for? ###

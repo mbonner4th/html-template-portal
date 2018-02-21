@@ -50,8 +50,8 @@ body {
     text-decoration: none;   
 }
 
-.nav-bar li a:hover{
-    background-color: white;
+.nav-bar li:hover{
+    background-color: grey;
     color: black
 }
 

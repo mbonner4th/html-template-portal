@@ -6,6 +6,8 @@
     <title>Content Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="\stylesheets\content.css" />
+
+
 </head>
 <body>
  <% include header%>
@@ -24,6 +26,11 @@
                 <!-- <img src="/images/big.jpg" alt="some blog info"> -->
             </div>
 
+            <div class="share-btn-container">
+                <button id="share-btn" class="btn">share</button>
+
+            </div>
+
             <% if (!visible) { %>
                 <div class="is-visable-container">
                     <h3>This page is not visible</h3>
@@ -31,6 +38,99 @@
             <% } %>
         </div>
     </div>
+
+<!-- modal logic start -->
+<div id="share-modal" class="modal">
+        <div id="login-modal-content" class="modal-content">
+                <div class="form-container">
+
+                        <!-- replace "email" and "password" text wtih icons -->
+                        <form id="registration-form" method="POST" action="/auth/register">
+                            <h2 class="form-header">New Member Registration</h2>
+              
+                            <label>Email
+                                <input type="email" name="email" placeholder="sample@email.com" required>
+                            </label>
+                            <label>handel
+                                    <input type="text" class="form-control" id="reg-handle" name="handle"  placeholder="handle" required>
+
+                            </label>
+                            <label>Password
+                                <input type="password" name="reg-password-1" placeholer="" required>
+                            </label>
+                            <label>Comfirm Password
+                                <input type="password" name="reg-password-1" placeholer="" required>
+                            </label>
+                            <button type="submit">Register</button>
+                        </form>
+            
+                        <div class="devide-line">
+                                <hr>
+                                <p class="or"> or </p>
+                                <hr>
+                        </div>
+                        
+                        <form id="login-form" method="POST" action="/auth/login">
+                            <h2 class="form-header">Memeber Login</h2>
+                            <label>Handel
+                                <input type="text" name="handel" placeholder="sample@email.com">
+                            </label>
+                            <label>Password
+                            <!-- Is there a pure html/css way to put a placeholder in a password input? -->
+                                <input type="password" name="password" placeholer="">
+                            </label>
+            
+                            <button type="submit">Log In</button>
+                            <div class="error-container">
+                            <% if (typeof(authError) !== "undefined") { %>
+                                <%= authError %>
+                                
+                                <% } %>
+                                
+                            </div>
+                        </form>
+                    </div>
+            <button id ="close-modal-button"> cancel</button>
+        </div>
+        <div id="tweet-modal-content" class="modal-content">
+                <div class="form-container edit-page-form">
+                        <form id="new-tweet-form">
+                            
+                            <label> 
+                                    <span class="form-label">Page URL:</span>
+                                    <input type="text" id="tweet-url" name="url" placeholder="url here"  value="" disabled />
+                            </label>
+            
+                            
+                            <textarea id="tweet-text-area" class="page-body-ta" name="body" placeholder="page text goes here" required></textarea>
+                            
+                            <label class="switch-container"> 
+                                
+                            </label>
+                    
+                            <div class="button-container">
+                                <button id ="new-page-modal-button" type="submit">share tweet</button>
+                            </div>               
+                        </form>                    
+                    </div>
+            <button id ="close-modal-button"> cancel</button>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<!-- modal logic end -->
+
+
+
+
+  
+    
+
+
+    <script src="/js/content.js"></script>
 
 <% include footer %>
 
