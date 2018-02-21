@@ -28,9 +28,13 @@ router.post('/new-page', (req, res)=>{
         User: req.user,
     });
     newPage.save((err, page)=>{
-        if (err) console.log(err);
-        console.log(page._id);
-        res.send(page._id);
+        if (err){
+            res.end();
+
+        } else{
+            res.send(page._id);
+        }
+        
     });
 });
 

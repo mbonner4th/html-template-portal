@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homepage</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/homepage.css" />
+</head>
+<body>
+        <% include header %>
+
+        <div id="content" class="form-container">
+                <div class="admin-header">
+                        <h2>
+                            Current Pages
+                        </h2>
+                </div>
+                <div class="admin-content">
+                    <table id="admin-table" class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Page Name
+                                </th>
+                                <th>
+                                    Updated
+                                </th>
+                                <th>
+                                    Options
+                                </th>
+                            </tr>
+                        </thead>
+                        <!-- dumby data -->
+                        <tbody id="admin-table-body">
+                                <% for(var i=0; i < pageList.length; i++) { %>
+                                    <tr>
+        
+                                        <td class="page-title">
+                                            <a href="/<%= pageList[i].url %>"><%= pageList[i].title %></a>
+                                        </td>
+                                        <td class ="date"><time datetime="<%= pageList[i].date %>"> <%= pageList[i].date.getMonth() %>-<%= pageList[i].date.getDate()%>    <%= pageList[i].date.getHours() %>: <%= pageList[i].date.getMinutes()%></time></td>
+                                        <td>
+                                            <%= pageList[i].User.email %>
+
+                                        </td>
+                                    </tr>
+                                 <% } %>
+                        </tbody>
+                    </table>          
+                </div>
+
+
+        <% include footer %>
+</body>
+</html>
