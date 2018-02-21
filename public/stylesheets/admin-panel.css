@@ -90,11 +90,11 @@ tr:nth-child(even) {
     content: "View";
 } */
 
-.hidden{
+button.hidden{
     background-color: #555555
 }
 
-.hidden:hover{
+button.hidden:hover{
     background-color:black;
 }
 

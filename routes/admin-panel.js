@@ -13,7 +13,6 @@ router.get('/', function(req, res, next) {
       res.redirect("/auth");
     }
     if(pages){
-
       res.render('admin-panel', {user: req.user.email, pageList: pages });
     } else{
       console.log("no pages found");

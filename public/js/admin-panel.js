@@ -9,17 +9,17 @@ $(function(){
     var modal = $("#new-page-modal");
 
     
-    var quillOptions = {
+    // var quillOptions = {
 
-        placeholder: "Page content goes here",
-        readOnly: false,
-        theme: 'snow',
-        modules:{
+    //     placeholder: "Page content goes here",
+    //     readOnly: false,
+    //     theme: 'snow',
+    //     modules:{
 
-        },
-      };
+    //     },
+    //   };
 
-    var quill = new Quill('#editor', quillOptions);
+    // var quill = new Quill('#editor', quillOptions);
 
     function closeModal(){
         modal.css({"display": "none"});
@@ -57,12 +57,13 @@ $(function(){
         event.preventDefault();
         console.log("submitted");
         var pageData = formDataToJson(newPageForm.serializeArray());
-        console.log(pageData);
-        var quillBody = quill.getContents();
-        console.log(quillBody.ops);
-        pageData["quillBody"] = quillBody.ops;
-        pageData["body"] = "ff";
-        console.log(pageData);
+        
+
+        // var quillBody = quill.getContents();
+        // console.log(quillBody.ops);
+        // pageData["quillBody"] = quillBody.ops;
+        // pageData["body"] = "ff";
+        
         $.ajax({
             method: "POST",
             url: "/edit-page/new-page",
@@ -77,12 +78,18 @@ $(function(){
 
     /*how do I get the button to be clickible after page load?? Add click listener to table */
     function insertTableRow(pageData, pageID){
+        var created = new Date();
+        var hiddenText = pageData.visible ? "" : "hidden" 
+       
+
         var content = 
         `<tr>
             <td class="page-title">
                 <a href="/${pageData.url}">${pageData.title}</a>
             </td>
-            <td class ="date"><time datetime="2018-01-11"> Jan 11, 2018 </time></td>
+            <td class ="date"><time datetime=${created}>
+            ${created.getMonth()}-${created.getDate()}   ${created.getHours()}:${created.getMinutes()}
+             </time></td>
             <td>
                 <form class="button-form" method="get" action="/edit-page/update-page">
                 <input type="hidden" value="${pageID}" name="id"/>
@@ -93,7 +100,7 @@ $(function(){
             <button class="delete-button icon-button black-button" page-id-data="${pageID}">
                 <img class="icon" src="/images/icons/001-cancel-button.svg" alt="Delete Page">
             </button>      
-            <button class="view-button view icon-button black-button" page-id-data="${pageID}" page-visible-data="!${pageData.visible}" type="submit">
+            <button class="view-button view icon-button black-button ${hiddenText}" page-id-data="${pageID}" page-visible-data="!${pageData.visible}" type="submit">
                 <div class="icon-container icon"></div>
             </button>
                 
@@ -112,7 +119,6 @@ $(function(){
         })
         .done(function(res){
             button.closest("tr").remove();
-
         });
     });
 
@@ -120,6 +126,8 @@ $(function(){
         var button = $(this);
         var pageId = button.attr("page-id-data");
         var pageVisible = button.attr("page-visible-data") =="true"; // implicityly changes type from string to bool
+
+
         $.ajax({
             method:"PUT",
             url: "/edit-page/set-visible",
