@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Edit Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/edit-page.css" />
+</head>
+<body>
+    <% include header %>
+    <div id="content">
+        <div class="form-container edit-page-form">
+            <form id="new-page" method="POST" action="/edit-page/new-page">
+                <label> 
+                    <span class="form-label">Page Title:</span>
+                    <input type="text" name="title" placeholder="<%= template.title %>" required />
+                </label>
+
+                </br>
+                <label> 
+                        <span class="form-label">Page URL:</span>
+                        <input type="text" name="url" placeholder="<%= template.url %>" required />
+                </label>
+
+                
+                <textarea class="page-body-ta" name="body" placeholder="<%= template.body %>" required></textarea>
+                
+                <label class="switch-container"> 
+                    <span class="form-label switch-label">Make Page Visible?</span>
+                    <% let myChecked = template.visible ? "checked" : "" %>
+                    <input type="checkbox" name="visible"  <%= myChecked %>/>
+                </label>
+        
+                <div class="button-container">
+                    <button type="submit">Create Page</button>
+                </div>               
+            </form>
+
+        </div>
+    </div>
+</body>
+<%include footer %>
+</html>

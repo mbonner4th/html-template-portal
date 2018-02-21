@@ -5,23 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Login Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="login.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/login.css" />
 </head>
 <body>
+    <%include header %>
     <div id="content">
-        
         <div class="form-container">
 
             <!-- replace "email" and "password" text wtih icons -->
-            <form id="registration-form">
+            <form id="registration-form" method="POST" action="/auth/register">
                 <h2 class="form-header">New Member Registration</h2>
   
                 <label>Email
-                    <input type="email" name="reg-email" placeholder="sample@email.com" required>
+                    <input type="email" name="email" placeholder="sample@email.com" required>
                 </label>
                 <label>Password
-                    <input type="password" name="reg-pass" placeholer="" required>
+                    <input type="password" name="password" placeholer="" required>
                 </label>
                 <label>Comfirm Password
                     <input type="password" name="reg-pass-confirm" placeholer="" required>
@@ -35,25 +34,32 @@
                     <hr>
             </div>
             
-            <form id="login-form">
+            <form id="login-form" method="POST" action="/auth/login">
                 <h2 class="form-header">Memeber Login</h2>
                 <label>Email
-                    <input type="email" name="mem-email" placeholder="sample@email.com">
+                    <input type="email" name="email" placeholder="sample@email.com">
                 </label>
                 <label>Password
                 <!-- Is there a pure html/css way to put a placeholder in a password input? -->
-                    <input type="password" name="mem-pass" placeholer="">
+                    <input type="password" name="password" placeholer="">
                 </label>
                 <div class="checkbox-container">
                     <input type="checkbox" name="remember" checked="checked"> <span>Remember Me</span> 
                     <a href="">Forgot Password?</a>
                 </div>
-                
+
                 <button type="submit">Log In</button>
-                
+                <div class="error-container">
+                <% if (typeof(authError) !== "undefined") { %>
+                    <%= authError %>
+                    
+                    <% } %>
+                    
+                </div>
             </form>
         </div>
 
     </div>
+    <%include footer %>
 </body>
 </html>

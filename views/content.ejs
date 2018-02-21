@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Content Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="\stylesheets\content.css" />
+</head>
+<body>
+ <% include header%>
+
+    <div id="content">
+        <div class="blog">
+            <div class="blog-title">
+                <h3><%= title %></h3>
+                <p>by: <%= author %></p>
+                <p><%= date %></p>
+            </div>
+            <div class="blog-body">
+                <p>
+                    <%= body %>
+                </p>
+                <!-- <img src="/images/big.jpg" alt="some blog info"> -->
+            </div>
+
+            <% if (!visible) { %>
+                <div class="is-visable-container">
+                    <h3>This page is not visible</h3>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+<% include footer %>
+
+<script src="https://cdn.quilljs.com/1.3.5/quill.js"></script>
+<link href="https://cdn.quilljs.com/1.3.5/quill.snow.css" rel="stylesheet">
+
+</body>
+</html>

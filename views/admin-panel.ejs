@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Admin panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/admin-panel.css" />
+    
+
+</head>
+<body>
+    <% include header %>
+    <div id="content" class="form-container">
+        <div class="admin-header">
+                <h2>
+                    <%= user %>'sAdmin Page
+                </h2>
+                    <button id="new-page-btn" class="black-button">
+                        New Page
+                    </button>      
+                <hr/>
+        </div>
+        <div class="admin-content">
+            <table id="admin-table" class="admin-table">
+                <thead>
+                    <tr>
+                        <th>
+                            Page Name
+                        </th>
+                        <th>
+                            Updated
+                        </th>
+                        <th>
+                            Options
+                        </th>
+                    </tr>
+                </thead>
+                <!-- dumby data -->
+                <tbody id="admin-table-body">
+                        <% for(var i=0; i < pageList.length; i++) { %>
+                            <tr>
+
+                                <td class="page-title">
+                                    <a href="/<%= pageList[i].url %>"><%= pageList[i].title %></a>
+                                </td>
+                                <td class ="date"><time datetime="<%= pageList[i].date %>"><%= pageList[i].date.getMonth() %>-<%= pageList[i].date.getDate()%>    <%= pageList[i].date.getHours() %>: <%= pageList[i].date.getMinutes()%></time></td>
+                                <td>
+
+                                    <form class="button-form" method="get" action="/edit-page/update-page">
+                                        <input type="hidden" value="<%= pageList[i]._id %>" name="id"/>
+                                        <button class="icon-button black-button" type="submit">
+                                            <img class="icon" src="\images\icons\003-edit.svg" alt="Edit Page">
+                                        </button>
+                                    </form>
+
+                                    <button class="delete-button icon-button black-button" page-id-data="<%= pageList[i]._id %>">
+                                        <img class="icon" src="\images\icons\001-cancel-button.svg" alt="Delete Page">
+                                    </button>
+
+                                    <% let hiddenText = pageList[i].visible ? "" : "hidden" %>
+                                    <button class="view-button view icon-button <%= hiddenText %> black-button" page-id-data="<%= pageList[i]._id %>" page-visible-data="<%= !pageList[i].visible %>" type="submit">
+                                        <div class="icon-container icon"></div>
+                                    </button>
+                                
+                                </td>
+                            </tr>
+                         <% } %>
+                </tbody>
+            </table>          
+        </div>
+        <div id="new-page-modal" class="modal">
+            <div class="modal-content">
+                <div class="form-container edit-page-form">
+                    <form id="new-page-form">
+                        <label> 
+                            <span class="form-label">Page Title:</span>
+                            <input type="text" name="title" placeholder="title-here" required />
+                        </label>                   
+                        </br>
+                        <label> 
+                            <span class="form-label">Page URL:</span>
+                            <input type="text" name="url" placeholder="url here" required />
+                        </label>
+
+                        
+                        <!-- <div id="" class="page-body-ta" name="body" style="diplay:none">
+
+                        </div> -->
+
+                        <textarea class="page-body-ta" name="body" placeholder="page text goes here" required></textarea>
+
+                        <label class="switch-container"> 
+                            <span class="form-label switch-label">Make Page Visible?</span>
+                            <% let myChecked = true ? "checked" : "" %>
+                            <input type="checkbox" name="visible"  <%= myChecked %>/>
+                        </label>
+
+                        <div class="button-container">
+                            <button id ="new-page-modal-button" class="black-button" type="submit">Create Page</button>
+                        </div>               
+                    </form>  
+                    
+                    <button id="close-modal-button" class="black-button">
+                        Cancel
+                    </button>                   
+                </div>
+            </div>       
+        </div>
+    <script src="/js/admin-panel.js"></script>
+    <!-- <script src="https://cdn.quilljs.com/1.3.5/quill.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.5/quill.snow.css" rel="stylesheet"> -->
+    <% include footer %>
+
+</body>
+</html>
