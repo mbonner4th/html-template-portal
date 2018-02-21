@@ -79,6 +79,34 @@ button:focus{
 #tweet-modal-content{
     display: none;
 }
+#login-modal-content .form-container{
+    margin-bottom: 2%;
+}
+
+form label{
+    text-align: left;
+    font-weight: bold;
+}
+
+form h2{
+    text-align: center;
+}
+
+input[type=email], input[type=password], input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input:focus{
+    box-shadow: 0 0 0 2px #555;
+    border-radius: 2px;
+    outline: none;
+}
 
 /* Modal Content */
 .modal-content {

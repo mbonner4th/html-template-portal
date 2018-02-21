@@ -1,5 +1,4 @@
 $(function(){
-    console.log("page loded");
 
     var shareBtn = $("#share-btn");
 
@@ -10,6 +9,7 @@ $(function(){
     var loggedOn = false;
 
     var regForm = $("#registration-form");
+    var loginForm =$("#login-form");
     var tweetFrom = $("#new-tweet-form");
     var tweetTextArea = $("#tweet-text-area");
     var tweetURL = $("#tweet-url");
@@ -17,7 +17,7 @@ $(function(){
 
     var loginFrom = $("#login-form");
 
-    var cancelModalBtn = $("#close-modal-button");
+    var cancelModalBtn = $("#calncel-btn");
 
 
     function closeModal(modal){
@@ -25,12 +25,10 @@ $(function(){
     };
 
     function openModal(modal){
-        console.log("show Modal");
         modal.css({"display": "block"});
     }
 
     shareBtn.on('click', function(event){
-        console.log("clicked");
         $.ajax({
             method:'GET',
             url: 'http://localhost:4000/user',
@@ -41,11 +39,11 @@ $(function(){
             crossDomain: true
 
         }).done(function(user){
-            console.log(typeof(user) != 'object');
             if(typeof(user) == 'object'){
                 openModal(shareModal);
                 openModal(tweetModal);
             } else{
+                openModal(shareModal);
                 openModal(loginModal);
             }
             
@@ -55,39 +53,83 @@ $(function(){
     });
 
     cancelModalBtn.on('click', function(event){
-        console.log("page canceled");
+        console.log("canceled")
         regForm[0].reset();
         loginFrom[0].reset();
         tweetFrom[0].reset();
-        
+        closeModal(loginModal);
+        closeModal(tweetModal);
         closeModal(shareModal);
     });
 
+    function formDataToJson(serlalizedArray){
+        var returnData = {}
+        $.map(serlalizedArray, function (value, index){
+            returnData[value["name"]] = value["value"];
+        });
+        return returnData;
+    }
 
     regForm.on("submit", function(event){
         event.preventDefault();
-        closeModal(loginModal);
-        openModal(tweetModal);
+        console.log(formDataToJson(regForm.serializeArray()));
+        $.ajax({
+            method:'POST',
+            url: 'http://localhost:4000/user/register',
+            data: formDataToJson(regForm.serializeArray()),
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true
+        }).done(function(user){
+            closeModal(loginModal);
+            openModal(tweetModal);
+        }).fail(function(jqXHR, textStatus, errorThrown){
+            console.log(textStatus);
+            console.log(errorThrown);
+        })
     })
 
+    loginForm.on("submit", function(event){
+        event.preventDefault();
+        console.log(formDataToJson(loginForm.serializeArray()));
+        $.ajax({
+            method:'POST',
+            url: 'http://localhost:4000/user/login',
+            data: formDataToJson(loginForm.serializeArray()),
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true
+        }).done(function(user){
+            closeModal(loginModal);
+            openModal(tweetModal);
+        })
+    })
     tweetFrom.on('submit', function(event){
         event.preventDefault();
-        console.log(tweetTextArea.val());
         var url      = window.location.href;
-        console.log(url) 
+        var urlString = `<a href=${url}>${url}</a><br/>`;
+        var fullTweet = urlString + tweetTextArea.val();
         closeModal(shareModal);
-        // $.ajax({
-        //     method:'POST',
-        //     url: '/tweets',
-        //     data: {
-        //         body: tweetTa.val()
-        //     }
+        $.ajax({
+            method:'POST',
+            url: 'http://localhost:4000/tweets',
+            data: {
+                body: fullTweet
+            },
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true,
 
-        // }).done(function(res){
-        //     createTweet(res);
-        //     tweetFrom[0].reset();
-        //     updateCount(0);
-        // });
+        }).done(function(res){
+            console.log(res);
+            closeModal(shareModal);
+            //createTweet(res);
+            //tweetFrom[0].reset();
+            //updateCount(0);
+        });
     })
 
 });
