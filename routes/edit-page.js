@@ -64,7 +64,6 @@ router.post('/update-page', (req, res)=> {
         {
             title: req.body.title,
             body : req.body.body,
-            url: req.body.url,
             visible: checkVisible,
 
         }, (err, response)=> {
