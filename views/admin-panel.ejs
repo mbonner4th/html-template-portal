@@ -12,13 +12,13 @@
 
 </head>
 <body>
-    <% include header %>
+    <% include ./partials/header %>
     <div id="content" class="form-container">
         <div class="admin-header">
                 <h2>
                     <%= user %>'sAdmin Page
                 </h2>
-                    <button id="new-page-btn" class="black-button">
+                    <button id="new-page-btn" class="black-button" onClick="window.location='./new-page';" >
                         New Page
                     </button>      
                 <hr/>

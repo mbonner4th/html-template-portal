@@ -47,8 +47,6 @@ router.get('/latest', function(req, res){
 
 // update to make url unique
 router.get('/:page', function(req, res){
-    console.log(req.params.page);
-  
     pageModel.findOne({url : req.params.page}, (err, page) =>{
       if (err){
         console.log(err);
@@ -101,10 +99,10 @@ router.get('/:page', function(req, res){
             res.sendStatus(500);
         }
         else if (page){
-            res.jsonp(JSON.parse(page.body));
+            res.send(200).jsonp(JSON.parse(page.body));
         }
         else {
-            res.sendStatus(404);
+            res.send(404);
         }
     });
   });

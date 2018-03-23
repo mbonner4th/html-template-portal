@@ -16,13 +16,15 @@ router.get('/new-page', (req, res)=>{
 
 router.post('/new-page', (req, res)=>{
     let checkVisible = true;
-    console.log(JSON.parse(req.body.body));
+    //console.log(JSON.parse(req.body.body));
+    var fixedBody = JSON.stringify(req.body.body);
+    console.log('new page route route hit');
     if(!req.body.visible){
         checkVisible = false;
     }    
     let newPage = new pageModel({
         title: req.body.title,
-        body : req.body.body,
+        body : fixedBody,
         url: req.body.url,
         visible: checkVisible,
         author: req.user.email,
@@ -30,13 +32,14 @@ router.post('/new-page', (req, res)=>{
     });
     newPage.save((err, page)=>{
         if (err){
-            res.end();
-
+            console.log(err);
+            res.status(500).send({ error: 'Something failed!' })
         } else{
             res.send(page._id);
         }
         
     });
+    
 });
 
 
@@ -57,6 +60,7 @@ router.get('/update-page', (req, res)=> {
 
 router.post('/update-page', (req, res)=> {
     let checkVisible = true;
+    console.log("post update hit");
     if(!req.body.visible){
         checkVisible = false;
     }

@@ -31,10 +31,10 @@ $(function(){
         modal.css({"display": "block"});
     }
 
-    spanModalBtn.on('click', function(event){
-        console.log("clicked");
-        openModal();        
-    });
+    // spanModalBtn.on('click', function(event){
+    //     console.log("clicked");
+    //     openModal();        
+    // });
 
     cancelModalBtn.on('click', function(event){
         console.log("page canceled");

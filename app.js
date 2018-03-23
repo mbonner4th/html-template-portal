@@ -41,8 +41,8 @@ app.set('view engine', 'ejs');
 app.use(session({
   cookieName: 'session',
   secret: 'random_string_goes_here',
-  duration: 30 * 60 * 1000,
-  activeDuration: 5 * 60 * 1000,
+  duration: 30 * 60 * 10000,
+  activeDuration: 5 * 60 * 100000,
   httpOnly: true,
   secure: true,
   ephemeral: true,

@@ -1,5 +1,5 @@
 body {
-    background-color: #bbb3ab;
+    background-color: #2c262c;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -15,11 +15,12 @@ body {
 
 .header{
     text-decoration: none;
-    color: black;
+    color: #6cb9b2;
 }
 
 .sub-header{
     font-weight: bold;
+    color: #6cb9b2;
 }
 
 #top-nav-bar ul{
@@ -84,4 +85,9 @@ footer p{
 footer img{
     min-height: 3%;
     width: 3%;
+}
+
+.error-text{
+    color: red;
+    display: none;
 }

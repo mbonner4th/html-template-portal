@@ -1,17 +1,12 @@
 $(function(){
-    console.log('loaded');
-
     var jsonBody = $("#json-body");
+    var editPageForm = $("#edit-page-form");
     var newPageForm = $("#new-page-form");
+    var urlError = $("#error-text");
     var container = document.getElementById('jsoneditor'); // this lib seems to require elements grabbed this way
 
     /* ====== Start of JSON editor logic === */
     /* https://github.com/josdejong/jsoneditor */
-    // removes white space and special characters
-    var cleanJson = function(json){
-        /* */
-        return json.replace(/\s/g, '').replace(/\\/g, '');
-    }
     var options = {
       mode: 'code',
       modes: ['code', 'form', 'text', 'tree', 'view'], // allowed modes
@@ -22,8 +17,12 @@ $(function(){
         console.log('Mode switched from', oldMode, 'to', newMode);
       }
     };
-    console.log();
-    var json = JSON.parse(jsonBody.val());
+    if(jsonBody.val()){
+        var json = JSON.parse(jsonBody.val());
+    } else{
+        var json = {"actions":[{}]}
+    }
+    
    var editor = new JSONEditor(container, options, json);
 
    //
@@ -36,23 +35,47 @@ $(function(){
     return returnData;
     }
 
-    newPageForm.on("submit", function(event){
-        event.preventDefault();
+    //Takes serized form data, appends the data from the JSON editor, and 
+    //returns the whole object as a JSON string
+    function formEditorDataToJsonString(formJson){
         editor.get();
-        
-        var formJson = formDataToJson($(this).serializeArray());
         formJson["body"] = editor.get();
+        return JSON.stringify(formJson);
+    }
 
+    editPageForm.on("submit", function(event){
+        event.preventDefault();
+        formDataJson = formDataToJson($(this).serializeArray());
+        myData = formEditorDataToJsonString(formDataJson);
         $.ajax({
             url: '/edit-page/update-page',
-            data: JSON.stringify(formJson),
+            data: myData,
             contentType: "application/json",
             type: 'POST'
           }).done(function(message){
-              console.log(message)
+              window.location.replace("/" + formDataJson['url'])
           }).fail(function(err){
                 console.log(err);
           });
+    });
+
+    newPageForm.on("submit", function(event){
+        event.preventDefault();
+        formDataJson = formDataToJson($(this).serializeArray());
+        myData = formEditorDataToJsonString(formDataJson);
+        $.ajax({
+            url: '/edit-page/new-page',
+            data: myData,
+            contentType: "application/json",
+            type: 'POST'
+          }).done(function(message){  
+              urlError.css({"display": "none"});
+              window.location.replace("/admin-pannel");
+          }).fail(function(err){
+                console.log(err);
+                urlError.css({"display": "block"});
+          });
+
     });
 
 

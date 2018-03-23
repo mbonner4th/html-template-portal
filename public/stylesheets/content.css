@@ -34,3 +34,7 @@
 .is-visable-container h3{
     color: red;
 }
+
+#jsoneditor{
+    height: 500px;
+}

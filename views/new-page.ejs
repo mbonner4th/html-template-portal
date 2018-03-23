@@ -5,115 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Edit Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="jsoneditor.min.css" rel="stylesheet" type="text/css">
-    <script src="jsoneditor.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/edit-page.css" />
+    <link href="/jsoneditor.min.css" rel="stylesheet" type="text/css">
+    <script src="/jsoneditor.min.js"></script>
 </head>
 <body>
-        <p>
-                Switch editor mode using the mode box.
-                Note that the mode can be changed programmatically as well using the method
-                <code>editor.setMode(mode)</code>, try it in the console of your browser.
-              </p>
-              
-              <div id="jsoneditor"></div>
-              
-              <script>
-                var container = document.getElementById('jsoneditor');
-                var options = {
-                  mode: 'code',
-                  modes: ['code', 'form', 'text', 'tree', 'view'], // allowed modes
-                  onError: function (err) {
-                    alert(err.toString());
-                  },
-                  onModeChange: function (newMode, oldMode) {
-                    console.log('Mode switched from', oldMode, 'to', newMode);
-                  }
-                };
-                var json = {
-    "actions": [
-    {
-        "$myPetsArray":"['Whiskers', 'Spot', 'Bubbles']",
-        "$optionsArray":"{'cat':'Whiskers', 'dog':'Spot', 'bird':'Bubbles'}",
-        "$bigArray": "'test'"
-    },
+    <% include ./partials/header %>
+    <div id="content">
+        <div class="form-container edit-page-form">
+            <form id="new-page-form" method="" action="">
+                <input type="hidden" name="id" value="" />
+                <label> 
+                    <span class="form-label">Page Title:</span>
+                    <input type="text" name="title" value="" required />
+                </label>
 
-    {
-        "type": "GOTO",
-        "params":{
-            "label": "start"
-        }
-    },
+                </br>
+                <label> 
+                        <span class="form-label">Page URL:</span>
+                        <input type="text" name="url" value="" required />
+                        <small id="error-text" class="error-text">duplicate URL. Please choose a better one</small>
+                </label>
 
-    {
-        "type": "LABEL",
-        "name": "start"
-    },
-
-
-
-    {
-        "type":"COLLECT",
-        "actions":[
-          {
-            "type":"SAY",
-            "params":{
-              "text":"Testing collecting several digits"
-            }
-          }
-        ],
-        "params":{
-          "num_digits":4
-        }
-      },
-      {
-        "type": "SAY",
-        "params":{
-            "text":"Collect done"
-        }   
-    },
-
-      {
-        "type":"IF",
-        "condition":"$keyPresses != ''",
-        "then":[
-            {
-                "$firstChar" : "${keyPresses}[0]"
-            },
-            {
+                <input type="hidden" id="json-body" name="json-body" value="" />
+                <div id="jsoneditor" value="" ></div>
                 
-                    "type":"SAY",
-                    "params":{
-                      "text":"first number pressed was ${firstChar}"
-                    }
-            },
-          {
-            "type":"GOTO",
-            "params":{
-              "label":"start"
-            }
-          }
-        ]
-      },
+                <label class="switch-container"> 
+                    <span class="form-label switch-label">Make Page Visible?</span>
+    
+                    <input type="checkbox" name="visible" />
+                </label>
+        
+                <div class="button-container">
+                    <button type="submit">Add Page</button>
+                </div>               
+            </form>
 
+        </div>
+    </div>
 
-
-    {
-        "type":"PAUSE",
-        "params":{
-            "seconds":10000
-        }
-    },
-
-    {
-        "type": "SAY",
-        "params":{
-            "text":"Hanging up"
-        }   
-    }
-]
-};
-                var editor = new JSONEditor(container, options, json);
-              </script>
+    <script src="http://code.jquery.com/jquery-3.3.1.js"  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="  crossorigin="anonymous"></script>
+    <script src="/js/edit-page.js"></script>
 </body>
 <%include footer %>
 </html>
