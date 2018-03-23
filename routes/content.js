@@ -25,6 +25,10 @@ router.get('/', function(req, res){
     })
 });
 
+router.get('/new-page', function(req,res){
+    res.render("new-page");
+})
+
 router.get('/latest', function(req, res){
     console.log("hit")
     findLastPage().then(function(page){
@@ -89,6 +93,20 @@ router.get('/:page', function(req, res){
   
     });
     
+  });
+
+  router.get("/json/:pageURL", function(req, res){
+    pageModel.findOne({url: req.params.pageURL}, function(err, page){
+        if(err){
+            res.sendStatus(500);
+        }
+        else if (page){
+            res.jsonp(page.body);
+        }
+        else {
+            res.sendStatus(404);
+        }
+    });
   });
 
 module.exports = router;

@@ -16,6 +16,7 @@ router.get('/new-page', (req, res)=>{
 
 router.post('/new-page', (req, res)=>{
     let checkVisible = true;
+    console.log(JSON.parse(req.body.body));
     if(!req.body.visible){
         checkVisible = false;
     }    

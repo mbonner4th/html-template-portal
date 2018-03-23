@@ -5,40 +5,115 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Edit Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/edit-page.css" />
+    <link href="jsoneditor.min.css" rel="stylesheet" type="text/css">
+    <script src="jsoneditor.min.js"></script>
 </head>
 <body>
-    <% include header %>
-    <div id="content">
-        <div class="form-container edit-page-form">
-            <form id="new-page" method="POST" action="/edit-page/new-page">
-                <label> 
-                    <span class="form-label">Page Title:</span>
-                    <input type="text" name="title" placeholder="<%= template.title %>" required />
-                </label>
+        <p>
+                Switch editor mode using the mode box.
+                Note that the mode can be changed programmatically as well using the method
+                <code>editor.setMode(mode)</code>, try it in the console of your browser.
+              </p>
+              
+              <div id="jsoneditor"></div>
+              
+              <script>
+                var container = document.getElementById('jsoneditor');
+                var options = {
+                  mode: 'code',
+                  modes: ['code', 'form', 'text', 'tree', 'view'], // allowed modes
+                  onError: function (err) {
+                    alert(err.toString());
+                  },
+                  onModeChange: function (newMode, oldMode) {
+                    console.log('Mode switched from', oldMode, 'to', newMode);
+                  }
+                };
+                var json = {
+    "actions": [
+    {
+        "$myPetsArray":"['Whiskers', 'Spot', 'Bubbles']",
+        "$optionsArray":"{'cat':'Whiskers', 'dog':'Spot', 'bird':'Bubbles'}",
+        "$bigArray": "'test'"
+    },
 
-                </br>
-                <label> 
-                        <span class="form-label">Page URL:</span>
-                        <input type="text" name="url" placeholder="<%= template.url %>" required />
-                </label>
+    {
+        "type": "GOTO",
+        "params":{
+            "label": "start"
+        }
+    },
 
+    {
+        "type": "LABEL",
+        "name": "start"
+    },
+
+
+
+    {
+        "type":"COLLECT",
+        "actions":[
+          {
+            "type":"SAY",
+            "params":{
+              "text":"Testing collecting several digits"
+            }
+          }
+        ],
+        "params":{
+          "num_digits":4
+        }
+      },
+      {
+        "type": "SAY",
+        "params":{
+            "text":"Collect done"
+        }   
+    },
+
+      {
+        "type":"IF",
+        "condition":"$keyPresses != ''",
+        "then":[
+            {
+                "$firstChar" : "${keyPresses}[0]"
+            },
+            {
                 
-                <textarea class="page-body-ta" name="body" placeholder="<%= template.body %>" required></textarea>
-                
-                <label class="switch-container"> 
-                    <span class="form-label switch-label">Make Page Visible?</span>
-                    <% let myChecked = template.visible ? "checked" : "" %>
-                    <input type="checkbox" name="visible"  <%= myChecked %>/>
-                </label>
-        
-                <div class="button-container">
-                    <button type="submit">Create Page</button>
-                </div>               
-            </form>
+                    "type":"SAY",
+                    "params":{
+                      "text":"first number pressed was ${firstChar}"
+                    }
+            },
+          {
+            "type":"GOTO",
+            "params":{
+              "label":"start"
+            }
+          }
+        ]
+      },
 
-        </div>
-    </div>
+
+
+    {
+        "type":"PAUSE",
+        "params":{
+            "seconds":10000
+        }
+    },
+
+    {
+        "type": "SAY",
+        "params":{
+            "text":"Hanging up"
+        }   
+    }
+]
+};
+                var editor = new JSONEditor(container, options, json);
+              </script>
 </body>
 <%include footer %>
 </html>
