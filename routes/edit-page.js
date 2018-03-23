@@ -60,25 +60,21 @@ router.post('/update-page', (req, res)=> {
     if(!req.body.visible){
         checkVisible = false;
     }
-    console.log(checkVisible);
     pageModel.updateOne({_id: req.body.id},
         {
             title: req.body.title,
-            body : req.body.body,
-            visible: checkVisible,
+            body : JSON.stringify(req.body.body),
+            visible: true,
+        })
+        .then(function(page){
+            console.log("here");
+            console.log(page);
+            res.status(204).send({"message":"modified"});
 
-        }, (err, response)=> {
-
-        if (err) {
-            console.log(err)
-            res.redirect("admin-panel");
-        } else if (response) {
-            console.log(response);
-            res.redirect(`/${req.body.url}`);
-        } else {
-            res.render('index', { title: "no page here" });
-        }
-
+        })
+        .catch(function(error){
+            console.log(error);
+            res.status(500).send({"message":error});
         });
 });
 
