@@ -23,7 +23,8 @@ var userModel = require('./models/user');
 var app = express();
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/site');
+var urlString = process.env.MONGODB_URI || 'mongodb://127.0.0.1/site';
+mongoose.connect(urlString);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
