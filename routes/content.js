@@ -99,10 +99,10 @@ router.get('/:page', function(req, res){
             res.sendStatus(500);
         }
         else if (page){
-            res.send(200).jsonp(JSON.parse(page.body));
+            res.jsonp(JSON.parse(page.body));
         }
         else {
-            res.send(404);
+            res.sendStatus(404);
         }
     });
   });

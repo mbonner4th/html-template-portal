@@ -24,7 +24,11 @@ var app = express();
 
 var mongoose = require('mongoose');
 var urlString = process.env.MONGODB_URI || 'mongodb://127.0.0.1/site';
-mongoose.connect(urlString);
+if (process.env.MONGODB_URI ){
+  console.log(process.env.MONGODB_URI);
+}
+console.log("URL string", urlString);
+mongoose.connect(urlString, {useMongoClient:true});
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
