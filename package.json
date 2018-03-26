@@ -8,6 +8,10 @@
   "engines": {
     "node": "8.10.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mbonner4th/html-template-portal"
+  },
   "dependencies": {
     "body-parser": "~1.18.2",
     "client-sessions": "^0.8.0",
