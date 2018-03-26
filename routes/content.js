@@ -98,7 +98,7 @@ router.get('/:page', function(req, res){
         if(err){
             res.sendStatus(500);
         }
-        else if (page){
+        else if (page && !err){
             res.jsonp(JSON.parse(page.body));
         }
         else {
