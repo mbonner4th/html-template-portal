@@ -96,6 +96,26 @@ router.get('/:page', function(req, res){
   router.get("/json/:pageURL", function(req, res){
     pageModel.findOne({url: req.params.pageURL}, function(err, page){
         if(err){
+            console.log("error", err.message)
+            res.sendStatus(500);
+        }
+        else if (page && !err){
+            console.log("hit")
+            res.jsonp(JSON.parse(page.body));
+        }
+        else {
+            res.sendStatus(404);
+        }
+    });
+  });
+
+  router.post("/json/:pageURL", function(req, res){
+
+    console.log("req body: ", req.body);
+    console.log("req URL: ", req.params);
+    pageModel.findOne({url: req.params.pageURL}, function(err, page){
+        if(err){
+            console.log("error", err.message)
             res.sendStatus(500);
         }
         else if (page && !err){
@@ -106,5 +126,6 @@ router.get('/:page', function(req, res){
         }
     });
   });
+
 
 module.exports = router;
