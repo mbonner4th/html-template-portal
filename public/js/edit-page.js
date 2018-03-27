@@ -3,6 +3,7 @@ $(function(){
     var editPageForm = $("#edit-page-form");
     var newPageForm = $("#new-page-form");
     var urlError = $("#error-text");
+    var confirmUpdateText= $("#confirm-update");
     var container = document.getElementById('jsoneditor'); // this lib seems to require elements grabbed this way
 
     /* ====== Start of JSON editor logic === */
@@ -47,15 +48,18 @@ $(function(){
         event.preventDefault();
         formDataJson = formDataToJson($(this).serializeArray());
         myData = formEditorDataToJsonString(formDataJson);
+        confirmUpdateText.css({"display":"none"});
         $.ajax({
             url: '/edit-page/update-page',
             data: myData,
             contentType: "application/json",
             type: 'POST'
           }).done(function(message){
-              window.location.replace("/" + formDataJson['url'])
+              //window.location.replace("/" + formDataJson['url'])
+              confirmUpdateText.css({"display":"block"});
           }).fail(function(err){
                 console.log(err);
+                confirmUpdateText.css({"display":"none"});
           });
     });
 

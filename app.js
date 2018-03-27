@@ -24,10 +24,8 @@ var app = express();
 
 var mongoose = require('mongoose');
 var urlString = process.env.MONGODB_URI || 'mongodb://127.0.0.1/site';
-if (process.env.MONGODB_URI ){
-  console.log(process.env.MONGODB_URI);
-}
-console.log("URL string", urlString);
+
+console.log("DB sitting at:", urlString);
 mongoose.connect(urlString, {useMongoClient:true});
 
 var db = mongoose.connection;
