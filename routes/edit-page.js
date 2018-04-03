@@ -20,13 +20,12 @@ router.post('/new-page', (req, res)=>{
     var fixedBody = JSON.stringify(req.body.body);
     console.log('new page route route hit');
     if(!req.body.visible){
-        checkVisible = false;
+        checkVisible = true;
     }    
     let newPage = new pageModel({
         title: req.body.title,
         body : fixedBody,
         url: req.body.url,
-        visible: checkVisible,
         author: req.user.email,
         User: req.user,
     });

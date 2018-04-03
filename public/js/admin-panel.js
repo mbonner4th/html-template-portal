@@ -9,17 +9,6 @@ $(function(){
     var modal = $("#new-page-modal");
 
     
-    // var quillOptions = {
-
-    //     placeholder: "Page content goes here",
-    //     readOnly: false,
-    //     theme: 'snow',
-    //     modules:{
-
-    //     },
-    //   };
-
-    // var quill = new Quill('#editor', quillOptions);
 
     function closeModal(){
         modal.css({"display": "none"});
@@ -31,10 +20,6 @@ $(function(){
         modal.css({"display": "block"});
     }
 
-    // spanModalBtn.on('click', function(event){
-    //     console.log("clicked");
-    //     openModal();        
-    // });
 
     cancelModalBtn.on('click', function(event){
         console.log("page canceled");
@@ -57,12 +42,6 @@ $(function(){
         event.preventDefault();
         console.log("submitted");
         var pageData = formDataToJson(newPageForm.serializeArray());
-        
-
-        // var quillBody = quill.getContents();
-        // console.log(quillBody.ops);
-        // pageData["quillBody"] = quillBody.ops;
-        // pageData["body"] = "ff";
         
         $.ajax({
             method: "POST",
@@ -120,6 +99,21 @@ $(function(){
         .done(function(res){
             button.closest("tr").remove();
         });
+    });
+
+    function getRootUrl() {
+        return window.location.origin?window.location.origin+'/':window.location.protocol+'/'+window.location.host+'/';
+    }
+
+    table.on('click', ".copy-btn", function(event){
+        var urlString = getRootUrl() + ($(this).attr("value"));
+
+        $(this).attr("data-clipboard-text", urlString)
+        var clipboard = new ClipboardJS($(this)[0]);
+        clipboard.on('success', function(e) {        
+            e.clearSelection();
+        });
+
     });
 
     table.on("click", ".view-button", function(event){

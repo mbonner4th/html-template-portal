@@ -20,3 +20,6 @@ This project is the first part of HTML/CSS training at the portal
 
 * If it works, talk to Miles. If it's broken... well, I don'r
 * Other community or team contact
+
+
+* When var has the * with the on type string means use ${var}, else use $var

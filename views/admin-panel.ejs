@@ -56,14 +56,14 @@
                                         </button>
                                     </form>
 
-                                    <button class="delete-button icon-button black-button" page-id-data="<%= pageList[i]._id %>">
+                                    <button class="delete-button icon-button black-button" page-id-data="<%= pageList[i]._id %>" disabled>
                                         <img class="icon" src="\images\icons\001-cancel-button.svg" alt="Delete Page">
                                     </button> 
 
-                                    <% let hiddenText = pageList[i].visible ? "" : "hidden" %>
-                                    <button class="view-button view icon-button <%= hiddenText %> black-button" page-id-data="<%= pageList[i]._id %>" page-visible-data="<%= !pageList[i].visible %>" type="submit">
-                                        <div class="icon-container icon"></div>
+                                    <button class="copy-btn icon-button black-button"  data-clipboard-text="" value="json/<%= pageList[i].url %>" >
+                                        <img class="icon" src="\images\icons\copy-document.svg" alt="copy" />
                                     </button>
+
                                 
                                 </td>
                             </tr>
@@ -71,44 +71,9 @@
                 </tbody>
             </table>          
         </div>
+    </div>
 
-
-                
-
-        <div id="new-page-modal" class="modal">
-            <div class="modal-content">
-                <!-- <div class="form-container edit-page-form">
-                    <form id="new-page-form">
-                        <label> 
-                            <span class="form-label">Page Title:</span>
-                            <input type="text" name="title" placeholder="title-here" required />
-                        </label>                   
-                        </br>
-                        <label> 
-                            <span class="form-label">Page URL:</span>
-                            <input type="text" name="url" placeholder="url here" required />
-                        </label>
-
-                        <textarea class="page-body-ta" name="body" placeholder="page text goes here" required></textarea>
-
-                        <label class="switch-container"> 
-                            <span class="form-label switch-label">Make Page Visible?</span>
-                            <% let myChecked = true ? "checked" : "" %>
-                            <input type="checkbox" name="visible"  <%= myChecked %>/>
-                        </label>
-
-                        <div class="button-container">
-                            <button id ="new-page-modal-button" class="black-button" type="submit">Create Page</button>
-                        </div>               
-                    </form>  
-                    
-                    <button id="close-modal-button" class="black-button">
-                        Cancel
-                    </button>                   
-                </div> -->
-            
-            </div>       
-        </div>
+    <script src="clipboard.min.js"></script>
     <script src="/js/admin-panel.js"></script>
 
     <% include footer %>

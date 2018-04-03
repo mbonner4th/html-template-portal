@@ -17,11 +17,13 @@ const schema = mongoose.Schema({
         required: true, 
         unique: true 
     },
-    author: {type: String, default: 'guitarist' },
+    description: {
+        type: String, 
+        default:"",
+    },
     date: { type: Date, default: Date.now },
     visible: {type: Boolean, default: true},
-    User: {type: Object},
-    quillBody: {type: Object},
+    User: {type: Object}
 });
 
 const pageModel = mongoose.model('page', schema);

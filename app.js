@@ -69,13 +69,14 @@ app.use(function(req, res, next) {
 });
 
 // uncomment after placing; your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 //https://stackoverflow.com/questions/29357305/nodejs-express-include-local-js-file
 app.use(express.static(path.join(__dirname, 'node_modules/jsoneditor/dist')))
+app.use(express.static(path.join(__dirname, '/node_modules/clipboard/dist')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 

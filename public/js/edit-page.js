@@ -21,7 +21,7 @@ $(function(){
     if(jsonBody.val()){
         var json = JSON.parse(jsonBody.val());
     } else{
-        var json = {"actions":[{}]}
+        var json = {"actions":[{}, {"type": "HANGUP"}]}
     }
     
    var editor = new JSONEditor(container, options, json);
