@@ -112,7 +112,6 @@ router.get('/:page', function(req, res){
   router.post("/json/:pageURL", function(req, res){
 
     console.log("req body: ", req.body);
-    console.log("req header: ", req.header);
     console.log("req URL: ", req.params);
     pageModel.findOne({url: req.params.pageURL}, function(err, page){
         if(err){

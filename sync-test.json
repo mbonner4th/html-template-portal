@@ -1,0 +1,12 @@
+{
+    "config": {
+        "encoding":"WAV",
+        "sampleRateHertz": 16000,
+        "languageCode": "en-US",
+        "enableWordTimeOffsets": false
+    },
+    "audio": {
+        "uri":"https://s3.us-east-2.amazonaws.com/sp-other-bucket/mis-recordings/me_and_me.wav"
+    }
+  }
+    
