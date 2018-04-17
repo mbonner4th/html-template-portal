@@ -3,6 +3,8 @@ const router = express.Router();
 
 const pageModel = require("../models/page");
 
+const schemaValidateor = require("voxology-actions-json-schema");
+
 const template = {
     title: "try a fun name",
     url: "/here",
@@ -21,7 +23,8 @@ router.post('/new-page', (req, res)=>{
     console.log('new page route route hit');
     if(!req.body.visible){
         checkVisible = true;
-    }    
+    } 
+
     let newPage = new pageModel({
         title: req.body.title,
         body : fixedBody,
@@ -58,11 +61,13 @@ router.get('/update-page', (req, res)=> {
 
 
 router.post('/update-page', (req, res)=> {
+    
     let checkVisible = true;
-    console.log("post update hit");
-    if(!req.body.visible){
+        if(!req.body.visible){
         checkVisible = false;
     }
+//    console.log(schemaValidateor(req.body.body));
+
     pageModel.updateOne({_id: req.body.id},
         {
             title: req.body.title,

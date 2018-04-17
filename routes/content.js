@@ -127,5 +127,17 @@ router.get('/:page', function(req, res){
     });
   });
 
+  router.post("/xml/twml", function(req, res){
+    console.log("req body: ", req.body);
+    console.log("req URL: ", req.params);
+      xml = '<?xml version="1.0" encoding="UTF-8"?> <Response> <Reject reason="busy" /> </Response>'
+      res.set('Content-Type', 'application/xml');
+      res.send(xml);
+  })
+  router.get("/xml/twml", function(req, res){
+    xml = '<?xml version="1.0" encoding="UTF-8"?> <Response> <Reject reason="busy" /> </Response>'
+    res.set('Content-Type', 'application/xml');
+    res.send(xml);
+})
 
 module.exports = router;
