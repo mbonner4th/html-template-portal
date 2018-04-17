@@ -3,7 +3,7 @@ const router = express.Router();
 
 const pageModel = require("../models/page");
 
-const schemaValidateor = require("voxology-actions-json-schema");
+// const schemaValidateor = require("voxology-actions-json-schema");
 
 const template = {
     title: "try a fun name",
