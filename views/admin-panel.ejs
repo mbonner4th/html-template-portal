@@ -46,7 +46,7 @@
                                 <td class="page-title">
                                     <a href="/json/<%= pageList[i].url %>"><%= pageList[i].title %></a>
                                 </td>
-                                <td class ="date"><time datetime="<%= pageList[i].date %>"><%= pageList[i].date.getMonth() %>-<%= pageList[i].date.getDate()%>    <%= pageList[i].date.getHours() %>: <%= pageList[i].date.getMinutes()%></time></td>
+                                <td class ="date"><time datetime="<%= pageList[i].date %>"><%= pageList[i].date.getMonth()+1 %>-<%= pageList[i].date.getDate() + 1 %>    <%= pageList[i].date.getHours() + 1 %>: <%= pageList[i].date.getMinutes() + 1%></time></td>
                                 <td>
 
                                     <form class="button-form" method="get" action="/edit-page/update-page">

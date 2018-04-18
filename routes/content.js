@@ -6,7 +6,7 @@ const pageModel = require("../models/page");
 
 
 function findAllPages(){
-    return pageModel.find({visible: true})
+    return pageModel.find({visible: true}, {}, {sort: {"date": -1}})
 }
 
 function findLastPage(){

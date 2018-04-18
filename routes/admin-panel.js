@@ -7,7 +7,7 @@ const pageModel = require("../models/page");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  pageModel.find({"User._id": req.user._id}, (err, pages)=>{
+  pageModel.find({"User._id": req.user._id}, {}, {sort: {"date": -1}}, (err, pages)=>{
     if (err){
       console.log(err);
       res.redirect("/auth");
