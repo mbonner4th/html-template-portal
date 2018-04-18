@@ -39,7 +39,7 @@
                                         <td class="page-title">
                                             <a href="/<%= pageList[i].url %>"><%= pageList[i].title %></a>
                                         </td>
-                                        <td class ="date"><time datetime="<%= pageList[i].date %>"> <%= pageList[i].date.getMonth() %>-<%= pageList[i].date.getDate()%>    <%= pageList[i].date.getHours() %>: <%= pageList[i].date.getMinutes()%></time></td>
+                                        <td class ="date"><time datetime="<%= pageList[i].date %>"> <%= pageList[i].date.getMonth()+1 %>-<%= pageList[i].date.getDate()+1%>    <%= pageList[i].date.getHours() %>: <%= pageList[i].date.getMinutes()%></time></td>
                                         <td>
                                             <%= pageList[i].User.email %>
 
