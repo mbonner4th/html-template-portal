@@ -59,8 +59,7 @@ router.get('/:page', function(req, res){
                 body: page.body, 
                 date: page.date, 
                 author: page.User.email,
-                visible: page.visible,
-                quillBody: page.quillBody,
+                visible: page.visible
             });   
         } else {
             // Need cleaner way of doing this
@@ -70,8 +69,7 @@ router.get('/:page', function(req, res){
                     body: page.body, 
                     date: page.date, 
                     author: page.User.email,
-                    visible: page.visible,
-                    quillBody: page.quillBody,
+                    visible: page.visible
                 });      
             } else {
                 res.render('content', { 

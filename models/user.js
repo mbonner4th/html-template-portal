@@ -8,7 +8,14 @@ const userSchema = mongoose.Schema({
     },
   password: {
       type: String, 
-      required: true} 
+      required: true
+    },
+  apiKey:{
+    type: String,
+  },
+  basicAuth: {
+    type: String,
+  }
 });
 const userModel = mongoose.model('user', userSchema);
 
