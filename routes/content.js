@@ -44,6 +44,56 @@ router.get('/latest', function(req, res){
     }).catch(function(err){});
 });
 
+router.post("/json/testPage", function(req, res){
+    console.log(req.body.custom_data);
+    var myName ="";
+    if(req.body.custom_data && req.body.custom_data.name){
+        myName = req.body.custom_data.name
+    } else{
+        myName = "no name given"
+    }
+    var json = {"actions":[{"type":"say","params":{ "text":`Hello ${myName}`}}, {"type": "HANGUP"}]}
+    res.jsonp(json);
+});
+
+router.get("/json/:pageURL", function(req, res){
+    pageModel.findOne({url: req.params.pageURL}, function(err, page){
+        if(err){
+            console.log("error", err.message)
+            res.sendStatus(500);
+        }
+        else if (page && !err){
+            console.log("hit")
+            res.jsonp(JSON.parse(page.body));
+        }
+        else {
+            res.sendStatus(404);
+        }
+    });
+  });
+
+  router.post("/json/:pageURL", function(req, res){
+
+    console.log("req body: ", req.body);
+    console.log("req URL: ", req.params);
+    pageModel.findOne({url: req.params.pageURL}, function(err, page){
+        if(err){
+            console.log("error", err.message)
+            res.sendStatus(500);
+        }
+        else if (page && !err){
+            res.jsonp(JSON.parse(page.body));
+        }
+        else {
+            res.sendStatus(404);
+        }
+    });
+  });
+
+
+
+
+
 
 // update to make url unique
 router.get('/:page', function(req, res){
@@ -91,39 +141,7 @@ router.get('/:page', function(req, res){
     
   });
 
-  router.get("/json/:pageURL", function(req, res){
-    pageModel.findOne({url: req.params.pageURL}, function(err, page){
-        if(err){
-            console.log("error", err.message)
-            res.sendStatus(500);
-        }
-        else if (page && !err){
-            console.log("hit")
-            res.jsonp(JSON.parse(page.body));
-        }
-        else {
-            res.sendStatus(404);
-        }
-    });
-  });
-
-  router.post("/json/:pageURL", function(req, res){
-
-    console.log("req body: ", req.body);
-    console.log("req URL: ", req.params);
-    pageModel.findOne({url: req.params.pageURL}, function(err, page){
-        if(err){
-            console.log("error", err.message)
-            res.sendStatus(500);
-        }
-        else if (page && !err){
-            res.jsonp(JSON.parse(page.body));
-        }
-        else {
-            res.sendStatus(404);
-        }
-    });
-  });
+ 
 
   router.post("/xml/twml", function(req, res){
     console.log("req body: ", req.body);
