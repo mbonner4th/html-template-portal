@@ -1,13 +1,15 @@
+/** required from templates */
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
 
+var mongoose = require('mongoose');
 var session =  require("client-sessions");
 
+/** Rountes start here */
 var index = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth.js');
