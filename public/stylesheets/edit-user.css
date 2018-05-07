@@ -30,7 +30,6 @@ form label{
     margin-top: 2%;
 }
 
-
 input[type=email], input[type=password], input[type=text] {
     width: 100%;
     padding: 12px 20px;
@@ -74,7 +73,6 @@ textarea:focus {
     outline: none;
 }
 
-
 button{
     display: block;
     border: 0;
@@ -86,6 +84,7 @@ button{
     padding: 12px 30px;
     background-color: black;    
 }
+
 .update-button:hover{
     background-color: #25640c;
 }
@@ -97,4 +96,9 @@ button{
 
 button:focus{
     outline: none;
+}
+
+.url-selector{
+    margin-top: 15px;
+    margin-bottom: 15px;
 }

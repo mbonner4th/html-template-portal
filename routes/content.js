@@ -14,7 +14,6 @@ function findLastPage(){
 }
 
 router.get('/', function(req, res){
-    //res.redirect('/auth');
     findAllPages().then(function(pages){
         if(pages){
             res.render("homepage", {user: "test", pageList: pages});
@@ -32,7 +31,6 @@ router.get('/new-page', function(req,res){
 router.get('/latest', function(req, res){
     console.log("hit")
     findLastPage().then(function(page){
-        
         res.render('content', { 
             title: page.title,
             body: page.body, 
@@ -56,6 +54,7 @@ router.post("/json/testPage", function(req, res){
     res.jsonp(json);
 });
 
+
 router.get("/json/:pageURL", function(req, res){
     pageModel.findOne({url: req.params.pageURL}, function(err, page){
         if(err){
@@ -73,7 +72,6 @@ router.get("/json/:pageURL", function(req, res){
   });
 
   router.post("/json/:pageURL", function(req, res){
-
     console.log("req body: ", req.body);
     console.log("req URL: ", req.params);
     pageModel.findOne({url: req.params.pageURL}, function(err, page){

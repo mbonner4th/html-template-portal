@@ -1,49 +1,49 @@
 <!DOCTYPE html>
 <html>
-<head>
+    <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>my heade</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/main.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    
 
-</head>
-<body>
-    <header>
-        <a class="header" href="">
-            <h1>
-                Voxolo.gy JSON site
-            </h1>
-        </a>
-        <p class="sub-header">
-            a neat-o site for editing and serving JSON
-        </p>
-    </header>
-    <div id="top-nav-bar">
+    </head>
+    <body>
+        <header>
+            <div class="header">
+                <a class="main-header" href="">
+                    <h1>
+                        Voxolo.gy JSON site
+                    </h1>
+                </a>
+                <p class="sub-header">
+                    a neat-o site for editing and serving JSON
+                </p>
+            </div>
+        </header>
+        <div id="top-nav-bar">
             <nav class="nav-bar">
                 <ul>
-                        <li>
-                            <a href="/">Home</a>
-                        </li>
-                        <li>
-                            <a href="/latest">latest page</a>
-                        </li>
-                        <li id="admin-link" class="right-element">
-                            <a href="/admin-panel">Admin panel</a>
-                        </li>
-                        <li id="signup-link" class="right-element">
-                            <a href="/auth">Sign Up</a>
-                        </li>
-                        <li id="logout-link" class="right-element">
-                            <a href="/auth/logout">logout</a>
-                        </li>
-                    </ul>
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/latest">latest page</a>
+                    </li>
+                    <li id="admin-link" class="right-element logged-in">
+                        <a href="/admin-panel">Admin panel</a>
+                    </li>            
+                    <li id="signup-link" class="right-element logged-out">
+                        <a href="/auth">Sign Up</a>
+                    </li>      
+                    <li id="manage apps" class="right-element logged-in">
+                        <a href="/edit-user">Manage apps</a>
+                    </li>
+                
+                    <li id="logout-link" class="right-element logged-in">
+                        <a href="/auth/logout">logout</a>
+                    </li>
+                </ul>
             </nav>
-            
         </div>
-
-    <script src="/js/header.js"></script>
     </body>
 </html>

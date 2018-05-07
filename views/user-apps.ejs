@@ -5,42 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Edit Profile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="\stylesheets\edit-user.css"
 </head>
 <body>
     <% include ./partials/header %>
     <div id="content">
         <div class="form-container">       
-            <form id="link-account-form">
+            <form id="edit-user-form">
                 <div class="form-header">
-                    <h2>Link Account</h2>
+                    <h2>Public Profile</h2>
                     <hr/>
                 </div>
 
                 <div class="form-body">
-                    <label>Account Name
-                            <input type="text" placeholder="label for the account" name="appName" required >
+                    <label>Name
+                            <input type="text" placeholder="current username" name="user-name" >
                     </label>
-
-                    <label>BASIC_AUTH
-                            <input type="text" placeholder="basic-auth" name="basicAuth" required>
-                    </label>
-
-                    <div class="url-selector">
-                        <label>URL
-                                <select name="url" form="link-account-form">
-                                        <option value="api.voxolo.gy/v1">Production</option>
-                                        <option value="shoutpointapi-dev.apigee.net/v1">Dev</option>
-                                        <option value="api-qa.voxolo.gy/v1">QA</option>
-                                    </select>                                    
-                            </label>
+        
+                    <div class="bio-container">
+                        <label>Bio
+                            <textarea class="bio-ta" name="bio-text" placeholder="Something small about yourself"></textarea>
+                        </label>
                     </div>
-                    <small style="display: none;" id="error-text">An error occured while linking</small>
-
+                    
                     <button class="update-button">
-                        Link App
+                        Update Profile
                     </button>
                 </div>
             </form>
+
+
+
             <form id="edit-pass-form">
                 <div class="form-header">
                     <h2>Change Password</h2>
@@ -60,7 +55,5 @@
         </div>
     </div>
     <% include footer %>
-    <link rel="stylesheet" type="text/css" media="screen" href="\stylesheets\edit-user.css">
-    <script src="/js/link-account.js"></script>
 </body>
 </html>

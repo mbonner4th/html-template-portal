@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><%= template.title %> - Edit</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/edit-page.css" />
-    <link href="/jsoneditor.min.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
     <% include ./partials/header %>
@@ -20,6 +19,7 @@
                 </label>
 
                 </br>
+
                 <label> 
                         <span class="form-label">Page URL:</span>
                         <input type="text" name="url" value="<%= template.url %>" disabled />
@@ -44,8 +44,11 @@
 
         </div>
     </div>
-    <script src="/jsoneditor.min.js"></script>
-    <script src="/js/edit-page.js"></script>
 </body>
 <%include footer %>
+
+<link rel="stylesheet" type="text/css" media="screen" href="/stylesheets/edit-page.css" />
+<link href="/jsoneditor.min.css" rel="stylesheet" type="text/css">
+<script src="/jsoneditor.min.js"></script>
+<script src="/js/edit-page.js"></script>
 </html>

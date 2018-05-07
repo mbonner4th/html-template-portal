@@ -18,9 +18,7 @@ router.get('/new-page', (req, res)=>{
 
 router.post('/new-page', (req, res)=>{
     let checkVisible = true;
-    //console.log(JSON.parse(req.body.body));
     var fixedBody = JSON.stringify(req.body.body);
-    console.log('new page route route hit');
     if(!req.body.visible){
         checkVisible = true;
     } 

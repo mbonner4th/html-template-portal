@@ -29,11 +29,11 @@ $(function(){
    //
 
    function formDataToJson(serlalizedArray){
-    var returnData = {}
-    $.map(serlalizedArray, function (value, index){
-        returnData[value["name"]] = value["value"];
-    });
-    return returnData;
+        var returnData = {}
+        $.map(serlalizedArray, function (value, index){
+            returnData[value["name"]] = value["value"];
+        });
+        return returnData;
     }
 
     //Takes serized form data, appends the data from the JSON editor, and 

@@ -16,6 +16,12 @@ body {
 .header{
     text-decoration: none;
     color: #6cb9b2;
+    margin-left:10px;
+}
+.main-header{
+    text-decoration: none;
+    color: #6cb9b2;
+    margin-left:10px;
 }
 
 .sub-header{
@@ -41,6 +47,7 @@ body {
     float: right;
     border-left: 1px solid #bbb;
     border-right: none;
+    display:none;
 }
 
 .nav-bar li a{
