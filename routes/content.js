@@ -57,6 +57,9 @@ router.post("/json/testPage", function(req, res){
 });
 
 router.get("/json/:pageURL", function(req, res){
+    console.log("req body: ", req.body);
+    console.log("req header",req.headers)
+    console.log("req URL: ", req.params);
     pageModel.findOne({url: req.params.pageURL}, function(err, page){
         if(err){
             console.log("error", err.message)
@@ -75,6 +78,7 @@ router.get("/json/:pageURL", function(req, res){
   router.post("/json/:pageURL", function(req, res){
 
     console.log("req body: ", req.body);
+    console.log("req header", req.headers)
     console.log("req URL: ", req.params);
     pageModel.findOne({url: req.params.pageURL}, function(err, page){
         if(err){
