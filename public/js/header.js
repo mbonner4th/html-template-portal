@@ -12,6 +12,7 @@ $(function(){
         }).done(function(user){
             if(user){
                 $(".logged-in").css("display","inline");
+                console.log(user);
             } else {
                 $(".logged-out").css("display", "inline");
             }

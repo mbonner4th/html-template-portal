@@ -13,7 +13,7 @@ var session =  require("client-sessions");
 var index = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth.js');
-var editUser = require('./routes/edit-user.js');
+var application = require('./routes/application.js');
 var editPage = require('./routes/edit-page.js');
 var content = require('./routes/content.js');
 var adminpanel = require('./routes/admin-panel.js')
@@ -55,12 +55,14 @@ app.use(session({
 
 app.use(function(req, res, next) {
   if (req.session && req.session.user) {
-    userModel.findOne({ email: req.session.user.email }, function(err, user) {
+    userModel.findOne({ email: req.session.user.email }, {email: 1, _id: 1}, function(err, user) {
       if (user) {
         req.user = user.toObject();
         delete req.user.password; // delete the password from the session
-        req.session.user = user;  //refresh the session value
-        res.locals.user = user;
+        req.session.user = req.user;  //refresh the session value
+        res.locals.user = req.user;
+        console.log("req user:\n\t", req.user);
+        console.log("user:\n\t", user)
       }
       // finishing processing the middleware and run the route
       next();
@@ -94,7 +96,7 @@ function requireLogin (req, res, next) {
 
 app.use('/users', users);
 app.use('/auth', auth);
-app.use('/edit-user', requireLogin, editUser);
+app.use('/application', requireLogin, application);
 app.use('/edit-page', requireLogin, editPage);
 
 app.use('/admin-panel', requireLogin, adminpanel);
