@@ -66,8 +66,6 @@ router.post('/update-page', (req, res)=> {
         if(!req.body.visible){
         checkVisible = false;
     }
-//    console.log(schemaValidateor(req.body.body));
-
     pageModel.updateOne({_id: req.body.id},
         {
             title: req.body.title,
@@ -75,10 +73,7 @@ router.post('/update-page', (req, res)=> {
             visible: true,
         })
         .then(function(page){
-            console.log("here");
-            console.log(page);
             res.status(204).send({"message":"modified"});
-
         })
         .catch(function(error){
             console.log(error);
