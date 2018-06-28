@@ -66,8 +66,9 @@ router.get("/json/:pageURL", function(req, res){
             res.sendStatus(500);
         }
         else if (page && !err){
-            console.log("hit")
-            res.jsonp(JSON.parse(page.body));
+            console.log("hit");
+            res.set('Content-Type', 'application/json');
+            res.send(JSON.parse(page.body));
         }
         else {
             res.sendStatus(404);

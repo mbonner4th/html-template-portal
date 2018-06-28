@@ -3,7 +3,7 @@ const router = express.Router();
 
 const pageModel = require("../models/page");
 
-// const schemaValidateor = require("voxology-actions-json-schema");
+// const schemaValidator = require("voxology-actions-json-schema");
 
 const template = {
     title: "try a fun name",
@@ -82,7 +82,7 @@ router.post('/update-page', (req, res)=> {
 });
 
 
-/* PUT and DELETE routes should go here, but mist maake due with HTML ONLY */
+/* PUT and DELETE routes should go here, but mist make due with HTML ONLY */
 
 router.delete("/:id", (req, res)=>{
     pageModel.findByIdAndRemove({_id: req.params.id.trim()}, (err)=>{

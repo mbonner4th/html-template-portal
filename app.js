@@ -7,9 +7,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
+
+var passport = require('passport');
 var session =  require("client-sessions");
 
-/** Rountes start here */
+/** Routes start here */
 var index = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth.js');
@@ -20,10 +22,10 @@ var adminpanel = require('./routes/admin-panel.js')
 
 var userModel = require('./models/user');
 
-// var requireLogin = require('./utils/auth').requireLogin;
-
 var app = express();
 
+
+/* DB config stuff starts here */
 var mongoose = require('mongoose');
 var urlString = process.env.MONGODB_URI || 'mongodb://127.0.0.1/site';
 
@@ -36,22 +38,26 @@ db.once('open', function() {
   console.log("connected");
 });
 
-// view engine setup
+/* view engine setup */
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 
-// client-sessions middle ware
+/* client-sessions middle ware */
 
 app.use(session({
   cookieName: 'session',
-  secret: 'random_string_goes_here',
+  secret: process.env.SESSION_STRING||'random_string_goes_here',
   duration: 30 * 60 * 10000,
   activeDuration: 5 * 60 * 100000,
   httpOnly: true,
   secure: true,
   ephemeral: true,
 }));
+
+app.use(passport.initialize())
+app.use(passport.session())
+
 
 app.use(function(req, res, next) {
   if (req.session && req.session.user) {
@@ -70,7 +76,7 @@ app.use(function(req, res, next) {
   }
 });
 
-// uncomment after placing; your favicon in /public
+/* Logging and static files */
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json({limit:'10mb'}));
@@ -81,9 +87,8 @@ app.use(express.static(path.join(__dirname, 'node_modules/jsoneditor/dist')))
 app.use(express.static(path.join(__dirname, '/node_modules/clipboard/dist')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
 //Checks if user is logged in
+// TODO: break out into middleware 
 function requireLogin (req, res, next) {
   if (!req.user) {
     res.redirect('/auth');
@@ -92,14 +97,13 @@ function requireLogin (req, res, next) {
   }
 };
 
+/* Routes start here */
 app.use('/users', users);
 app.use('/auth', auth);
 app.use('/edit-user', requireLogin, editUser);
 app.use('/edit-page', requireLogin, editPage);
-
 app.use('/admin-panel', requireLogin, adminpanel);
 app.use('/', content);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -113,7 +117,6 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
   // render the error page
   res.status(err.status || 500);
   res.render('error');

@@ -7,7 +7,7 @@ var logoutLink = $("#logout-link");
             method:"GET",
             url: "/users"
         }).done(function(user){
-            console.log("stuff")
+            //console.log("stuff")
             if(user){
                 signupLink.css("display", "none");
             } else {
