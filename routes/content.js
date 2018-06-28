@@ -68,7 +68,7 @@ router.get("/json/:pageURL", function(req, res){
         else if (page && !err){
             console.log("hit");
             res.set('Content-Type', 'application/json');
-            res.json(JSON.parse(page.body));
+            res.send( new Buffer(JSON.parse(page.body)));
         }
         else {
             res.sendStatus(404);
