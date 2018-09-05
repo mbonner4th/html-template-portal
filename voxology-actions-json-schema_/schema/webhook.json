@@ -1,0 +1,84 @@
+{
+    "title": "Webhook",
+    "description": "HTTP Request. This action allows HTTP requests from anywhere in the call flow. For example, add WEBHOOK to CONFERENCE or QUEUE event handlers to alert your service when a call enters a conference or queue. You can use WEBHOOK to alert your service when a call exits a conference or queue by placing a WEBHOOK immediately after blocking CONFERENCE or QUEUE actions. The default value “Inherited” means that the value will equal that of the last Call Flow Callback Request. The request timeout is 30 seconds.",
+    "additionalProperties": false,
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/webhook.json",
+    "properties": {
+        "comments": {
+            "type": "string"
+        },
+        "events": {
+            "additionalProperties": false,
+            "properties": {
+                "on_error": {
+                    "minItems": 1,
+                    "items": { 
+                        "allOf": [
+                            { "$ref": "all-actions.json" },
+                            { "not": {"$ref": "detect.json" } }
+                        ]
+                    },
+                    "type": ["array", "null"]
+                }
+            },
+            "type": "object"
+        },
+        "name": {
+            "type": "string"
+        },
+        "params": {
+            "additionalProperties": false,
+            "properties": {
+                "await_response": {
+                    "description": "If true, the request will wait for a JSON response and make it available via the $webhookData variable. This forces the WEBHOOK to be non-asynchronous (blocking).",
+                    "default": false,
+                    "type": "boolean"
+                },
+                "content_type": {
+                    "description": "The format of the payload posted to the endpoint. Accepts: application/json, application/xml, application/x-www-form-urlencoded.",
+                    "type": ["string", "null"],
+                    "pattern": "^application/json$|^application/xml$|^application/x-www-form-urlencoded$"
+                },
+                "event_name": {
+                    "description": "The name of the webhook event. This can be anything you like. Examples: onEnterConference, onLeaveQueue, onEnterQueueError.",
+                    "type": "string"
+                },
+                "headers": {
+                    "additionalProperties": {"type": "string"},
+                    "description": "The headers to include in the request.",
+                    "properties": {},
+                    "type": ["object", "null"]
+                },
+                "method": {
+                    "description": "The method of the request. Accepts: GET, POST, PUT.",
+                    "type": ["string", "null"],
+                    "pattern": "^PUT$|^POST$|^GET$"
+                },
+                "url": {
+                    "description": "The endpoint the webhook will call.",
+                    "type": ["string", "null"]
+                },
+                "webhook_data": {
+                    "description": "This data will simply be returned in the webhook request.",
+                    "properties": {},
+                    "type": ["object", "string"]
+                }
+            },
+            "required": [
+                "event_name"
+            ],
+            "type": "object"
+        },
+        "type": {
+            "default": "WEBHOOK",
+            "pattern": "^WEBHOOK$",
+            "type": "string"
+        }
+    },
+    "required": [
+        "params",
+        "type"
+    ],
+    "type": "object"
+}

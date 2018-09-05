@@ -1,0 +1,73 @@
+{
+    "title": "Say",
+    "description": "Convert text to speech (TTS). The SAY action converts text to speech that is read to the caller",
+    "definitions":{},
+    "id":"https://api.voxolo.gy/schema/actions/say.json",
+    "properties":{
+        "type":{
+            "default":"SAY",
+            "pattern":"^SAY$",
+            "type":"string"
+        },
+        "params":{
+            "additionalProperties":false,
+            "properties":{
+                "gender":{
+                    "default":"female",
+                    "description":"Accepts: female, male",
+                    "enum": ["male", "female"],
+                    "type": "string"
+                },
+                "language":{
+                    "default":"english",
+                    "description":"Accepts: english (Kate and Kevin) AND englishUS, englishGB, french, german, italian, japanese, portugese, spanish (IBM Watson)",
+                    "enum":["english", "englishUS", "englishGB", "french", "german", "italian", "japanese", "portugese", "spanish"],
+                    "type": "string"
+                  },
+                "parse_vars":{
+                    "default":true,
+                    "description":"true to parse variables in the “text” string. false leaves untouched.",
+                    "type":"boolean"
+                },
+                "repeat":{
+                    "default":1,
+                    "description":"The number of times to play the speech.",
+                    "maximum":10,
+                    "minimum":1,
+                    "type":"integer"
+                },
+                "stop_on_key":{
+                    "default":false,
+                    "description":"Determines whether a key press stops the playback.",
+                    "type":"boolean"
+                },
+                "text":{
+                    "description":"The text to convert.",
+                    "type":"string"
+                },
+                "voice":{
+                    "default":"Kate",
+                    "description":"Accepts: Kate and Kevin (Voxology native voices), Watson (requires an IBM Watson Account)",
+                    "enum":["Kate", "Kevin", "Watson"],
+                    "type": "string"
+                }
+            },
+            "required":[
+                "text"
+            ],
+            "type":"object"
+        },
+        "comments": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        }
+    },
+    "required":[
+        "params",
+        "type"
+    ],
+    "type":"object",
+    "additionalProperties":false
+}

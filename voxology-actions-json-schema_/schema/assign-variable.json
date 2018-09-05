@@ -1,0 +1,12 @@
+{
+    "title": "AssignVariable",
+    "description": "Assigns a variable to a given value.",
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/assign-variable.json",
+    "type": "object",
+    "patternProperties": {
+        "^\\$": { "type": "string" }
+    },
+    "minProperties": 1,
+    "additionalProperties": false
+}

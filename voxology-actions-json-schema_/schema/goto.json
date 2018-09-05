@@ -1,0 +1,39 @@
+{
+    "title": "Goto",
+    "description": "Jump to a LABEL. The GOTO action jumps the call flow to the specified LABEL. Warning: The call flow will fail if the specified LABEL does not exist within the same callback response.",
+    "additionalProperties": false,
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/goto.json",
+    "properties": {
+        "params": {
+            "additionalProperties": false,
+            "properties": {
+                "label": {
+                    "description": "Accepts: alphanumeric characters, dashes, and underscores",
+                    "title": "the label",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "label"
+            ],
+            "type": "object"
+        },
+        "type": {
+            "pattern": "^GOTO$",
+            "default": "GOTO",
+            "type": "string"
+        },
+        "comments": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "params",
+        "type"
+    ],
+    "type": "object"
+}

@@ -1,0 +1,24 @@
+{
+    "title": "Hangup",
+    "description": "Ends the call. This action immediately ends the call and stops all action flow execution.",
+    "additionalProperties": false,
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/hangup.json",
+    "properties": {
+        "type": {
+            "pattern": "^HANGUP$",
+            "default": "HANGUP",
+            "type": "string"
+        },
+        "comments": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        }
+    },
+    "type": "object",
+    "required": [
+        "type"
+    ]
+}

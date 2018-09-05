@@ -1,0 +1,135 @@
+{
+    "title": "Detect",
+    "description": "Detects whether a live person or voicemail system answers the outbound call. If the callee is a voicemail service, the action will wait to execute the on_voicemail event after the beep.",
+    "additionalProperties": false,
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/detect.json",
+    "properties": {
+        "comments": {
+            "type": "string"
+        },
+        "events": {
+            "additionalProperties": false,
+            "properties": {
+                "on_live_person": {
+                    "additionalItems": false,
+                    "items": {
+                        "switch": [
+                            {
+                                "if": { "properties": { "type": { "pattern": "^PAUSE$" } } },
+                                "then": { "$ref": "pause.json" }
+                            },
+                            {
+                                "if": { "properties": { "type": { "pattern": "^PLAY$" } } },
+                                "then": { "$ref": "play.json" }
+                            },
+                            {
+                                "if": { "properties": { "type": { "pattern": "^SAY$" } } },
+                                "then": { "$ref": "say.json" }
+                            },
+                            {
+                                "if": { "properties": { "type": { "pattern": "^HANGUP$" } } },
+                                "then": { "$ref": "hangup.json" }
+                            },
+                            {
+                                "then": false
+                            }
+                        ]
+                    },
+                    "minItems": 1,
+                    "type": ["array", "null"],
+                    "description": "This even is triggered when a live person answers the call. While within this event, DETECT is still listening and may later determine (hears a beep) that the call was indeed answered by a voicemail system. In that circumstance, the “on_voicemail” event will fire. Best practice dictates providing an initial greeting for the live person, allowing the call to exit the “on_live_person” event in 5-10 seconds, and then continuing on with the regular call flow."
+                },
+                "on_voicemail": {
+                    "additionalItems": false,
+                    "items": {
+                        "switch": [
+                            {
+                                "if": { "properties": { "type": { "pattern": "^PAUSE$" } } },
+                                "then": { "$ref": "pause.json" }
+                            },
+                            {
+                                "if": { "properties": { "type": { "pattern": "^PLAY$" } } },
+                                "then": { "$ref": "play.json" }
+                            },
+                            {
+                                "if": { "properties": { "type": { "pattern": "^SAY$" } } },
+                                "then": { "$ref": "say.json" }
+                            },
+                            {
+                                "if": { "properties": { "type": { "pattern": "^HANGUP$" } } },
+                                "then": { "$ref": "hangup.json" }
+                            },
+                            {
+                                "then": false
+                            }
+                        ]
+                    },
+                    "minItems": 1,
+                    "type": ["array", "null"],
+                    "description": "This event is triggered when a voicemail system has answered the phone and is ready to record the message (for example, after a beep). You will likely want to hang up or leave a message with SAY or PLAY."
+                },
+                "on_voicemail_early": {
+                    "additionalItems": false,
+                    "items": {
+                        "switch": [
+                            {
+                                "if": { "properties": { "type": { "pattern": "^PAUSE$" } } },
+                                "then": { "$ref": "pause.json" }
+                            },
+                            {
+                                "if": { "properties": { "type": { "pattern": "^PLAY$" } } },
+                                "then": { "$ref": "play.json" }
+                            },
+                            {
+                                "if": { "properties": { "type": { "pattern": "^SAY$" } } },
+                                "then": { "$ref": "say.json" }
+                            },
+                            {
+                                "if": { "properties": { "type": { "pattern": "^HANGUP$" } } },
+                                "then": { "$ref": "hangup.json" }
+                            },
+                            {
+                                "then": false
+                            }
+                        ]
+                    },
+                    "minItems": 1,
+                    "type": ["array", "null"],
+                    "description": "This optional event fires as soon as DETECT recognizes a voicemail system. Use this event when you want to handle a voicemail call as soon as possible. For example, hang up to save minute charges."
+                }
+            },
+            "required": [
+                "on_voicemail",
+                "on_live_person"
+            ],
+            "type": "object"
+        },
+        "name": {
+            "type": "string"
+        },
+        "params": {
+            "additionalProperties": false,
+            "properties": {
+                "trigger_live_in_ms": {
+                    "default": 3000,
+                    "description": "Change the default wait time after the call connects to detect live person or voicemail before playing the live person event by default.",
+                    "maximum": 30000,
+                    "minimum": 1,
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "type": {
+            "default": "DETECT",
+            "pattern": "^DETECT$",
+            "type": "string"
+        }
+    },
+    "required": [
+        "type",
+        "events"
+    ],
+    "type": "object"
+}

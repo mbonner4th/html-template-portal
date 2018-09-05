@@ -1,0 +1,74 @@
+{
+    "title": "Collect",
+    "description": "Record Keypresses from callers. A loop can contain one or more COLLECT action. The results will be returned in the callback and identified by the COLLECT action’s name. The COLLECT object also accepts an actions array (optional). This array accepts PLAY, SAY, and PAUSE actions. These “child actions” will play before a COLLECT and cancel all on the first key press, letting the COLLECT action record the key without waiting.",
+    "id": "https://api.voxolo.gy/schema/actions/collect.json",
+    "definitions": {},
+    "properties": {
+      "actions": {
+          "items": {
+            "switch": [
+                {
+                    "if": { "properties": { "type": { "pattern": "^PAUSE$" } } },
+                    "then": { "$ref": "pause.json" }
+                },
+                {
+                    "if": { "properties": { "type": { "pattern": "^PLAY$" } } },
+                    "then": { "$ref": "play.json" }
+                },
+                {
+                    "if": { "properties": { "type": { "pattern": "^SAY$" } } },
+                    "then": { "$ref": "say.json" }
+                },
+                {
+                    "then": false
+                }
+            ]
+          },
+          "additionalProperties": false,
+          "type": ["array", "null"],
+          "minItems": 1
+      },
+      "params": {
+          "additionalProperties": false,
+          "properties": {
+              "finish_on_key": {
+                  "default": "#",
+                  "description": "The key to press to end the timeout when key presses are less than num_digits. Accepts: off, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, #, *.",
+                  "pattern": "^[0-9#\\*]{1,5}$|^off$|^any$",
+                  "type": "string"
+              },
+              "num_digits": {
+                  "default": 1,
+                  "description": "The maximum number of key presses to record before leaving the COLLECT action.",
+                  "minimum": 1,
+                  "maximum": 100,
+                  "type": "integer"
+              },
+              "timeout": {
+                  "default": 5000,
+                  "description": "How long in milliseconds to wait for the next key press.",
+                  "minimum": 1,
+                  "maximum": 30000,
+                  "type": "integer"
+              }
+          },
+          "type": "object"
+      },
+      "type": {
+          "default": "COLLECT",
+          "pattern": "^COLLECT$",
+          "type": "string"
+      },
+      "comments": {
+          "type": "string"
+      },
+      "name": {
+          "type": "string"
+      }
+  },
+  "required": [
+      "type"
+  ],
+  "type": "object",
+  "additionalProperties": false
+}

@@ -1,0 +1,115 @@
+{
+  "title": "Play",
+  "description": "Plays an audio file or DTMF. Audio files supported are MP3 and WAV. WAV will often perform better. DTMF will play an out-of-band tone.",
+  "definitions": {},
+  "id": "https://api.voxolo.gy/schema/actions/play.json",
+  "properties": {
+    "params": {
+      "minProperties": 1,
+      "switch": [
+        {
+          "if": { "required": [ "url" ] },
+          "then": {
+            "properties": {
+              "stop_on_key": {
+                "default": false,
+                "description": "Should a key press stop the playback (for URL only)?",
+                "title": "Stop on Key",
+                "type": "boolean"
+              },
+              "url": {
+                "description": "The url of the audio file",
+                "title": "The URL",
+                "type": "string"
+              },
+              "parse_vars": {
+                "default": true,
+                "description": "true to parse variables in the URL/DTMF or false to leave as-is.",
+                "type": "boolean"
+              },
+              "repeat": {
+                "default": 1,
+                "description": "How many times to repeat the audio or DTMF",
+                "minimum": 1,
+                "maximum": 10,
+                "title": "Repeat times",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          }
+        },
+        {
+          "if": { "required": [ "dtmf" ] },
+          "then": {
+            "properties": {
+              "dtmf": {
+                "description": "The DTMF tones to play. Accepts: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, #, *. Use a dash - to extend the delay between DTMF tones. Example: 12-3--4---5.",
+                "title": "DTMF tones",
+                "type": "string"
+              },
+              "dtmf_dash_delay": {
+                "default": 250,
+                "description": "The delay represented by each dash - in milliseconds (for DTMF only).",
+                "minimum": 1,
+                "maximum": 10000,
+                "title": "Delay dash time",
+                "type": "integer"
+              },
+              "dtmf_delay": {
+                "default": 250,
+                "description": "The delay between DTMF tones in milliseconds (for DTMF only).",
+                "minimum": 1,
+                "maximum": 10000,
+                "title": "DTMF delay",
+                "type": "integer"
+              },
+              "parse_vars": {
+                "default": true,
+                "description": "true to parse variables in the URL/DTMF or false to leave as-is.",
+                "type": "boolean"
+              },
+              "repeat": {
+                "default": 1,
+                "description": "How many times to repeat the audio or DTMF",
+                "minimum": 1,
+                "maximum": 10,
+                "title": "Repeat times",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "dtmf"
+            ],
+            "type": "object",
+            "additionalProperties": false
+          }
+        },
+        {
+          "then": false
+        }
+      ]
+    },
+    "type": {
+      "default": "PLAY",
+      "pattern": "^PLAY$",
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "comments": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "params",
+    "type"
+  ],
+  "type": "object",
+  "additionalProperties": false
+}

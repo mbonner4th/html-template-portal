@@ -1,0 +1,164 @@
+{
+    "title": "CallbackHandler",
+    "description": "The handler for callbacks",
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/callback/handler.json",
+    "properties": {
+        "type": {
+            "enum": ["init_call", "live_call", "end_call", "sms"],
+            "type": "string"
+        },
+        "app_id": {
+            "description": "The application ID for this request",
+            "type": "string"
+        },
+        "subaccount_id": {
+            "description": "The Sub Account ID for this request",
+            "type": "integer"
+        },
+        "call_id": {
+            "description": "The ID of the call or SMS",
+            "type": "string"
+        },
+        "caller_no": {
+            "description": "The phone number of the connected (or far end) call (E.164 format: +17145551212)",
+            "type": "string"
+        },
+        "caller_no_region": {
+            "description": "The two-character region (state) code of the connected call’s phone number. Possibly null.",
+            "type": ["string", "null"]
+        },
+        "caller_no_country": {
+            "description": "The two-character country code of the connected call’s phone number. Possibly null.",
+            "type": ["string", "null"]
+        },
+        "caller_no_timezone": {
+            "description": "The time zone of the connected call’s phone number (America/Los_Angeles). Possibly null. Click here for list of time zones.",
+            "type": ["string", "null"]
+        },
+        "api_no": {
+            "description": "The phone number provisioned to the API (E.164 format: +17145551212).",
+            "type": "string"
+        },
+        "api_no_region": {
+            "description": "The two-character region (state) code of the API phone number. Possibly null.",
+            "type": ["string", "null"]
+        },
+        "api_no_country": {
+            "description": "The two-character country code of the API phone number. Possibly null.",
+            "type": ["string", "null"]
+        },
+        "api_no_timezone": {
+            "description": "The time zone of the API phone number (America/Los_Angeles). Possibly null. Click here for list of time zones",
+            "type": ["string", "null"]
+        },
+        "start_time": {
+            "description": "The time the call started",
+            "type": "date-time"
+        },
+        "end_time": {
+            "description": "The time the call ended.",
+            "type": ["date-time", "null"]
+        },
+        "direction": {
+            "description": "Specifies the direction of the call: inbound or outbound",
+            "enum": ["inbound", "outbound"],
+            "type": "string"
+        },
+        "duration": {
+            "description": "The length of the call in milliseconds.",
+            "type": "integer"
+        },
+        "status": {
+            "description": "The current call state and progress. Codes: live-queued, live-ringing, live-in-progress, completed, busy, canceled, failed, no-answer.",
+            "enum": ["live-queued", "live-ringing", "live-in-progress", "completed", "busy", "canceled", "failed", "no-answer"],
+            "type": "string"
+        },
+        "detection": {
+            "description": "The likely “caller” on the far end. Codes: fax, live-person, voicemail, unknown.",
+            "enum": ["fax", "live-person", "voicemail", "unknown"],
+            "type": "string"
+        },
+        "key_presses": {
+            "description": "The keys pressed during the request block.",
+            "type": ["array", "null"],
+            "items": {
+                "title": "KeyPress",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the COLLECT action that recorded these digits. Query string converts to \"key_presses.{name}={digits}\"."
+                     },
+                    "digits": {
+                        "type": "string",
+                        "description": "The keys pressed during the COLLECT."
+                    }
+                }
+            }
+        },
+        "recordings": {
+            "description": "The recordings started with RECORD and/or saved with RECORDMESSAGE during the current CallFlow.",
+            "type": ["array", "null"],
+            "items": {
+                "title": "Recording",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the RECORD or RECORDMESSAGE action. Query string converts to \"recordings.{name}={digits}\"."
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The Ids of recordings from RECORD and RECORDMESSAGE."
+                    }
+                }
+            }
+        },
+        "last_queue_poll_connect_call": {
+            "description": "The last call bridged to this call via a QUEUE poll_connect.",
+            "type": ["object", "null"],
+            "properties": {
+                "id": { 
+                    "type": "string",
+                    "description": "The bridged call’s ID."
+                },
+                "no": { 
+                    "type": "string",
+                    "description": "The bridged call’s phone number."
+                }
+            }
+        },
+        "text_message": {
+            "description": "The inbound text message.",
+            "type": ["string", "null"]
+        },
+        "custom_data": {
+            "description": "The custom data set in the callback configuration.",
+            "type": ["object", "null"]
+        },
+        "session_data": {
+            "description": "The session_data set in the /Dials/Connect request and/or the DIALS and SESSIONDATA actions",
+            "type": ["object", "null"]
+        },
+        "is_webhook": {
+            "description": "If true, the request originated from a webhook action. Else, this property is omitted.",
+            "type": "boolean"
+        },
+        "event_name": {
+            "description": "The event_name set in the WEBHOOKS action. If not a webhook request, this property is omitted.",
+            "type": ["string", "null"]
+        },
+        "webhook_data": {
+            "description": "The webhook_data set in the WEBHOOKS action. If not a webhook request, this property is omitted",
+            "type": ["object", "null"]
+        },
+        "sip_domain": {
+            "description": "The SIP domain assigned to the application or sub-account.",
+            "type": ["uri", "null"]
+        },
+        "sip_forwarded_for": {
+            "description": "The origin IP address of the SIP request.",
+            "type": ["ip", "null"]
+        }
+    },
+    "type": "object"
+}

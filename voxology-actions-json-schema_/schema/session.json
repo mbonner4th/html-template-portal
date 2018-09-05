@@ -1,0 +1,30 @@
+{
+    "title": "Session",
+    "description": "Sets a call’s session data. Sets a call’s session_data property.",
+    "additionalProperties": false,
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/session.json",
+    "properties": {
+        "comments": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "session_data": {
+            "description": "The session data value can be any valid JSON object.",
+            "properties": {},
+            "type": "object"
+        },
+        "type": {
+            "default": "SESSIONDATA",
+            "pattern": "^SESSIONDATA$",
+            "type": "string"
+        }
+    },
+    "required": [
+        "type",
+        "session_data"
+    ],
+    "type": "object"
+}

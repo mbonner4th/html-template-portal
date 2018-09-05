@@ -1,0 +1,36 @@
+{
+    "title": "Reject",
+    "description": "Does not answer the call. This action refuses to answer the call. Depending on the reason given, a busy-signal or not-in-service message will be played.",
+    "additionalProperties": false,
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/reject.json",
+    "properties": {
+        "comments": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "params": {
+            "additionalProperties": false,
+            "properties": {
+                "reason": {
+                    "default": "busy",
+                    "description": "Accepts: busy and disconnected.",
+                    "enum": ["busy", "disconnected"],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "type": {
+            "default": "REJECT",
+            "pattern": "^REJECT$",
+            "type": "string"
+        }
+    },
+    "required": [
+        "type"
+    ],
+    "type": "object"
+}

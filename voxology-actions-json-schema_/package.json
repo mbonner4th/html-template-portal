@@ -1,0 +1,50 @@
+{
+  "name": "voxology-actions-json-schema",
+  "version": "0.3.5",
+  "description": "Schema for Voxology JSON Actions to support docs, validation and code gen.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "DEPLOY": "npm run build && npm run dist && npm run test-local && npm version patch --no-git-tag-version",
+    "dist": "npm run _compile && npm run _webpack",
+    "_compile": "rm -rf ./dist && ./node_modules/.bin/tsc -p tsconfig.dist.json",
+    "_webpack": "./node_modules/.bin/webpack",
+    "build": "./node_modules/.bin/ts-node ./builds/start-build.ts",
+    "test-local": "SCHEMA_DIR=schema ./node_modules/.bin/mocha test/*.spec.js",
+    "test": "SCHEMA_DIR=schema node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha test/*.spec.js --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "csharp-version-update": "./node_modules/.bin/ts-node ./builds/csharp/update-version.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voxology-inc/voxology-actions-json-schema.git"
+  },
+  "keywords": [
+    "Shoutpoint",
+    "telephony",
+    "json",
+    "actions",
+    "schema",
+    "Voxology"
+  ],
+  "author": "Voxology, Inc.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/voxology-inc/voxology-actions-json-schema/issues"
+  },
+  "homepage": "https://github.com/voxology-inc/voxology-actions-json-schema#readme",
+  "devDependencies": {
+    "@types/node": "^8.0.20",
+    "coveralls": "^2.13.1",
+    "istanbul": "^0.4.5",
+    "json-schema-to-markdown": "^1.0.3",
+    "mocha": "^3.5.0",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.5.0",
+    "typescript": "^2.4.2",
+    "webpack": "^3.4.1"
+  },
+  "dependencies": {
+    "ajv": "^5.2.2",
+    "ajv-keywords": "^2.1.0"
+  }
+}

@@ -1,0 +1,35 @@
+{
+    "title": "Function",
+    "description": "Action used to create and call FUNCTION-DECLARATIONS",
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/function.json",
+    "properties": {
+        "name": {
+            "type": "string",
+            "pattern": "^\\w+$"
+        },
+        "comments": {
+            "type": "string"
+        },
+        "params": {
+            "patternProperties": {
+                "^\\w+$": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "additionalProperties": false
+        },
+        "type": {
+            "type": "string",
+            "pattern": "^FUNCTION$",
+            "default": "FUNCTION"
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "name",
+        "type"
+    ],
+    "type": "object"
+}

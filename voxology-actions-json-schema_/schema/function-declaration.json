@@ -1,0 +1,47 @@
+{
+    "title":"FunctionDeclaration",
+    "description": "Declares a Function with parameters that runs actions and returns a value",
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/function-declaration.json",
+    "additionalProperties": false,
+    "properties": {
+        "name": {
+            "type": "string",
+            "pattern": "^\\w+$"
+        },
+        "comments": {
+            "type": "string"
+        },
+        "args": {
+            "patternProperties": {
+                "^\\w+$": {
+                    "title": "DataType",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false,
+            "type": "object"
+        },
+        "actions": {
+            "items": {
+                "$ref": "all-actions.json"
+            },
+            "additionalProperties": false,
+            "type": ["array", "null"],
+            "minItems": 1
+        },
+        "returns": {
+            "patternProperties": {
+                "^\\$": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "additionalProperties": false
+        }
+    },
+    "required": [
+        "name"
+    ],
+    "type": "object"
+}

@@ -1,0 +1,220 @@
+{
+    "title": "Conference",
+    "description": "Initiates a conference event. The first event will be ‘join’ to put the caller into a conference. The other events can then be invoked.",
+    "additionalProperties": false,
+    "id": "https://api.voxolo.gy/schema/actions/conference.json",
+    "properties": {
+        "events": {
+            "additionalProperties": false,
+            "properties": {
+                "on_enter": {
+                    "items": {
+                        "allOf": [
+                            { "$ref": "all-actions.json" },
+                            { "not": {"$ref": "detect.json" } }
+                        ]
+                    },
+                    "description": "This is a catch-all handler. These actions will always execute last.",
+                    "type": ["array", "null"],
+                    "minItems": 1
+                },
+                "on_enter_alone": {
+                    "description": "This handler will run when a caller enters a conference and is the only conference participant.",
+                    "items": {
+                        "allOf": [
+                            { "$ref": "all-actions.json" },
+                            { "not": {"$ref": "detect.json" } }
+                        ]
+                    },
+                    "type": ["array", "null"],
+                    "minItems": 1
+                },
+                "on_enter_error": {
+                    "description": "This handler will always run on any error condition.",
+                    "items": {
+                        "allOf": [
+                            { "$ref": "all-actions.json" },
+                            { "not": {"$ref": "detect.json" } }
+                        ]
+                    },
+                    "type": ["array", "null"],
+                    "minItems": 1
+                },
+                "on_enter_error_ended": {
+                    "description": "This handler will run when a participant attempts to join a Conference that has ended.",
+                    "items": {
+                        "allOf": [
+                            { "$ref": "all-actions.json" },
+                            { "not": {"$ref": "detect.json" } }
+                        ]
+                    },
+                    "type": ["array", "null"],
+                    "minItems": 1
+                },
+                "on_enter_error_max_participants": {
+                    "items": {
+                        "allOf": [
+                            { "$ref": "all-actions.json" },
+                            { "not": {"$ref": "detect.json" } }
+                        ]
+                    },
+                    "description": "This handler will run when a participant attempts to join a Conference that is at its max_participants limit.",
+                    "type": ["array", "null"],
+                    "minItems": 1
+                },
+                "on_enter_started": {
+                    "items": {
+                        "allOf": [
+                            { "$ref": "all-actions.json" },
+                            { "not": {"$ref": "detect.json" } }
+                        ]
+                    },
+                    "description": "This handler will run when a Conference is in progress. By default, Conferences are created in progress. hold_on_join will cause a Conference to wait for specified participants before starting.",
+                    "type": ["array", "null"],
+                    "minItems": 1
+                },
+                "on_enter_waiting": {
+                    "description": "This handler will run when a Conference uses hold_on_join=“true” and no start_on_join=“true” participant has entered yet.",
+                    "items": {
+                        "allOf": [
+                            { "$ref": "all-actions.json" },
+                            { "not": {"$ref": "detect.json" } }
+                        ]
+                    },
+                    "type": ["array", "null"],
+                    "minItems": 1
+                }
+            },
+            "type": "object",
+        "comments": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        }
+        },
+        "params": {
+            "additionalProperties": false,
+            "properties": {
+                "anounce_on_join": {
+                    "default": "null",
+                    "description": "Causes a beep to play to the conference when a participant joins and leaves. Accepts: beep or null.",
+                    "enum": ["beep", "null"],
+                    "title": "join announcement",
+                    "type": "string"
+                },
+                "async": {
+                    "default": false,
+                    "description": "If true, this action will not block and the call flow will continue executing actions and/or callback. Be careful as async may cause hard to reason behaviors.",
+                    "title": "async",
+                    "type": "boolean"
+                },
+                "auto_hold": {
+                    "default": false,
+                    "description": "If true, the conference will automatically play hold music if only one call is in the room",
+                    "title": "auto hold",
+                    "type": "boolean"
+                },
+                "end_on_exit": {
+                    "default": false,
+                    "description": "If true, the Conference will immediately end when this participant leaves. All other participants will resume the call flow.",
+                    "title": "End on exit",
+                    "type": "boolean"
+                },
+                "event": {
+                    "default": "join",
+                    "description": "The conference event to trigger for the caller. Accepts: join, leave, mute, unmute, hold, resume.",
+                    "enum": ["join", "leave", "mute", "unmute", "hold", "resume"],
+                    "title": "Event trigger",
+                    "type": "string"
+                },
+                "exit_on_key": {
+                    "default": "off",
+                    "description": "Which key combination will let the caller exit the conference. Accepts: #, 1, 2, 3, 4, 5, 6, 7, 8, 9, *, or off to disable this feature.",
+                    "title": "exit key",
+                    "type": "string",
+                    "pattern": "^[0-9#\\*]{1,5}$|^off$"
+                },
+                "hold_audio": {
+                    "description": "The url of the audio file to play when a participant is on hold. If omitted, our default hold music will play. Supports MP3 and WAV. WAV will often perform better.",
+                    "title": "Url of audio",
+                    "type": "string"
+                },
+                "hold_on_exit": {
+                    "default": false,
+                    "description": "\tIf true, when this participant leaves the Conference, all other participants will be put on hold.",
+                    "title": "old on exith",
+                    "type": "boolean"
+                },
+                "hold_on_join": {
+                    "default": false,
+                    "description": "If true, participants will enter the Conference on hold until a participant joins with start_on_join.",
+                    "title": "Hold on join",
+                    "type": "boolean"
+                },
+                "join_muted": {
+                    "default": false,
+                    "description": "Indicates whether the participant joins the conference muted or not.",
+                    "title": "join muted",
+                    "type": "boolean"
+                },
+                "max_participants": {
+                    "description": "At the moment of joining, if the number of conference participants exceeds this amount, the joiner will be blocked. Participants who attempt to exceed the limit can be handled with an error handler.",
+                    "title": "Max participants",
+                    "type": "integer"
+                },
+                "mute_on_key": {
+                    "default": "off",
+                    "description": "Which key press will let the caller mute himself. Accepts: #, 1, 2, 3, 4, 5, 6, 7, 8, 9, *, or off to disable this feature.",
+                    "title": "mute of key",
+                    "type": "string",
+                    "pattern": "^[0-9#\\*]{1,5}$|^off$"
+                },
+                "name": {
+                    "description": "A unique name to identify the conference. Using the same name will put callers into the same conference. Accepts: alpha-numeric, underscores, and dashes.",
+                    "title": "unique conference name",
+                    "type": "string"
+                },
+                "start_on_join": {
+                    "default": true,
+                    "description": "If true, the Conference will start and remove everybody from hold. Used with hold_on_join.",
+                    "title": "start on join",
+                    "type": "boolean"
+                },
+                "unmute_on_key": {
+                    "default": "off",
+                    "description": "Which key press will let the caller unmute himself. Accepts: #, 1, 2, 3, 4, 5, 6, 7, 8, 9, *, or off to disable this feature.",
+                    "title": "Unmute on",
+                    "type": "string",
+                    "pattern": "^[0-9#\\*]{1,5}$|^off$"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        },
+        "type": {
+            "default": "CONFERENCE",
+            "pattern": "^CONFERENCE$",
+            "type": "string"
+        },
+        "comments": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "type",
+        "params"
+    ],
+    "type": "object",
+        "comments": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        }
+}

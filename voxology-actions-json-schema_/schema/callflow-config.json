@@ -1,0 +1,232 @@
+{
+    "title": "CallflowConfig",
+    "description": "Configuration for setting a Call Flow",
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/callflow-config.json",
+    "properties": {
+        "no": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "type": {
+                    "type": "string",
+                    "pattern": "^SIP_DOMAIN$|^[A-Z]{2}$"
+                }
+            },
+            "required": [
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "callback": {
+            "type": "object",
+            "description": "An object that describes the callback parameters.",
+            "properties": {
+                "url": {
+                    "type": "string",
+                    "description": "The endpoint URL where the request will be sent.",
+                    "pattern": "^http://|^https://"
+                },
+                "method": {
+                    "type": "string",
+                    "description": "The request method. Accepts: POST, GET. Default: POST.",
+                    "pattern": "^POST$|^GET$",
+                    "default": "POST"
+                },
+                "content_type": {
+                    "type": "string",
+                    "description": "The format of the payload posted to the endpoint. Options: application/json, application/xml and application/x-www-form-urlencoded. Default: application/json.",
+                    "pattern": "^application/json$|^application/xml$|^application/x-www-form-urlencoded$",
+                    "default": "application/json"
+                },
+                "headers": {
+                    "type": "object",
+                    "description": "An associative array of header names and values to include in every request.",
+                    "additionalProperties": {"type": "string"},
+                    "properties": {}
+                },
+                "timeout": {
+                    "type": "integer",
+                    "description": "In seconds, the time for the callback request to wait for a response before timing out. Allowed range: 1 - 15. Default: 5.",
+                    "default": 5,
+                    "minimum": 1,
+                    "maximum": 15
+                },
+                "answer_on_ring": {
+                    "type": "integer",
+                    "description": "The number of allowed rings before the call is answered. Allowed range: 1 - 10. Default: 1.",
+                    "default": 1,
+                    "minimum": 1,
+                    "maximum": 10
+                }
+            },
+            "required": [
+                "url"
+            ],
+            "additionalProperties": false
+        },
+        "callback_failover": {
+            "type": ["object", "null"],
+            "description": "If the callback request fails, a second request attempt will be made to this endpoint. Contains the same properties as the callback object.",
+            "properties": {
+                "url": {
+                    "type": "string",
+                    "description": "The endpoint URL where the request will be sent.",
+                    "pattern": "^http://|^https://"
+                },
+                "method": {
+                    "type": "string",
+                    "description": "The request method. Accepts: POST, GET. Default: POST.",
+                    "pattern": "^POST$|^GET$",
+                    "default": "POST"
+                },
+                "content_type": {
+                    "type": "string",
+                    "description": "The format of the payload posted to the endpoint. Options: application/json, application/xml and application/x-www-form-urlencoded. Default: application/json.",
+                    "pattern": "^application/json$|^application/xml$|^application/x-www-form-urlencoded$",
+                    "default": "application/json"
+                },
+                "headers": {
+                    "type": "object",
+                    "description": "An associative array of header names and values to include in every request.",
+                    "additionalProperties": {"type": "string"},
+                    "properties": {}
+                },
+                "timeout": {
+                    "type": "integer",
+                    "description": "In seconds, the time for the callback request to wait for a response before timing out. Allowed range: 1 - 15. Default: 5.",
+                    "default": 5,
+                    "minimum": 1,
+                    "maximum": 15
+                },
+                "answer_on_ring": {
+                    "type": "integer",
+                    "description": "The number of allowed rings before the call is answered. Allowed range: 1 - 10. Default: 1.",
+                    "default": 1,
+                    "minimum": 1,
+                    "maximum": 10
+                }
+            },
+            "required": [
+                "url"
+            ],
+            "additionalProperties": false
+        },
+        "callback_sms": {
+            "type": ["object", "null"],
+            "description": "The endpoint for inbound SMS callbacks to request. If not set, the default callback object is used. Contains the same properties as the callback object.",
+            "properties": {
+                "url": {
+                    "type": "string",
+                    "description": "The endpoint URL where the request will be sent.",
+                    "pattern": "^http://|^https://"
+                },
+                "method": {
+                    "type": "string",
+                    "description": "The request method. Accepts: POST, GET. Default: POST.",
+                    "pattern": "^POST$|^GET$",
+                    "default": "POST"
+                },
+                "content_type": {
+                    "type": "string",
+                    "description": "The format of the payload posted to the endpoint. Options: application/json, application/xml and application/x-www-form-urlencoded. Default: application/json.",
+                    "pattern": "^application/json$|^application/xml$|^application/x-www-form-urlencoded$",
+                    "default": "application/json"
+                },
+                "headers": {
+                    "type": "object",
+                    "description": "An associative array of header names and values to include in every request.",
+                    "additionalProperties": {"type": "string"},
+                    "properties": {}
+                },
+                "timeout": {
+                    "type": "integer",
+                    "description": "In seconds, the time for the callback request to wait for a response before timing out. Allowed range: 1 - 15. Default: 5.",
+                    "default": 5,
+                    "minimum": 1,
+                    "maximum": 15
+                },
+                "answer_on_ring": {
+                    "type": "integer",
+                    "description": "The number of allowed rings before the call is answered. Allowed range: 1 - 10. Default: 1.",
+                    "default": 1,
+                    "minimum": 1,
+                    "maximum": 10
+                }
+            },
+            "required": [
+                "url"
+            ],
+            "additionalProperties": false
+        },
+        "callback_sms_failover": {
+            "type": ["object", "null"],
+            "description": "If the callback_sms request fails, a second request attempt will be made to this endpoint. Contains the same properties as the callback object.",
+            "properties": {
+                "url": {
+                    "type": "string",
+                    "description": "The endpoint URL where the request will be sent.",
+                    "pattern": "^http://|^https://"
+                },
+                "method": {
+                    "type": "string",
+                    "description": "The request method. Accepts: POST, GET. Default: POST.",
+                    "pattern": "^POST$|^GET$",
+                    "default": "POST"
+                },
+                "content_type": {
+                    "type": "string",
+                    "description": "The format of the payload posted to the endpoint. Options: application/json, application/xml and application/x-www-form-urlencoded. Default: application/json.",
+                    "pattern": "^application/json$|^application/xml$|^application/x-www-form-urlencoded$",
+                    "default": "application/json"
+                },
+                "headers": {
+                    "type": "object",
+                    "description": "An associative array of header names and values to include in every request.",
+                    "additionalProperties": {"type": "string"},
+                    "properties": {}
+                },
+                "timeout": {
+                    "type": "integer",
+                    "description": "In seconds, the time for the callback request to wait for a response before timing out. Allowed range: 1 - 15. Default: 5.",
+                    "default": 5,
+                    "minimum": 1,
+                    "maximum": 15
+                },
+                "answer_on_ring": {
+                    "type": "integer",
+                    "description": "The number of allowed rings before the call is answered. Allowed range: 1 - 10. Default: 1.",
+                    "default": 1,
+                    "minimum": 1,
+                    "maximum": 10
+                }
+            },
+            "required": [
+                "url"
+            ],
+            "additionalProperties": false
+        },
+        "is_template": {
+            "type": "boolean",
+            "description": "If true, Template Mapping. will be found and replaced. Default: true.",
+            "default": true
+        },
+        "log_callbacks_until": {
+            "type": "string",
+            "description": "The date/time the callbacks for calls will stopped being logged. This date/time cannot be further out than 24 hours from “now”. Accepts ISO Date strings. Default: current time."
+        },
+        "custom_data": {
+            "type": "object",
+            "description": "Any data you want included in every request. For example, a private key to verify requests.",
+            "properties": {}
+        }
+    },
+    "required": [
+        "no",
+        "callback"
+    ],
+    "additionalProperties": false
+}

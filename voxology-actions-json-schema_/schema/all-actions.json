@@ -1,0 +1,114 @@
+{
+    "title":"AllActions",
+    "description": "List of all the actions that are used by actions for calling other actions",
+    "id": "https://api.voxolo.gy/schema/actions/all-actions.json", 
+    "switch": [
+        {
+            "if": { "$ref": "assign-variable.json" },
+            "then": { "$ref": "assign-variable.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^CCML$" } } },
+            "then": { "$ref": "ccml.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^COLLECT$" } } },
+            "then": { "$ref": "collect.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^CONFERENCE$" } } },
+            "then": { "$ref": "conference.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^DIAL$" } } },
+            "then": { "$ref": "dial.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^DETECT$" } } },
+            "then": { "$ref": "detect.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^FOREACH$" } } },
+            "then": { "$ref": "foreach.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^FUNCTION$" } } },
+            "then": { "$ref": "function.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^GOTO$" } } },
+            "then": { "$ref": "goto.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^HANGUP$" } } },
+            "then": { "$ref": "hangup.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^IF$" } } },
+            "then": { "$ref": "if.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^LABEL$" } } },
+            "then": { "$ref": "label.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^PAUSE$" } } },
+            "then": { "$ref": "pause.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^PLAY$" } } },
+            "then": { "$ref": "play.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^QUEUE$" } } },
+            "then": { "$ref": "queue.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^RECORD$" } } },
+            "then": { "$ref": "record.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^RECORDMESSAGE$" } } },
+            "then": { "$ref": "record-message.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^REDIRECT$" } } },
+            "then": { "$ref": "redirect.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^REJECT$" } } },
+            "then": { "$ref": "reject.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^SAY$" } } },
+            "then": { "$ref": "say.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^SESSIONDATA$" } } },
+            "then": { "$ref": "session.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^SMS$" } } },
+            "then": { "$ref": "sms.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^STOP$" } } },
+            "then": { "$ref": "stop.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^TRANSFER$" } } },
+            "then": { "$ref": "transfer.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^VAR$" } } },
+            "then": { "$ref": "var.json" }
+        },
+        {
+            "if": { "properties": { "type": { "pattern": "^WEBHOOK$" } } },
+            "then": { "$ref": "webhook.json" }
+        },
+        {
+            "then": false
+        }
+    ]
+}

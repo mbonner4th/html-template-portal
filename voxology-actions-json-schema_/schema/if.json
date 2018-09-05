@@ -1,0 +1,47 @@
+{
+    "title": "If",
+    "description": "Basic if-then-else conditional. The IF action allows the call flow, based on a true/false evaluation of a condition, to execute or skip a block of actions.The variables within the scope of the condition are basically the callback Native Constants and User Defined Variables prefixed with a $ symbol (yeah, like PHP). The condition is evaluated as JavaScript, with all of its truthy goodness.",
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/if.json",
+    "additionalProperties": false,
+    "properties": {
+        "condition": {
+            "description": "The JS statement to evaluate for truthfulness.",
+            "title": "the condition",
+            "type": "string"
+        },
+        "orElse": {
+            "additionalProperties": false,
+            "items": {
+                "$ref": "all-actions.json"
+            },
+            "type": ["array", "null"],
+            "minItems": 1
+        },
+        "then": {
+            "additionalProperties": false,
+            "items": {
+                "$ref": "all-actions.json"
+            },
+            "type": ["array", "null"],
+            "minItems": 1
+        },
+        "type": {
+            "pattern": "^IF$",
+            "default": "IF",
+            "type": "string"
+        },
+        "comments": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "then",
+        "type",
+        "condition"
+    ],
+    "type": "object"
+}

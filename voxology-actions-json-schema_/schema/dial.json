@@ -1,0 +1,109 @@
+{
+    "title": "Dial",
+    "description": "Detects whether a live person or voicemail system answers the outbound call. If the callee is a voicemail service, the action will wait to execute the on_voicemail event after the beep.",
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/dial.json",
+    "additionalProperties": false,
+    "properties": {
+        "events": {
+            "additionalProperties": false,
+            "properties": {
+                "on_error": {
+                    "items": {
+                        "allOf": [{
+                                "$ref": "all-actions.json"
+                            },
+                            {
+                                "not": {
+                                    "$ref": "detect.json"
+                                }
+                            }
+                        ]
+                    },
+                    "type": ["array", "null"],
+                    "minItems": 1
+                }
+            },
+            "type": "object"
+        },
+        "params": {
+            "additionalProperties": false,
+            "properties": {
+                "caller_id_no": {
+                    "description": "The phone number that will appear as the Caller ID. Phone numbers are in E.164 format (example: +19495551212).This phone number should have been previously provisioned and assigned to CallFlows and configured with a CallFlow Callback. Defaults to the inbound number (api_no in your callback).",
+                    "type": "string"
+                },
+                "detection": {
+                    "default": "none",
+                    "description": "How to identify a connection. Accepts: preconnect, full, none.",
+                    "enum": ["none", "preconnect", "full"],
+                    "title": "detection",
+                    "type": "string"
+                },
+                "inbound_api": {
+                    "default": "CallFlows",
+                    "description": "The inbound API to route the call to. Currently only uses CallFlows.",
+                    "enum": ["CallFlows"],
+                    "title": "inbound_api",
+                    "type": "string"
+                },
+                "no": {
+                    "description": "The phone number or SIP destination to call. Phone numbers are in E.164 format (example: +19495551212). SIP destinations are formatted as abc123@sip.mypbx.com.",
+                    "title": "number",
+                    "type": "string"
+                },
+                "disable_redial_block": {
+                    "description": "To prevent unintentional DIAL loops, redialing the same phone number is blocked with a message and hangup. Only set this parameter to true when you are deliberately redialing a number.",
+                    "title": "Redial Block",
+                    "type": "boolean",
+                    "default": false
+                },
+                "override_callback_config": {
+                    "description": "Override Callback Config",
+                    "title": "Override Callback Config",
+                    "type": "string"
+                },
+                "max_call_time": {
+                    "description": "The maximum amount of time a call can last",
+                    "minimum": 60,
+                    "maximum": 172800,
+                    "default": 86400,
+                    "title": "Max Call Time",
+                    "type": "integer"
+                },
+                "timeout": {
+                    "description": "Timesout after",
+                    "minimum": 20,
+                    "maximum": 240,
+                    "default": 50,
+                    "title": "Timeout",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "no"
+            ],
+            "type": "object"
+        },
+        "session_data": {
+            "properties": {},
+            "type": ["object", "string"]
+        },
+        "type": {
+            "pattern": "^DIAL$",
+            "default": "DIAL",
+            "type": "string"
+        },
+        "comments": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "type",
+        "params"
+    ],
+    "type": "object"
+}

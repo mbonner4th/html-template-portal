@@ -1,0 +1,54 @@
+{
+    "title": "Transfer",
+    "description": "Transfers the call. This action transfers the caller from the current api_no to another phone number or SIP endpoint.",
+    "additionalProperties": false,
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/transfer.json",
+    "properties": {
+        "comments": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "params": {
+            "additionalProperties": false,
+            "properties": {
+                "async": {
+                    "default": false,
+                    "description": "If false, the default, the current call will block for the duration of the transfer call. If true, the transfer will be initiated, but the current call will continue with its call flow.",
+                    "type": "boolean"
+                },
+                "caller_id_no": {
+                    "description": "The phone number that will appear as the Caller ID. Phone numbers are in E.164 format (example: +19495551212). Defaults to the number of the caller that dialed your inbound number (caller_ no in your callbacks)",
+                    "type": "string",
+                    "default": "${callerNo}"
+                },
+                "event": {
+                    "default": "start",
+                    "description": "Accepts start or stop. The start event will connect two calls. The stop event will disconnect the transfer, hanging up on the other call.",
+                    "type": "string",
+                    "enum": ["start", "stop"]
+                },
+                "no": {
+                    "description": "The phone number or SIP destination to call. Phone numbers are in E.164 format (example: +19495551212). SIP destinations are formatted as abc123@sip.mypbx.com.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "no"
+            ],
+            "type": "object"
+        },
+        "type": {
+            "default": "TRANSFER",
+            "pattern": "^TRANSFER$",
+            "type": "string"
+        }
+    },
+    "required": [
+        "params",
+        "type"
+    ],
+    "type": "object"
+}

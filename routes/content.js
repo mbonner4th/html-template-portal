@@ -41,6 +41,10 @@ router.get('/latest', function(req, res){
 });
 
 
+router.get('/special/no-response', function(req, res){
+    console.log("the route was hit!")
+});
+
 // update to make url unique
 router.get('/:page', function(req, res){
     console.log(req.params.page);

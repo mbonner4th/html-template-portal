@@ -1,0 +1,27 @@
+{
+    "title": "Label",
+    "description": "Target of GOTO. The LABEL action sets the entry point for a GOTO action. Invoking a GOTO on a label will immediately jump the call flow to the LABEL.",
+    "additionalProperties": false,
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/label.json",
+    "properties": {
+        "name": {
+            "description": "The name of the LABEL used by a GOTO action. Accepts: alphanumeric, dashes and underscores.",
+            "title": "name for GOTO",
+            "type": "string"
+        },
+        "type": {
+            "pattern": "^LABEL$",
+            "default": "LABEL",
+            "type": "string"
+        },
+        "comments": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "type",
+        "name"
+    ],
+    "type": "object"
+}

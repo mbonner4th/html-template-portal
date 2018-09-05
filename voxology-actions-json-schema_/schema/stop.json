@@ -1,0 +1,35 @@
+{
+    "title": "Stop",
+    "description": "Stops Running Actions. This action stops other actions that are currently running on a call, like playing audio.",
+    "additionalProperties": false,
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/stop.json",
+    "properties": {
+        "comments": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "params": {
+            "additionalProperties": false,
+            "properties": {
+                "actions": {
+                    "description": "A comma-separated list of actions. Accepts: AUDIO.",
+                    "type": "string",
+                    "default": "AUDIO"
+                }
+            },
+            "type": "object"
+        },
+        "type": {
+            "pattern": "^STOP$",
+            "default": "STOP",
+            "type": "string"
+        }
+    },
+    "required": [
+        "type"
+    ],
+    "type": "object"
+}

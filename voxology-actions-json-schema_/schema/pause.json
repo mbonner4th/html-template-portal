@@ -1,0 +1,38 @@
+{
+    "title": "Pause",
+    "description": "Pauses the call. Pauses the call for the specified number of seconds, then resumes with the next Action.",
+    "additionalProperties": false,
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/pause.json",
+    "properties": {
+        "params": {
+            "additionalProperties": false,
+            "properties": {
+                "seconds": {
+                    "minimum": 1,
+                    "maximum": 10000,
+                    "default": 5,
+                    "description": "The number of seconds to pause.",
+                    "title": "seconds",
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "type": {
+            "pattern": "^PAUSE$",
+            "default": "PAUSE",
+            "type": "string"
+        },
+        "comments": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "type"
+    ],
+    "type": "object"
+}

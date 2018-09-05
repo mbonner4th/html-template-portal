@@ -1,0 +1,53 @@
+{
+    "title": "Redirect",
+    "description": "Changes the callback URL, etc. The REDIRECT action changes the url, method, headers and/or content_type of all subsequent callbacks.",
+    "additionalProperties": false,
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/redirect.json",
+    "properties": {
+        "comments": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "params": {
+            "additionalProperties": false,
+            "properties": {
+                "content_type": {
+                    "description": "The format of the payload posted to the endpoint. Accepts: application/json, application/xml, application/x-www-form-urlencoded.",
+                    "default": "application/json",
+                    "type": "string"
+                },
+                "headers": {
+                    "description": "The new headers to send with all subsequent callbacks. Accepts an associative array of header names and values.",
+                    "properties": {},
+                    "type": ["object", "null"]
+                },
+                "method": {
+                    "description": "The new method to send all subsequent callbacks as. Accepts: POST, PUT, GET.",
+                    "default": "GET",
+                    "type": ["string", "null"]
+                },
+                "url": {
+                    "description": "The new url to send all subsequent callbacks to. This parameter supports relative URLs. The benefit of relative URLs is that actions with REDIRECTs may be assigned to many domains or subdirectories without changing any code.",
+                    "type": ["string", "null"]
+                }
+            },
+            "required": [
+                "url"
+            ],
+            "type": "object"
+        },
+        "type": {
+            "default": "REDIRECT",
+            "pattern": "^REDIRECT$",
+            "type": "string"
+        }
+    },
+    "required": [
+        "params",
+        "type"
+    ],
+    "type": "object"
+}

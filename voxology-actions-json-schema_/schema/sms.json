@@ -1,0 +1,48 @@
+{
+    "title": "Sms",
+    "description": "Sends an SMS message. This action sends an SMS message.",
+    "additionalProperties": false,
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/sms.json",
+    "properties": {
+        "comments": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "params": {
+            "additionalProperties": false,
+            "properties": {
+                "caller_id_no": {
+                    "description": "The phone number the message is sent from. Defaults to the current inbound number.",
+                    "type": "string",
+                    "default": "${apiNo}"
+                },
+                "message": {
+                    "description": "The text message to send.",
+                    "type": "string"
+                },
+                "no": {
+                    "description": "The phone number to send the message to. Defaults to caller’s number.",
+                    "type": "string",
+                    "default": "${callerNo}"
+                }
+            },
+            "required": [
+                "message"
+            ],
+            "type": "object"
+        },
+        "type": {
+            "default": "SMS",
+            "pattern": "^SMS$",
+            "type": "string"
+        }
+    },
+    "required": [
+        "params",
+        "type"
+    ],
+    "type": "object"
+}

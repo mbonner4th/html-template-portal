@@ -1,0 +1,41 @@
+{
+    "title":"Record",
+    "description": "Control call recording. This action allows the developer to start, stop, pause and resume recordings.",
+    "additionalProperties": false,
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/record.json",
+    "properties": {
+        "comments": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "params": {
+            "additionalProperties": false,
+            "properties": {
+                "action": {
+                    "default": "start",
+                    "description": "The recording action to perform. Accepts: start, stop, pause, resume.",
+                    "enum": ["start", "stop", "pause", "resume"],
+                    "type": "string"
+                },
+                "group": {
+                    "description": "A name that is queryable in the recordings lookup resource.",
+                    "type": "string",
+                    "default": "${apiNo}"
+                }
+            },
+            "type": "object"
+        },
+        "type": {
+            "default": "RECORD",
+            "pattern": "^RECORD$",
+            "type": "string"
+        }
+    },
+    "required": [
+        "type"
+    ],
+    "type": "object"
+}

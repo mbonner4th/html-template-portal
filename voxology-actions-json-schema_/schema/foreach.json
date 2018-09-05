@@ -1,0 +1,65 @@
+{
+    "title": "Foreach",
+    "description": "The FOREACH Action is a convenient way to loop through an array or object without having to worry about counting the number of elements. The FOREACH Action loops through a provided list of Actions once for each element in the data structure, automatically exiting when the elements are all exhausted. This list of Actions has access to each value, key and index of the current element.",
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/foreach.json",
+    "properties": {
+        "params": {
+            "properties": {
+                "iterator": {
+                    "type": "string",
+                    "pattern": "^\\$"
+                },
+                "keyVar": {
+                    "default": "$key",
+                    "type": "string",
+                    "pattern": "^\\$"
+                },
+                "valueVar": {
+                    "default": "$val",
+                    "type": "string",
+                    "pattern": "^\\$"
+                },
+                "indexVar": {
+                    "default": "$index",
+                    "type": "string",
+                    "pattern": "^\\$"
+                }
+            },
+            "required": [
+                "iterator"
+            ],
+            "type": "object",
+            "additionalProperties": false
+        },
+        "then": {
+            "items": {
+                "allOf": [
+                    { "$ref": "all-actions.json" },
+                    { "not": {"$ref": "detect.json" } }
+                ]
+            },
+            "additionalProperties": false,
+            "type": ["array", "null"],
+            "minItems": 1
+        },
+        "type": {
+            "default": "FOREACH",
+            "pattern": "^FOREACH$",
+            "type": "string"
+        },
+        "comments": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "params",
+        "type",
+        "then"
+    ],
+    "type": "object",
+    "additionalProperties": false
+}

@@ -1,0 +1,98 @@
+{
+    "title": "Queue",
+    "description": "Controls Call Queues. Place or remove callers from a specific queue and handle queue events.",
+    "additionalProperties": false,
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/queue.json",
+    "properties": {
+        "events": {
+            "additionalProperties": false,
+            "properties": {
+                "on_enter": {
+                    "additionalItems": false,
+                    "items": {
+                        "allOf": [
+                            { "$ref": "all-actions.json" },
+                            { "not": {"$ref": "detect.json" } }
+                        ]
+                    },
+                    "type": ["array", "null"],
+                    "minItems": 1
+                },
+                "on_enter_error_max_calls": {
+                    "additionalItems": false,
+                    "items": {
+                        "allOf": [
+                            { "$ref": "all-actions.json" },
+                            { "not": {"$ref": "detect.json" } }
+                        ]
+                    },
+                    "type": ["array", "null"],
+                    "minItems": 1
+                },
+                "on_enter_error": {
+                    "additionalItems": false,
+                    "items": {
+                        "allOf": [
+                            { "$ref": "all-actions.json" },
+                            { "not": {"$ref": "detect.json" } }
+                        ]
+                    },
+                    "type": ["array", "null"],
+                    "minItems": 1
+                }
+            },
+            "type": "object"
+        },
+        "params": {
+            "additionalProperties": false,
+            "properties": {
+                "event": {
+                    "default": "offer",
+                    "description": "Accepts: offer, poll, poll_connect, remove. offer puts this call into a queue. poll releases the next queued call from a queue (and has a limited use case as an Action). poll_connect takes the next call from the queue and bridges it to this call. remove takes this call (regardless of position) ",
+                    "enum": ["offer", "poll", "poll_connect", "remove"],
+                    "type": "string"
+                },
+                "max_calls": {
+                    "description": "At the moment of offering, if the number of queued calls exceeds this amount, the offer will error. Calls that attempt to exceed the limit can be handled with an error handler.",
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "A unique name to identify the queue. Using the same name will put callers into the same queue. Accepts: alpha-numeric, underscores, and dashes.",
+                    "type": "string"
+                },
+                "async": {
+                    "description": "If true, this action will not block and the call flow will continue executing actions and/or callbacks. Be careful as async may cause hard to reason behaviors. Only offer can be asynchronous.",
+                    "type": "boolean",
+                    "default": false
+                },
+                "hold_audio": {
+                    "description": "The url of the audio file to play when a call is in the queue. If true, our default hold music will play. If false, no hold music will play. Supports MP3 and WAV. WAV will often perform better.",
+                    "type": ["boolean", "string"],
+                    "default": true
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "type": "object"
+        },
+        "type": {
+            "default": "QUEUE",
+            "pattern": "^QUEUE$",
+            "type": "string"
+        },
+        "comments": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "params",
+        "type"
+    ],
+    "type": "object"
+}

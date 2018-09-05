@@ -1,0 +1,100 @@
+{
+    "title": "RecordMessage",
+    "description": "This action allows the developer to implement a voicemail-type system, where a caller can leave a message, play it back, and decide to save or discard the message. Saved recordings will be available via the REST API. Note: These recordings will be saved by 1) a `RECORDMESSAGE` with `save`, or 2) by ending the call before a `RECORDMESSAGE` with `discard`.",
+    "id": "https://api.voxolo.gy/schema/actions/record-message.json",
+    "definitions": {},
+    "properties": {
+        "events": {
+            "additionalProperties": false,
+            "properties": {
+                "on_save": {
+                    "additionalItems": false,
+                    "description": "This handler will run when successfully saving a recording with `action:\"save\"`. Useful for firing off `WEBHOOK`s.",
+                    "items": {
+                        "allOf": [
+                            { "$ref": "all-actions.json" },
+                            { "not": { "$ref": "detect.json" } }
+                        ]
+                    },
+                    "type": [ "array", "null" ],
+                    "minItems": 1
+                },
+                "on_error": {
+                    "additionalItems": false,
+                    "description": "This handler will run if any `action` fails.",
+                    "items": {
+                        "allOf": [
+                            { "$ref": "all-actions.json" },
+                            { "not": { "$ref": "detect.json" } }
+                        ]
+                    },
+                    "type": [ "array", "null" ],
+                    "minItems": 1
+                }
+            }
+        },
+        "params": {
+            "additionalProperties": false,
+            "properties": {
+                "action": {
+                    "default": "start",
+                    "description": "The recording action to perform. Accepts: `start`, `play`, `discard`, `save`.",
+                    "enum": [ "start", "play", "discard", "save" ],
+                    "type": "string"
+                },
+                "play_beep": {
+                    "default": true,
+                    "description": "If true, a beep will sound to indicate a recording has started.",
+                    "type": "boolean"
+                },
+                "timeout": {
+                    "default": 5,
+                    "description": "The maximum amount of silence before a recording is stopped in seconds.",
+                    "minimum": 1,
+                    "maximum": 60,
+                    "type": "integer"
+                },
+                "trim_silence": {
+                    "default": true,
+                    "type": "boolean",
+                    "description": "If true, silence at the start and end of the recording will be removed."
+                },
+                "finish_on_key": {
+                    "default": "any",
+                    "description": "The key to press to end the recording. Accepts: any, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, #, *.",
+                    "pattern": "^[0-9#\\*]{1,5}$|^any$",
+                    "type": "string"
+                },
+                "max_recording_time": {
+                    "default": "30",
+                    "description": "The maximum length of a recording in seconds.",
+                    "minimum": 1,
+                    "maximum": 3600,
+                    "type": "integer"
+                },
+                "group": {
+                    "default": "${apiNo}",
+                    "description": "A name that is queryable in the recordings lookup resource.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "type": {
+            "default": "RECORDMESSAGE",
+            "pattern": "^RECORDMESSAGE$",
+            "type": "string"
+        },
+        "comments": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "type"
+    ],
+    "type": "object",
+    "additionalProperties": false
+}

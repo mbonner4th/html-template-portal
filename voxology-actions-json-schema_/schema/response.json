@@ -1,0 +1,34 @@
+{
+    "title":"Response",
+    "description":"The container that holds all the actions",
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/response.json",
+    "properties": {
+        "actions": {
+            "items": { "$ref": "all-actions.json" },
+            "additionalProperties": false,
+            "type": ["array", "null"],
+            "minItems": 1
+        },
+        "name": {
+            "type": "string"
+        },
+        "comments": {
+            "type": "string"
+        },
+        "debugger": {
+            "type": ["boolean", "null"]
+        },
+        "functions": {
+            "type": ["array", "null"],
+            "items": { "$ref": "function-declaration.json" },
+            "additionalProperties": false,
+            "minItems": 1
+        }
+    },
+    "additionalProperties": false,
+    "required": [
+        "actions"
+    ],
+    "type": "object"
+}

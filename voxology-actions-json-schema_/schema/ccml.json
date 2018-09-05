@@ -1,0 +1,36 @@
+{
+    "title": "Ccml",
+    "description": "Action to embed CCML into JSON Scripts",
+    "definitions": {},
+    "id": "https://api.voxolo.gy/schema/actions/ccml.json",
+    "properties": {
+        "type": {
+            "type": "string",
+            "pattern": "^CCML$",
+            "default": "CCML"
+        },
+        "params": {
+            "type": "object",
+            "properties": {
+                "ccml": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "ccml"
+            ],
+            "additionalProperties": false
+        },
+        "name": {
+            "type": "string"
+        },
+        "comments": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "type",
+        "params"
+    ],
+    "additionalProperties": false
+}
