@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 var passport = require('passport');
+var LocalStrategy =  require('passport-local').Strategy
 var session =  require("client-sessions");
 
 /** Routes start here */
@@ -27,10 +28,10 @@ var app = express();
 
 /* DB config stuff starts here */
 var mongoose = require('mongoose');
-var urlString = process.env.MONGODB_URI || 'mongodb://127.0.0.1/site';
+var urlString = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/site';
 
 console.log("DB sitting at:", urlString);
-mongoose.connect(urlString, {useMongoClient:true});
+mongoose.connect(urlString, {useNewUrlParser: true});
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -58,23 +59,43 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-
-app.use(function(req, res, next) {
-  if (req.session && req.session.user) {
-    userModel.findOne({ email: req.session.user.email }, function(err, user) {
-      if (user) {
-        req.user = user.toObject();
-        delete req.user.password; // delete the password from the session
-        req.session.user = user;  //refresh the session value
-        res.locals.user = user;
-      }
-      // finishing processing the middleware and run the route
-      next();
-    });
-  } else {
-    next();
-  }
+passport.serializeUser(function(user, done) {
+    done(null, user._id);
 });
+
+passport.deserializeUser(function(userId, done) {
+    User.findById(userId, (err, user) => done(err, user));
+});
+
+var localStrat = new LocalStrategy((username, password, done)=>{
+    userModel.findOne({ email: username })
+    .then(user=>{
+        if(!user || !user.validPassword(passport)){
+            done(null, false, {message: "invalid username/password"})
+        } else {
+            done(null, user)
+        }
+    })
+    .catch(e=>done(e));
+});
+
+passport.use('local', localStrat)
+// app.use(function(req, res, next) {
+//   if (req.session && req.session.user) {
+//     userModel.findOne({ email: req.session.user.email }, function(err, user) {
+//       if (user) {
+//         req.user = user.toObject();
+//         delete req.user.password; // delete the password from the session
+//         req.session.user = user;  //refresh the session value
+//         res.locals.user = user;
+//       }
+//       // finishing processing the middleware and run the route
+//       next();
+//     });
+//   } else {
+//     next();
+//   }
+// });
 
 /* Logging and static files */
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -100,9 +121,9 @@ function requireLogin (req, res, next) {
 /* Routes start here */
 app.use('/users', users);
 app.use('/auth', auth);
-app.use('/edit-user', requireLogin, editUser);
-app.use('/edit-page', requireLogin, editPage);
-app.use('/admin-panel', requireLogin, adminpanel);
+app.use('/edit-user', editUser);
+app.use('/edit-page', editPage);
+app.use('/admin-panel',  adminpanel);
 app.use('/', content);
 
 // catch 404 and forward to error handler

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const userSchema = mongoose.Schema({
   email: {
@@ -6,7 +7,7 @@ const userSchema = mongoose.Schema({
       requred: true,
       unique: true,
     },
-  password: {
+  hashedPassword: {
       type: String, 
       required: true
     },
@@ -17,6 +18,17 @@ const userSchema = mongoose.Schema({
     type: String,
   }
 });
+
+userSchema.plugin(uniqueValidator)
+
+userSchema.methods.validPassword = function(plainPassword) {
+    return bcrypt.compareSync(plainPassword, this.hashedPassword);
+};
+
+userSchema.virtual("password").set(function(value) {
+    this.hashedPassword = bcrypt.hashSync(value, 12);
+});
+
 const userModel = mongoose.model('user', userSchema);
 
 
