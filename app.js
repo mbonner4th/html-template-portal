@@ -18,7 +18,8 @@ var auth = require('./routes/auth.js');
 var editUser = require('./routes/edit-user.js');
 var editPage = require('./routes/edit-page.js');
 var content = require('./routes/content.js');
-var adminpanel = require('./routes/admin-panel.js')
+var adminpanel = require('./routes/admin-panel.js');
+var specialRoutes = require('./routes/special-routes.js');
 
 var userModel = require('./models/user');
 
@@ -30,7 +31,7 @@ var mongoose = require('mongoose');
 var urlString = process.env.MONGODB_URI || 'mongodb://127.0.0.1/site';
 
 console.log("DB sitting at:", urlString);
-mongoose.connect(urlString, {useMongoClient:true});
+mongoose.connect(urlString);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -103,6 +104,7 @@ app.use('/auth', auth);
 app.use('/edit-user', requireLogin, editUser);
 app.use('/edit-page', requireLogin, editPage);
 app.use('/admin-panel', requireLogin, adminpanel);
+app.use('/special', specialRoutes);
 app.use('/', content);
 
 // catch 404 and forward to error handler

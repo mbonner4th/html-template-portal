@@ -76,8 +76,7 @@ router.get("/json/:pageURL", function(req, res){
     });
   });
 
-  router.post("/json/:pageURL", function(req, res){
-
+router.post("/json/:pageURL", function(req, res){
     console.log("req body: ", req.body);
     console.log("req header", req.headers)
     console.log("req URL: ", req.params);
@@ -133,15 +132,12 @@ router.get('/:page', function(req, res){
                     date: "", 
                     author: "",
                     visible: page.visible,
-                });      
+                });
             }
-
         }
-  
       } else{
         res.redirect('/');
       }
-  
     });
     
   });
