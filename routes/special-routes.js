@@ -21,7 +21,7 @@ router.post("/timeout/:timeoutValue", function(req, res){
                   {
                     "type": "SAY",
                     "params": {
-                      "text": "Timeout route"
+                      "text": "Miles' Timeout route hit"
                     }
                   },
                   {
@@ -42,7 +42,7 @@ router.get("/timeout/:timeoutValue", function(req, res){
                   {
                     "type": "SAY",
                     "params": {
-                      "text": "Timeout route"
+                      "text": "Miles' Timeout route hit"
                     }
                   },
                   {
